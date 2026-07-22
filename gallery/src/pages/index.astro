@@ -1,0 +1,131 @@
+---
+import AppCard from '../components/AppCard.astro';
+import { apps } from '../apps';
+import { site } from '../config';
+import '../styles/global.css';
+
+const readyCount = apps.filter((a) => a.status === 'ready').length;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{site.name}</title>
+		<meta
+			name="description"
+			content="Example apps embedding Morphic Blocks in different frameworks and toolchains."
+		/>
+	</head>
+	<body>
+		<header class="container site-header">
+			<span class="brand">{site.name}</span>
+			<nav>
+				<a href={site.links.docs}>Docs</a>
+				<a href={site.links.landing}>Website</a>
+				<a href={site.links.github}>GitHub</a>
+			</nav>
+		</header>
+
+		<main class="container">
+			<h1>Example apps</h1>
+			<p class="lede">
+				The same Morphic Blocks setup, embedded in different frameworks and
+				built with different toolchains. Every app is self-contained — download
+				a folder and run it on its own.
+			</p>
+
+			{
+				readyCount === 0 && (
+					<p class="notice">
+						These apps are planned — the shell is in place and each one will
+						land here as it is built.
+					</p>
+				)
+			}
+
+			<section class="grid">
+				{apps.map((app) => <AppCard app={app} />)}
+			</section>
+		</main>
+
+		<footer class="container site-footer">
+			<span>{site.name}</span>
+		</footer>
+
+		<script is:inline>
+			// "Copy CLI" buttons — copy the degit command for that app.
+			document.querySelectorAll('button[data-copy]').forEach((btn) => {
+				btn.addEventListener('click', async () => {
+					try {
+						await navigator.clipboard.writeText(btn.dataset.copy);
+						const original = btn.textContent;
+						btn.textContent = 'Copied';
+						setTimeout(() => (btn.textContent = original), 1500);
+					} catch {
+						/* clipboard unavailable — ignore */
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
+
+<style>
+	.site-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding-block: 1.1rem;
+		flex-wrap: wrap;
+	}
+	.brand {
+		font-weight: 700;
+	}
+	.site-header nav {
+		display: flex;
+		gap: 1rem;
+		font-size: 0.92rem;
+	}
+	.site-header nav a {
+		text-decoration: none;
+		color: var(--text-muted);
+	}
+	.site-header nav a:hover {
+		color: var(--accent);
+	}
+
+	h1 {
+		margin: 1.5rem 0 0.5rem;
+		font-size: clamp(1.7rem, 4vw, 2.3rem);
+	}
+	.lede {
+		color: var(--text-muted);
+		max-width: 62ch;
+		margin: 0 0 1.5rem;
+	}
+	.notice {
+		border: 1px dashed var(--border);
+		border-radius: var(--radius-sm);
+		padding: 0.7rem 0.9rem;
+		color: var(--text-muted);
+		font-size: 0.9rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+		gap: 1.1rem;
+		padding-bottom: 3rem;
+	}
+
+	.site-footer {
+		border-top: 1px solid var(--border);
+		padding-block: 1.3rem;
+		color: var(--text-muted);
+		font-size: 0.88rem;
+	}
+</style>

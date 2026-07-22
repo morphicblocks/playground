@@ -1,0 +1,228 @@
+---
+import { Icon } from 'astro-icon/components';
+import { appLinks } from '../config';
+import type { PlaygroundApp } from '../apps';
+
+interface Props {
+	app: PlaygroundApp;
+}
+
+const { app } = Astro.props;
+const links = appLinks(app.id);
+const planned = app.status !== 'ready';
+
+/**
+ * Stack keys → display label and (where one exists) a simple-icons slug.
+ * Not every tool ships an icon — Parcel, for one — so entries without `icon`
+ * render as a text pill instead. Unknown keys fall back to the raw key, which
+ * keeps a typo or a new tool from breaking the build.
+ */
+const STACK: Record<string, { label: string; icon?: string }> = {
+	typescript: { label: 'TypeScript', icon: 'simple-icons:typescript' },
+	javascript: { label: 'JavaScript', icon: 'simple-icons:javascript' },
+	react: { label: 'React', icon: 'simple-icons:react' },
+	vuedotjs: { label: 'Vue', icon: 'simple-icons:vuedotjs' },
+	svelte: { label: 'Svelte', icon: 'simple-icons:svelte' },
+	nextdotjs: { label: 'Next.js', icon: 'simple-icons:nextdotjs' },
+	vite: { label: 'Vite', icon: 'simple-icons:vite' },
+	webpack: { label: 'webpack', icon: 'simple-icons:webpack' },
+	parcel: { label: 'Parcel' },
+	bun: { label: 'Bun', icon: 'simple-icons:bun' },
+	npm: { label: 'npm', icon: 'simple-icons:npm' },
+	pnpm: { label: 'pnpm', icon: 'simple-icons:pnpm' },
+	yarn: { label: 'Yarn', icon: 'simple-icons:yarn' },
+};
+---
+
+<article class:list={['card', { planned }]}>
+	<div class="preview">
+		{
+			app.preview ? (
+				<img src={app.preview} alt={`${app.name} preview`} loading="lazy" />
+			) : (
+				<span class="preview-fallback">{app.name}</span>
+			)
+		}
+		{planned && <span class="badge">Planned</span>}
+	</div>
+
+	<div class="body">
+		<h2>{app.name}</h2>
+		<p class="desc">{app.description}</p>
+
+		<ul class="stack" aria-label="Tech stack">
+			{
+				app.stack.map((key) => {
+					const entry = STACK[key] ?? { label: key };
+					return (
+						<li title={entry.label}>
+							{entry.icon ? (
+								<>
+									<Icon name={entry.icon} />
+									<span class="sr-only">{entry.label}</span>
+								</>
+							) : (
+								<span class="pill">{entry.label}</span>
+							)}
+						</li>
+					);
+				})
+			}
+		</ul>
+
+		<div class="actions">
+			{
+				planned ? (
+					<span class="btn btn-primary disabled" aria-disabled="true">
+						Coming soon
+					</span>
+				) : (
+					<a class="btn btn-primary" href={links.open}>
+						Open app
+					</a>
+				)
+			}
+			<a class="btn btn-ghost" href={links.source}>Source</a>
+			<button class="btn btn-ghost copy" data-copy={links.degit} type="button">
+				Copy CLI
+			</button>
+		</div>
+	</div>
+</article>
+
+<style>
+	.card {
+		display: flex;
+		flex-direction: column;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		overflow: hidden;
+		transition: border-color 0.15s ease;
+	}
+	.card:not(.planned):hover {
+		border-color: var(--accent);
+	}
+	.card.planned {
+		opacity: 0.62;
+	}
+
+	.preview {
+		position: relative;
+		aspect-ratio: 16 / 9;
+		display: grid;
+		place-items: center;
+		background: var(--preview-bg);
+		border-bottom: 1px solid var(--border);
+	}
+	.preview img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	.preview-fallback {
+		font-weight: 600;
+		color: var(--text-muted);
+		padding: 0 1rem;
+		text-align: center;
+	}
+	.badge {
+		position: absolute;
+		top: 0.6rem;
+		right: 0.6rem;
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		padding: 0.2rem 0.5rem;
+		border-radius: 999px;
+		background: var(--badge-bg);
+		color: var(--badge-text);
+	}
+
+	.body {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+		padding: 1rem 1.1rem 1.15rem;
+		flex: 1;
+	}
+	h2 {
+		font-size: 1.05rem;
+		margin: 0;
+	}
+	.desc {
+		margin: 0;
+		color: var(--text-muted);
+		font-size: 0.92rem;
+		flex: 1;
+	}
+
+	.stack {
+		display: flex;
+		gap: 0.55rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		color: var(--text-muted);
+	}
+	.stack li {
+		display: grid;
+		place-items: center;
+	}
+	.stack [data-icon] {
+		width: 1.15rem;
+		height: 1.15rem;
+	}
+	.pill {
+		font-size: 0.7rem;
+		font-weight: 600;
+		line-height: 1;
+		padding: 0.25rem 0.4rem;
+		border: 1px solid var(--border);
+		border-radius: var(--radius-sm);
+	}
+
+	.actions {
+		display: flex;
+		gap: 0.45rem;
+		flex-wrap: wrap;
+		margin-top: 0.25rem;
+	}
+	.btn {
+		font: inherit;
+		font-size: 0.85rem;
+		font-weight: 600;
+		padding: 0.4rem 0.75rem;
+		border-radius: var(--radius-sm);
+		border: 1px solid transparent;
+		cursor: pointer;
+		text-decoration: none;
+	}
+	.btn-primary {
+		background: var(--accent);
+		color: #fff;
+	}
+	.btn-primary.disabled {
+		background: var(--border);
+		color: var(--text-muted);
+		cursor: default;
+	}
+	.btn-ghost {
+		background: transparent;
+		border-color: var(--border);
+		color: var(--text);
+	}
+	.btn-ghost:hover {
+		border-color: var(--accent);
+	}
+
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+		white-space: nowrap;
+	}
+</style>

@@ -1,0 +1,14 @@
+{
+  "name": "gallery",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^7.0.9",
+    "astro-icon": "^1.1.5",
+    "@iconify-json/simple-icons": "^1.2.0"
+  }
+}

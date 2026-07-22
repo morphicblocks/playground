@@ -1,0 +1,9 @@
+{
+  "name": "playground",
+  "type": "module",
+  "scripts": {
+    "dev": "cd gallery && bun run dev",
+    "build": "bun run scripts/build-all.ts",
+    "preview": "cd gallery && bun run preview"
+  }
+}

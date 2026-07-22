@@ -1,0 +1,44 @@
+# Patterns without a leading slash match at ANY depth, so these also cover
+# the self-contained apps in apps/<id>/ regardless of their toolchain.
+
+# dependencies
+node_modules/
+.pnp/
+.yarn/cache/
+.yarn/install-state.gz
+
+# build output (varies by toolchain)
+dist/
+build/
+out/
+.next/
+.nuxt/
+.svelte-kit/
+.astro/
+.output/
+
+# caches
+.parcel-cache/
+.cache/
+.vite/
+.turbo/
+*.tsbuildinfo
+
+# environment variables (keep the committed example)
+.env
+.env.*
+!.env.example
+
+# logs
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+bun-debug.log*
+
+# editor / OS
+.DS_Store
+.idea/
+*.swp
+
+# Lockfiles are intentionally NOT ignored: each app commits its own so that a
+# downloaded folder installs the exact versions it was tested with.
