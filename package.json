@@ -1,6 +1,7 @@
 {
   "name": "playground",
   "type": "module",
+  "license": "Apache-2.0",
   "scripts": {
     "dev": "cd gallery && bun run dev",
     "build": "bun run scripts/build-all.ts",
