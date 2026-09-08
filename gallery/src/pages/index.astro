@@ -56,6 +56,19 @@ const readyCount = apps.filter((a) => a.status === 'ready').length;
 
 		<footer class="container site-footer">
 			<span>{site.name}</span>
+			<nav class="legal" aria-label="Legal">
+				<a href={site.legal.imprint} {...externalAttrs(site.legal.imprint)}>
+					Imprint
+				</a>
+				<a href={site.legal.privacy} {...externalAttrs(site.legal.privacy)}>
+					Privacy
+				</a>
+				<a
+					href={site.legal.disclaimer}
+					{...externalAttrs(site.legal.disclaimer)}>
+					Disclaimer
+				</a>
+			</nav>
 		</footer>
 
 		<script is:inline>
@@ -127,9 +140,25 @@ const readyCount = apps.filter((a) => a.status === 'ready').length;
 	}
 
 	.site-footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
 		border-top: 1px solid var(--border);
 		padding-block: 1.3rem;
 		color: var(--text-muted);
 		font-size: 0.88rem;
+	}
+	.site-footer .legal {
+		display: flex;
+		gap: 1rem;
+	}
+	.site-footer .legal a {
+		color: var(--text-muted);
+		text-decoration: none;
+	}
+	.site-footer .legal a:hover {
+		color: var(--accent);
 	}
 </style>

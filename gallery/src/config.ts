@@ -13,6 +13,16 @@ export const site = {
     docs: env.PUBLIC_DOCS_URL ?? '#',
     landing: env.PUBLIC_LANDING_URL ?? '#',
   },
+  /**
+   * Required on every university web presence: imprint, privacy policy and
+   * disclaimer. They point at the university's own pages, so they are plain
+   * env-driven URLs like the rest.
+   */
+  legal: {
+    imprint: env.PUBLIC_IMPRINT_URL ?? '#',
+    privacy: env.PUBLIC_PRIVACY_URL ?? '#',
+    disclaimer: env.PUBLIC_DISCLAIMER_URL ?? '#',
+  },
 };
 
 /** Absolute http(s) URLs point off-site. */
