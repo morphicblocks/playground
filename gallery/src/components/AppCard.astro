@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { appLinks } from '../config';
+import { appLinks, externalAttrs } from '../config';
 import type { PlaygroundApp } from '../apps';
 
 interface Props {
@@ -82,7 +82,12 @@ const STACK: Record<string, { label: string; icon?: string }> = {
 					</a>
 				)
 			}
-			<a class="btn btn-ghost" href={links.source}>Source</a>
+			<a
+				class="btn btn-ghost"
+				href={links.source}
+				{...externalAttrs(links.source)}>
+				Source
+			</a>
 			<button class="btn btn-ghost copy" data-copy={links.degit} type="button">
 				Copy CLI
 			</button>

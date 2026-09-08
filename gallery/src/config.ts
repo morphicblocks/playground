@@ -15,6 +15,18 @@ export const site = {
   },
 };
 
+/** Absolute http(s) URLs point off-site. */
+export function isExternal(href?: string): boolean {
+  return !!href && /^https?:\/\//i.test(href);
+}
+
+/** Spread onto an <a> so off-site links open in a new tab. */
+export function externalAttrs(href?: string) {
+  return isExternal(href)
+    ? { target: '_blank', rel: 'noopener noreferrer' }
+    : {};
+}
+
 /** Links for one app, all derived from its immutable `id`. */
 export function appLinks(id: string) {
   return {
