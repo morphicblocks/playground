@@ -5,6 +5,19 @@ import { site, externalAttrs } from '../config';
 import '../styles/global.css';
 
 const readyCount = apps.filter((a) => a.status === 'ready').length;
+
+// Links whose PUBLIC_* var is unset are dropped rather than rendered dead.
+const navLinks = [
+	{ label: 'Docs', href: site.links.docs },
+	{ label: 'Website', href: site.links.landing },
+	{ label: 'GitHub', href: site.links.github },
+].filter((l) => l.href);
+
+const legalLinks = [
+	{ label: 'Imprint', href: site.legal.imprint },
+	{ label: 'Privacy', href: site.legal.privacy },
+	{ label: 'Disclaimer', href: site.legal.disclaimer },
+].filter((l) => l.href);
 ---
 
 <!doctype html>
@@ -22,13 +35,11 @@ const readyCount = apps.filter((a) => a.status === 'ready').length;
 		<header class="container site-header">
 			<span class="brand">{site.name}</span>
 			<nav>
-				<a href={site.links.docs} {...externalAttrs(site.links.docs)}>Docs</a>
-				<a href={site.links.landing} {...externalAttrs(site.links.landing)}>
-					Website
-				</a>
-				<a href={site.links.github} {...externalAttrs(site.links.github)}>
-					GitHub
-				</a>
+				{navLinks.map((l) => (
+					<a href={l.href} {...externalAttrs(l.href)}>
+						{l.label}
+					</a>
+				))}
 			</nav>
 		</header>
 
@@ -56,19 +67,17 @@ const readyCount = apps.filter((a) => a.status === 'ready').length;
 
 		<footer class="container site-footer">
 			<span>{site.name}</span>
-			<nav class="legal" aria-label="Legal">
-				<a href={site.legal.imprint} {...externalAttrs(site.legal.imprint)}>
-					Imprint
-				</a>
-				<a href={site.legal.privacy} {...externalAttrs(site.legal.privacy)}>
-					Privacy
-				</a>
-				<a
-					href={site.legal.disclaimer}
-					{...externalAttrs(site.legal.disclaimer)}>
-					Disclaimer
-				</a>
-			</nav>
+			{
+				legalLinks.length > 0 && (
+					<nav class="legal" aria-label="Legal">
+						{legalLinks.map((l) => (
+							<a href={l.href} {...externalAttrs(l.href)}>
+								{l.label}
+							</a>
+						))}
+					</nav>
+				)
+			}
 		</footer>
 
 		<script is:inline>

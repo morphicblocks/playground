@@ -68,6 +68,10 @@ Every switchable value is a build-time `PUBLIC_*` env var, read in
 | `PUBLIC_PRIVACY_URL` | Privacy policy link in the footer |
 | `PUBLIC_DISCLAIMER_URL` | Disclaimer (Haftungsausschluss) link in the footer |
 
+A link whose `PUBLIC_*` variable is unset or empty is not rendered at all, so
+an incomplete configuration never produces dead `#` links. Links to other sites
+open in a new tab.
+
 ## Deploy
 
 Cloudflare Pages: build command `bun run build`, output directory `dist`, with

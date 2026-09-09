@@ -82,15 +82,19 @@ const STACK: Record<string, { label: string; icon?: string }> = {
 					</a>
 				)
 			}
-			<a
-				class="btn btn-ghost"
-				href={links.source}
-				{...externalAttrs(links.source)}>
-				Source
-			</a>
-			<button class="btn btn-ghost copy" data-copy={links.degit} type="button">
-				Copy CLI
-			</button>
+			{links.source && (
+				<a
+					class="btn btn-ghost"
+					href={links.source}
+					{...externalAttrs(links.source)}>
+					Source
+				</a>
+			)}
+			{links.degit && (
+				<button class="btn btn-ghost copy" data-copy={links.degit} type="button">
+					Copy CLI
+				</button>
+			)}
 		</div>
 	</div>
 </article>

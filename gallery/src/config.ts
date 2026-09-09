@@ -5,13 +5,17 @@
  */
 const env = import.meta.env;
 
+// Undefined when a variable is unset or empty, so callers can skip the link
+// entirely rather than rendering a dead one.
+const link = (value?: string) => value || undefined;
+
 export const site = {
   name: env.PUBLIC_SITE_NAME ?? '',
   repoSlug: env.PUBLIC_REPO_SLUG ?? '',
   links: {
-    github: env.PUBLIC_GITHUB_URL ?? '#',
-    docs: env.PUBLIC_DOCS_URL ?? '#',
-    landing: env.PUBLIC_LANDING_URL ?? '#',
+    github: link(env.PUBLIC_GITHUB_URL),
+    docs: link(env.PUBLIC_DOCS_URL),
+    landing: link(env.PUBLIC_LANDING_URL),
   },
   /**
    * Required on every university web presence: imprint, privacy policy and
@@ -19,9 +23,9 @@ export const site = {
    * env-driven URLs like the rest.
    */
   legal: {
-    imprint: env.PUBLIC_IMPRINT_URL ?? '#',
-    privacy: env.PUBLIC_PRIVACY_URL ?? '#',
-    disclaimer: env.PUBLIC_DISCLAIMER_URL ?? '#',
+    imprint: link(env.PUBLIC_IMPRINT_URL),
+    privacy: link(env.PUBLIC_PRIVACY_URL),
+    disclaimer: link(env.PUBLIC_DISCLAIMER_URL),
   },
 };
 
@@ -42,9 +46,13 @@ export function appLinks(id: string) {
   return {
     /** Where the built app is served inside the playground. */
     open: `/${id}/`,
-    /** Browse the source folder on GitHub. */
-    source: `${site.links.github}/tree/main/apps/${id}`,
+    /** Browse the source folder on GitHub; undefined without a repo URL. */
+    source: site.links.github
+      ? `${site.links.github}/tree/main/apps/${id}`
+      : undefined,
     /** Copy-paste command that pulls just this app's folder. */
-    degit: `bunx degit ${site.repoSlug}/apps/${id} ${id}`,
+    degit: site.repoSlug
+      ? `bunx degit ${site.repoSlug}/apps/${id} ${id}`
+      : undefined,
   };
 }
