@@ -76,14 +76,14 @@ const legalLinks = [
 			<h1>Example apps</h1>
 			<p class="lede">
 				The same Morphic Blocks setup, embedded in different frameworks and
-				built with different toolchains. Every app is self-contained — download
-				a folder and run it on its own.
+				built with different toolchains. Every app is self-contained, so you can
+				download a single folder and run it on its own.
 			</p>
 
 			{
 				readyCount === 0 && (
 					<p class="notice">
-						These apps are planned — the shell is in place and each one will
+						These apps are planned. The shell is in place and each one will
 						land here as it is built.
 					</p>
 				)
@@ -231,8 +231,11 @@ const legalLinks = [
 		color: var(--text-muted);
 		max-width: 62ch;
 		margin: 0 0 1.5rem;
+		/* Spreads the lines evenly instead of leaving one word on the last. */
+		text-wrap: balance;
 	}
 	.notice {
+		text-wrap: balance;
 		border: 1px dashed var(--border);
 		border-radius: var(--radius-sm);
 		padding: 0.7rem 0.9rem;

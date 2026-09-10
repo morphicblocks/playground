@@ -8,7 +8,7 @@
   "apps": [
     {
       "id": "vanilla-minimal",
-      "name": "Vanilla — Minimal Embed",
+      "name": "Vanilla: Minimal Embed",
       "description": "The smallest possible embed: plain TypeScript, bundled with Bun, no framework.",
       "stack": ["typescript", "bun"],
       "level": "TBD",
@@ -18,7 +18,7 @@
     },
     {
       "id": "react-basic",
-      "name": "React — Basic Workspace",
+      "name": "React: Basic Workspace",
       "description": "DESCRIPTION",
       "stack": ["react", "vite", "bun"],
       "level": "TBD",
@@ -28,7 +28,7 @@
     },
     {
       "id": "nextjs-basic",
-      "name": "Next.js — Static Export",
+      "name": "Next.js: Static Export",
       "description": "DESCRIPTION",
       "stack": ["nextdotjs", "react", "npm"],
       "level": "TBD",
@@ -39,7 +39,7 @@
     },
     {
       "id": "vue-basic",
-      "name": "Vue — Basic Workspace",
+      "name": "Vue: Basic Workspace",
       "description": "DESCRIPTION",
       "stack": ["vuedotjs", "parcel", "pnpm"],
       "level": "TBD",
@@ -49,7 +49,7 @@
     },
     {
       "id": "svelte-basic",
-      "name": "Svelte — Basic Workspace",
+      "name": "Svelte: Basic Workspace",
       "description": "DESCRIPTION",
       "stack": ["svelte", "vite", "yarn"],
       "level": "TBD",
