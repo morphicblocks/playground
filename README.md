@@ -60,6 +60,7 @@ Every switchable value is a build-time `PUBLIC_*` env var, read in
 | Variable | Purpose |
 | --- | --- |
 | `PUBLIC_SITE_NAME` | Title and brand in the gallery |
+| `PUBLIC_SITE_URL` | Canonical site URL, used by the link-preview tags |
 | `PUBLIC_REPO_SLUG` | `owner/repo`, used to build the degit command |
 | `PUBLIC_GITHUB_URL` | Repository URL, used for "Source" links |
 | `PUBLIC_DOCS_URL` | Link to the documentation site |

@@ -6,6 +6,15 @@ import '../styles/global.css';
 
 const readyCount = apps.filter((a) => a.status === 'ready').length;
 
+// Absolute URLs, which link previews and canonical tags both require. They are
+// only emitted when PUBLIC_SITE_URL is set, since a relative one is rejected.
+const description =
+	'Example apps embedding Morphic Blocks in different frameworks and toolchains.';
+const canonical = Astro.site
+	? new URL(Astro.url.pathname, Astro.site).href
+	: undefined;
+const ogImage = Astro.site ? new URL('og.png', Astro.site).href : undefined;
+
 // Copyright holder: the university when configured, otherwise the site name.
 const year = new Date().getFullYear();
 const owner = site.university || site.name;
@@ -46,10 +55,24 @@ const legalLinks = [
 			})();
 		</script>
 		<title>{site.name}</title>
-		<meta
-			name="description"
-			content="Example apps embedding Morphic Blocks in different frameworks and toolchains."
-		/>
+		<meta name="description" content={description} />
+		{canonical && <link rel="canonical" href={canonical} />}
+		<meta property="og:title" content={site.name} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={site.name} />
+		{canonical && <meta property="og:url" content={canonical} />}
+		{
+			ogImage && (
+				<>
+					<meta property="og:image" content={ogImage} />
+					<meta property="og:image:width" content="1200" />
+					<meta property="og:image:height" content="630" />
+					<meta property="og:image:alt" content={site.name} />
+				</>
+			)
+		}
+		<meta name="twitter:card" content="summary_large_image" />
 	</head>
 	<body>
 		<header class="container site-header">
