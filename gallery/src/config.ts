@@ -12,10 +12,13 @@ const link = (value?: string) => value || undefined;
 export const site = {
   name: env.PUBLIC_SITE_NAME ?? '',
   repoSlug: env.PUBLIC_REPO_SLUG ?? '',
+  /** Copyright holder shown in the footer. */
+  university: env.PUBLIC_UNIVERSITY ?? '',
   links: {
     github: link(env.PUBLIC_GITHUB_URL),
     docs: link(env.PUBLIC_DOCS_URL),
     landing: link(env.PUBLIC_LANDING_URL),
+    university: link(env.PUBLIC_UNIVERSITY_URL),
   },
   /**
    * Required on every university web presence: imprint, privacy policy and

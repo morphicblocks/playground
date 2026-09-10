@@ -64,6 +64,8 @@ Every switchable value is a build-time `PUBLIC_*` env var, read in
 | `PUBLIC_GITHUB_URL` | Repository URL, used for "Source" links |
 | `PUBLIC_DOCS_URL` | Link to the documentation site |
 | `PUBLIC_LANDING_URL` | Link to the landing page |
+| `PUBLIC_UNIVERSITY` | Copyright holder in the footer |
+| `PUBLIC_UNIVERSITY_URL` | Link target for the copyright holder |
 | `PUBLIC_IMPRINT_URL` | Imprint link in the footer |
 | `PUBLIC_PRIVACY_URL` | Privacy policy link in the footer |
 | `PUBLIC_DISCLAIMER_URL` | Disclaimer (Haftungsausschluss) link in the footer |

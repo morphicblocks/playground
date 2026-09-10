@@ -6,6 +6,11 @@ import '../styles/global.css';
 
 const readyCount = apps.filter((a) => a.status === 'ready').length;
 
+// Copyright holder: the university when configured, otherwise the site name.
+const year = new Date().getFullYear();
+const owner = site.university || site.name;
+const ownerUrl = site.university ? site.links.university : undefined;
+
 // Links whose PUBLIC_* var is unset are dropped rather than rendered dead.
 const navLinks = [
 	{ label: 'Docs', href: site.links.docs },
@@ -90,7 +95,16 @@ const legalLinks = [
 		</main>
 
 		<footer class="container site-footer">
-			<span>{site.name}</span>
+			<span class="copyright">
+				© {year}{' '}
+				{ownerUrl ? (
+					<a href={ownerUrl} {...externalAttrs(ownerUrl)}>
+						{owner}
+					</a>
+				) : (
+					owner
+				)}
+			</span>
 			{
 				legalLinks.length > 0 && (
 					<nav class="legal" aria-label="Legal">
@@ -244,6 +258,13 @@ const legalLinks = [
 		padding-block: 1.3rem;
 		color: var(--text-muted);
 		font-size: 0.88rem;
+	}
+	.copyright a {
+		color: inherit;
+		text-decoration: none;
+	}
+	.copyright a:hover {
+		color: var(--accent);
 	}
 	.site-footer .legal {
 		display: flex;
