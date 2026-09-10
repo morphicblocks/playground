@@ -26,6 +26,20 @@ const legalLinks = [
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<script is:inline>
+			// Pre-paint: apply a saved choice only. With none, the CSS media
+			// query follows the operating system, so this also works without JS.
+			(() => {
+				try {
+					const saved = localStorage.getItem('mb-theme');
+					if (saved === 'dark' || saved === 'light') {
+						document.documentElement.dataset.theme = saved;
+					}
+				} catch {
+					/* private mode etc. — the OS preference still applies */
+				}
+			})();
+		</script>
 		<title>{site.name}</title>
 		<meta
 			name="description"
@@ -38,13 +52,19 @@ const legalLinks = [
 				<img src="/logo.svg" alt="" width="32" height="32" />
 				{site.name}
 			</span>
-			<nav>
-				{navLinks.map((l) => (
-					<a href={l.href} {...externalAttrs(l.href)}>
-						{l.label}
-					</a>
-				))}
-			</nav>
+			<div class="right">
+				<nav>
+					{navLinks.map((l) => (
+						<a href={l.href} {...externalAttrs(l.href)}>
+							{l.label}
+						</a>
+					))}
+				</nav>
+				<button id="theme-toggle" type="button" aria-label="Toggle color theme">
+					<svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg>
+					<svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+				</button>
+			</div>
 		</header>
 
 		<main class="container">
@@ -85,6 +105,21 @@ const legalLinks = [
 		</footer>
 
 		<script is:inline>
+			// Theme toggle: flips the current theme and remembers the choice.
+			document.getElementById('theme-toggle')?.addEventListener('click', () => {
+				const root = document.documentElement;
+				const current =
+					root.dataset.theme ||
+					(matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+				const next = current === 'dark' ? 'light' : 'dark';
+				root.dataset.theme = next;
+				try {
+					localStorage.setItem('mb-theme', next);
+				} catch {
+					/* private mode etc. — non-fatal */
+				}
+			});
+
 			// "Copy CLI" buttons — copy the degit command for that app.
 			document.querySelectorAll('button[data-copy]').forEach((btn) => {
 				btn.addEventListener('click', async () => {
@@ -132,6 +167,46 @@ const legalLinks = [
 	}
 	.site-header nav a:hover {
 		color: var(--accent);
+	}
+	.right {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+	/* Borderless, so it carries the same weight as the text nav links. */
+	#theme-toggle {
+		display: grid;
+		place-items: center;
+		width: 30px;
+		height: 30px;
+		padding: 0;
+		border: 0;
+		border-radius: 999px;
+		background: transparent;
+		color: var(--text-muted);
+		cursor: pointer;
+	}
+	#theme-toggle:hover {
+		color: var(--accent);
+		background: var(--preview-bg);
+	}
+	/* Show the icon for the theme the button switches to. */
+	.icon-sun {
+		display: none;
+	}
+	@media (prefers-color-scheme: dark) {
+		:global(:root:not([data-theme='light'])) .icon-sun {
+			display: block;
+		}
+		:global(:root:not([data-theme='light'])) .icon-moon {
+			display: none;
+		}
+	}
+	:global(:root[data-theme='dark']) .icon-sun {
+		display: block;
+	}
+	:global(:root[data-theme='dark']) .icon-moon {
+		display: none;
 	}
 
 	h1 {

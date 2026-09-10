@@ -17,8 +17,9 @@
 	--font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
+/* Dark by operating-system preference, unless light was chosen explicitly. */
 @media (prefers-color-scheme: dark) {
-	:root {
+	:root:not([data-theme='light']) {
 		--accent: #4a9ae4;
 		--bg: #0e1116;
 		--surface: #161b22;
@@ -29,6 +30,19 @@
 		--badge-bg: #23303f;
 		--badge-text: #9ec3e8;
 	}
+}
+
+/* An explicit choice from the header toggle wins over the OS preference. */
+:root[data-theme='dark'] {
+		--accent: #4a9ae4;
+		--bg: #0e1116;
+		--surface: #161b22;
+		--preview-bg: #1c222b;
+		--border: #2a313b;
+		--text: #e6edf3;
+		--text-muted: #98a3b1;
+		--badge-bg: #23303f;
+		--badge-text: #9ec3e8;
 }
 
 * {
