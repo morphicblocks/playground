@@ -1,7 +1,13 @@
-/* Design tokens shared with morphicblocks.com and the docs site. */
+@import "./tokens.css";
+
+/*
+ * Design tokens for the gallery. The two brand colors come from tokens.css,
+ * copied from morphic-meta/brand (see palette.md there). Everything else is
+ * this site's own and is allowed to differ from the other Morphic Blocks sites.
+ */
 :root {
-	--accent: #00509b;
-	--accent-2: #55bdcb;
+	--accent: var(--brand-primary);
+	--accent-2: var(--brand-secondary);
 
 	--bg: #ffffff;
 	--surface: #ffffff;

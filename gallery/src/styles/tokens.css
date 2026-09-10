@@ -1,0 +1,17 @@
+/*
+ * Brand colors of record, as custom properties.
+ *
+ * Copy this file into each site the way the logo is copied, then reference the
+ * properties from that site's own tokens rather than repeating the hex values:
+ *
+ *   --accent: var(--brand-primary);
+ *
+ * Only these two values are fixed across the sites. Every other token
+ * (backgrounds, borders, text, radii) belongs to the site that defines it and
+ * is deliberately allowed to differ. See palette.md for the full Leibniz
+ * University Hannover palette and the reasoning.
+ */
+:root {
+  --brand-primary: #00509b;
+  --brand-secondary: #55bdcb;
+}
