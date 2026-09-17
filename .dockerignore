@@ -1,0 +1,31 @@
+# Anything the image builds or installs for itself. The patterns match at any
+# depth, so they cover the self-contained apps under apps/<id>/ too.
+**/node_modules
+**/dist
+**/build
+**/out
+**/.astro
+**/.next
+**/.svelte-kit
+
+.git
+.gitignore
+.DS_Store
+*.log
+
+# Not part of the site build.
+Dockerfile
+docker-compose*.yaml
+.dockerignore
+README.md
+
+# `.env` is deliberately NOT ignored: the build reads the PUBLIC_* values from
+# it and bakes them into the HTML, so the build stage needs it.
+#
+# It is not exposed by doing so. The build is multi-stage and the final image
+# copies only `dist/` across, so `.env` is in neither the served image nor the
+# nginx web root, and it cannot be requested over HTTP. Every value in it is
+# public by definition, since it ends up in the HTML either way.
+#
+# The rule that follows: never put a real secret in this file. Anything secret
+# belongs in a build argument or a Docker secret instead.

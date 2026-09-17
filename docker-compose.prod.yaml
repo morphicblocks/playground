@@ -1,0 +1,30 @@
+# Traefik routing, layered on top of docker-compose.yaml:
+#
+#     docker compose -f docker-compose.yaml -f docker-compose.prod.yaml up -d --build
+#
+# Requires a Traefik instance already running on the host and attached to the
+# `traefik` network. Everything else stays in the base file, so the image
+# deployed here is the same one built locally.
+#
+# The hostname is the only value that differs per deployment, so it is the
+# only thing read from `.env`.
+
+services:
+  web:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.morphicblocks-playground.entrypoints=websecure"
+      - "traefik.http.routers.morphicblocks-playground.rule=Host(`${DEPLOY_DOMAIN:?set DEPLOY_DOMAIN in .env}`)"
+      # nginx listens on 80 inside the container; Traefik terminates TLS.
+      - "traefik.http.services.morphicblocks-playground.loadbalancer.server.port=80"
+      # Uncomment when the entrypoint has no default certificate resolver and
+      # this router should request its own, for example from Let's Encrypt.
+      # The name is the resolver as configured in Traefik.
+      # - "traefik.http.routers.morphicblocks-playground.tls.certresolver=letsencrypt"
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external: true
+    name: traefik

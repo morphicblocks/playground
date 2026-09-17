@@ -77,6 +77,42 @@ open in a new tab.
 
 ## Deploy
 
-Cloudflare Pages: build command `bun run build`, output directory `dist`, with
-the `PUBLIC_*` vars set in the project. The gallery is served at `/` and each
-app at `/<id>/`.
+The playground ships as a Docker image: a `bun` stage runs the full assembly
+(`scripts/build-all.ts`), an `nginx` stage serves the resulting `dist/`. The
+gallery is served at `/` and each ready app at `/<id>/`. Two compose files, so
+the same image can be run with or without a reverse proxy in front.
+
+**Locally**, to check a change in the image that actually gets deployed:
+
+```sh
+docker compose up -d --build
+open http://localhost:8082
+```
+
+**On the server**, behind an existing Traefik instance:
+
+```sh
+cp .env.example .env     # then edit, DEPLOY_DOMAIN in particular
+docker compose -f docker-compose.yaml -f docker-compose.prod.yaml up -d --build
+```
+
+The second file adds only the Traefik router labels and the external `traefik`
+network. It expects Traefik to be running already and attached to that
+network. Traefik terminates TLS and forwards plain HTTP to the container, so
+nginx listens on port 80 only and holds no certificate.
+
+`DEPLOY_DOMAIN` is the one value that differs per deployment, along with
+`HTTP_PROXY` and friends if the build host needs a proxy. Everything else
+(image and container names, the loopback port, the entrypoint and network
+names) is the same for every clone and is written directly in the compose
+files.
+
+Because the `PUBLIC_*` values are baked in at build time, changing any of them
+means rebuilding: `docker compose … up -d --build` again.
+
+An app whose lockfile is not `bun.lock` needs its package manager installed in
+the build stage before it can be flipped to `ready`; every app is still
+`planned`, so only the gallery is built today.
+
+Any static host works too: build command `bun run build`, output directory
+`dist`, with the `PUBLIC_*` vars set in the host's project settings.
