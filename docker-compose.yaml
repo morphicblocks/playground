@@ -2,7 +2,7 @@
 #
 # This file on its own runs anywhere, including a laptop with no Traefik:
 #
-#     docker compose up -d --build        # then http://localhost:8082
+#     docker compose up -d --build        # then http://localhost:9352
 #
 # It builds the same image that gets deployed, so it is the way to check a
 # change locally before it goes to the server.
@@ -31,10 +31,10 @@ services:
     restart: unless-stopped
     # Loopback only: for reaching the container from the host itself, locally
     # or when debugging on the server. Public traffic arrives through Traefik
-    # instead, over the Docker network. The landing and docs stacks use 8080
-    # and 8081 so all three can run side by side.
+    # instead, over the Docker network. The landing and docs stacks use 9350
+    # and 9351 so all three can run side by side.
     ports:
-      - "127.0.0.1:8082:80"
+      - "127.0.0.1:9352:80"
     # Serving static files needs very little; the cap is here to keep one
     # container from starving the others on a shared host.
     deploy:

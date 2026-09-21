@@ -88,7 +88,7 @@ choose is which machine you are on:
 ```sh
 cp .env.example .env              # once, then edit DEPLOY_DOMAIN
 
-./deploy_docker.sh local          # build and start here, on :8082
+./deploy_docker.sh local          # build and start here, on :9352
 ./deploy_docker.sh prod           # build and start behind Traefik
 ./deploy_docker.sh prod down      # stop and remove
 ./deploy_docker.sh prod logs -f   # follow the logs
