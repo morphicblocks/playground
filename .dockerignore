@@ -16,6 +16,7 @@
 # Not part of the site build.
 Dockerfile
 docker-compose*.yaml
+deploy_docker.sh
 .dockerignore
 README.md
 

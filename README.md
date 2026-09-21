@@ -82,18 +82,30 @@ The playground ships as a Docker image: a `bun` stage runs the full assembly
 gallery is served at `/` and each ready app at `/<id>/`. Two compose files, so
 the same image can be run with or without a reverse proxy in front.
 
-**Locally**, to check a change in the image that actually gets deployed:
+`deploy_docker.sh` picks the compose files for you, so the only thing you
+choose is which machine you are on:
 
 ```sh
-docker compose up -d --build
-open http://localhost:8082
+cp .env.example .env              # once, then edit DEPLOY_DOMAIN
+
+./deploy_docker.sh local          # build and start here, on :8082
+./deploy_docker.sh prod           # build and start behind Traefik
+./deploy_docker.sh prod down      # stop and remove
+./deploy_docker.sh prod logs -f   # follow the logs
 ```
 
-**On the server**, behind an existing Traefik instance:
+Given no action it runs `up -d --build`, which is what you want almost every
+time. Anything after the mode is handed straight to `docker compose`, so
+`ps`, `build --no-cache` and the rest work as well. Before running it checks
+that `.env` exists, and in `prod` mode that the `traefik` network is there,
+since both failures are otherwise obscure.
+
+The same thing without the script:
 
 ```sh
-cp .env.example .env     # then edit, DEPLOY_DOMAIN in particular
-docker compose -f docker-compose.yaml -f docker-compose.prod.yaml up -d --build
+docker compose up -d --build                                    # local
+docker compose -f docker-compose.yaml \
+               -f docker-compose.prod.yaml up -d --build        # prod
 ```
 
 The second file adds only the Traefik router labels and the external `traefik`
