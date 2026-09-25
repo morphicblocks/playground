@@ -9,7 +9,7 @@ import '../styles/global.css';
 // Absolute URLs, which link previews and canonical tags both require. They are
 // only emitted when PUBLIC_SITE_URL is set, since a relative one is rejected.
 const description =
-	'Example apps embedding Morphic Blocks in different frameworks and toolchains.';
+	'Example apps showing different use cases of Morphic Blocks, each built with a different stack.';
 const canonical = Astro.site
 	? new URL(Astro.url.pathname, Astro.site).href
 	: undefined;
@@ -98,9 +98,9 @@ const legalLinks = [
 		<main class="container">
 			<h1>Example apps</h1>
 			<p class="lede">
-				The same Morphic Blocks setup, embedded in different frameworks and
-				built with different toolchains. Every app is self-contained, so you can
-				download a single folder and run it on its own.
+				Each app shows a different use case of Morphic Blocks, built with a
+				different stack. Every app is self contained: open it, read its source,
+				or copy it with one command and run it on its own.
 			</p>
 
 			{
