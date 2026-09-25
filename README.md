@@ -62,7 +62,7 @@ Every link is derived from the app's `id`, never stored:
 | Card click | `/<id>/`, in a new tab |
 | Source | `{PUBLIC_GITHUB_URL}/tree/main/apps/{id}` |
 | Download | `{PUBLIC_GITHUB_URL}/releases/latest/download/{id}.zip` |
-| Copy CLI | `npx tiged {PUBLIC_REPO_SLUG}/apps/{id} {id}` |
+| Copy CLI | `npx giget gh:{PUBLIC_REPO_SLUG}/apps/{id} {id}` |
 
 Download stays disabled until the ZIPs are published; `downloadsAvailable` in
 `gallery/src/config.ts` switches every Download button on at once.

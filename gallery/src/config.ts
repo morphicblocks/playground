@@ -67,10 +67,10 @@ export function appLinks(id: string) {
         : undefined,
     /**
      * Copy-paste command that pulls just this app's folder, without git
-     * history. tiged is the maintained fork of degit; npx comes with Node.
+     * history. npx comes with Node.
      */
     cli: site.repoSlug
-      ? `npx tiged ${site.repoSlug}/apps/${id} ${id}`
+      ? `npx giget gh:${site.repoSlug}/apps/${id} ${id}`
       : undefined,
   };
 }
