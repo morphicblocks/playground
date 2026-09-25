@@ -20,9 +20,10 @@ ARG NO_PROXY=""
 
 WORKDIR /app
 
-# The gallery holds the only lockfile, and the repo root has no dependencies
-# of its own. Installing it up front keeps this layer cached when only content
-# changes; build-all.ts runs the same install again, which is a no-op once
+# The build needs only the gallery's dependencies; the repo root's are for
+# the pre-push check (scripts/check.ts), which does not run here. Installing
+# them up front keeps this layer cached when only content changes;
+# build-all.ts runs the same install again, which is a no-op once
 # node_modules is in place.
 COPY gallery/package.json gallery/bun.lock ./gallery/
 RUN cd gallery && bun install --frozen-lockfile
