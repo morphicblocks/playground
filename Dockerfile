@@ -20,6 +20,11 @@ ARG NO_PROXY=""
 
 WORKDIR /app
 
+# Each app builds with the package manager named in apps.json. bun comes with
+# this image; npm (with Node) and pnpm are added here. An app using yarn or
+# deno needs that tool added the same way first.
+RUN apk add --no-cache nodejs npm && npm install -g pnpm
+
 # The build needs only the gallery's dependencies; the repo root's are for
 # the pre-push check (scripts/check.ts), which does not run here. Installing
 # them up front keeps this layer cached when only content changes;
@@ -30,10 +35,6 @@ RUN cd gallery && bun install --frozen-lockfile
 
 COPY . .
 RUN bun run build
-
-# NOTE: each app names its package manager in apps.json. Before an app that
-# uses pnpm, yarn, npm or deno is added, install that package manager in this
-# stage first.
 
 # ── Serve ─────────────────────────────────────────────────────────────
 FROM nginx:alpine
