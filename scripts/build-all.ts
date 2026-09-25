@@ -32,8 +32,13 @@ const PACKAGE_MANAGER_COMMANDS: Record<PlaygroundApp['packageManager'], { instal
   deno: { install: ['deno', 'install'], build: ['deno', 'task', 'build'], lockfile: 'deno.lock' },
 };
 
-function run(cmd: string[], cwd: string) {
-  const { exitCode } = Bun.spawnSync(cmd, { cwd, stdout: 'inherit', stderr: 'inherit' });
+function run(cmd: string[], cwd: string, env?: Record<string, string>) {
+  const { exitCode } = Bun.spawnSync(cmd, {
+    cwd,
+    env: { ...process.env, ...env },
+    stdout: 'inherit',
+    stderr: 'inherit',
+  });
   if (exitCode !== 0) {
     throw new Error(`\`${cmd.join(' ')}\` failed in ${cwd} (exit ${exitCode})`);
   }
@@ -67,7 +72,10 @@ for (const app of apps) {
   }
   console.log(`▸ building ${app.id} (${app.packageManager})`);
   run(pm.install, dir);
-  run(pm.build, dir);
+  // The subpath the app is served under here. Apps know nothing about the
+  // playground: it is a plain hosting setting, and standalone builds leave it
+  // unset and serve from /.
+  run(pm.build, dir, { BASE_PATH: `/${app.id}` });
 
   const out = join(dir, app.outDir ?? 'dist');
   if (!existsSync(out)) {
