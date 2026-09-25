@@ -30,10 +30,9 @@ RUN cd gallery && bun install --frozen-lockfile
 COPY . .
 RUN bun run build
 
-# NOTE: every app is still `planned`, so only the gallery is built here. Apps
-# infer their package manager from their own lockfile, so an app that flips to
-# `ready` with a pnpm, yarn or npm lockfile needs that package manager
-# installed in this stage first.
+# NOTE: each app names its package manager in apps.json. Before an app that
+# uses pnpm, yarn, npm or deno is added, install that package manager in this
+# stage first.
 
 # ── Serve ─────────────────────────────────────────────────────────────
 FROM nginx:alpine
