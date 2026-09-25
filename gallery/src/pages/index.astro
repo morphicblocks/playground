@@ -1,5 +1,6 @@
 ---
 import AppCard from '../components/AppCard.astro';
+import AppTable from '../components/AppTable.astro';
 import { apps } from '../apps';
 import { site, externalAttrs } from '../config';
 import '../styles/global.css';
@@ -113,6 +114,8 @@ const legalLinks = [
 			<section class="grid">
 				{apps.map((app) => <AppCard app={app} />)}
 			</section>
+
+			{apps.length > 0 && <AppTable apps={apps} />}
 		</main>
 
 		<footer class="container site-footer">

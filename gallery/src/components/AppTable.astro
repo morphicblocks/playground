@@ -1,0 +1,147 @@
+---
+import { appLinks } from '../config';
+import type { PlaygroundApp } from '../apps';
+import {
+	BUNDLERS,
+	DIFFICULTIES,
+	FRAMEWORKS,
+	PACKAGE_MANAGERS,
+	SETUPS,
+	STYLING,
+	VIEWS,
+} from '../../../scripts/manifest';
+
+interface Props {
+	apps: PlaygroundApp[];
+}
+
+const { apps } = Astro.props;
+---
+
+<section class="compare" aria-labelledby="compare-heading">
+	<h2 id="compare-heading">Compare the apps</h2>
+	<div class="scroll">
+		<table>
+			<thead>
+				<tr>
+					<th scope="col">App</th>
+					<th scope="col">Use case</th>
+					<th scope="col">Framework</th>
+					<th scope="col">Bundler</th>
+					<th scope="col">Package manager</th>
+					<th scope="col">Styling</th>
+					<th scope="col">Views</th>
+					<th scope="col">Code shown</th>
+					<th scope="col">Setup</th>
+					<th scope="col">Difficulty</th>
+				</tr>
+			</thead>
+			<tbody>
+				{
+					apps.map((app) => (
+						<tr>
+							<th scope="row">
+								<a href={appLinks(app.id).open} target="_blank" rel="noopener">
+									{app.name}
+								</a>
+							</th>
+							<td>{app.useCase}</td>
+							<td>{FRAMEWORKS[app.framework].label}</td>
+							<td>{BUNDLERS[app.bundler].label}</td>
+							<td>{PACKAGE_MANAGERS[app.packageManager].label}</td>
+							<td>{STYLING[app.styling].label}</td>
+							<td>{app.views.map((view) => VIEWS[view].label).join(', ')}</td>
+							<td>{app.codeShown.join(', ')}</td>
+							<td>{SETUPS[app.setup].label}</td>
+							<td>
+								<span class="level">{DIFFICULTIES[app.difficulty].label}</span>
+							</td>
+						</tr>
+					))
+				}
+			</tbody>
+		</table>
+	</div>
+	<p class="note">
+		<strong>Setup:</strong> <em>Config only</em> apps need just the definitions
+		file and the mode CSS; <em>Config + code</em> apps add behaviors or other
+		code of their own.
+	</p>
+</section>
+
+<style>
+	.compare {
+		padding-bottom: 3rem;
+	}
+	h2 {
+		font-size: 1.2rem;
+		margin: 0 0 0.9rem;
+	}
+	/* Wide tables scroll sideways on small screens instead of squeezing. */
+	.scroll {
+		overflow-x: auto;
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+	}
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 0.88rem;
+		background: var(--surface);
+	}
+	th,
+	td {
+		padding: 0.6rem 0.8rem;
+		text-align: left;
+		vertical-align: top;
+		border-bottom: 1px solid var(--border);
+	}
+	/* Headings and names stay on one line; longer values may wrap. */
+	th {
+		white-space: nowrap;
+	}
+	td {
+		min-width: 5.5rem;
+	}
+	tbody tr:last-child > * {
+		border-bottom: 0;
+	}
+	thead th {
+		font-size: 0.78rem;
+		font-weight: 700;
+		color: var(--text-muted);
+		background: var(--preview-bg);
+	}
+	/* The app name stays in view while the rest scrolls. */
+	th:first-child {
+		position: sticky;
+		left: 0;
+		background: var(--surface);
+	}
+	thead th:first-child {
+		background: var(--preview-bg);
+	}
+	tbody th a {
+		color: var(--text);
+		text-decoration: none;
+	}
+	tbody th a:hover {
+		color: var(--accent);
+	}
+	td {
+		color: var(--text-muted);
+	}
+	.level {
+		font-size: 0.75rem;
+		font-weight: 600;
+		padding: 0.15rem 0.5rem;
+		border-radius: 999px;
+		background: var(--badge-bg);
+		color: var(--badge-text);
+	}
+	.note {
+		margin: 0.7rem 0 0;
+		font-size: 0.85rem;
+		color: var(--text-muted);
+	}
+</style>
