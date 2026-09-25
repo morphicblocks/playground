@@ -44,6 +44,13 @@ export function externalAttrs(href?: string) {
     : {};
 }
 
+/**
+ * Download buttons link to a ZIP of each app attached to the repository's
+ * latest GitHub release. Off until those ZIPs are published; every Download
+ * button then shows disabled.
+ */
+export const downloadsAvailable = false;
+
 /** Links for one app, all derived from its immutable `id`. */
 export function appLinks(id: string) {
   return {
@@ -53,6 +60,11 @@ export function appLinks(id: string) {
     source: site.links.github
       ? `${site.links.github}/tree/main/apps/${id}`
       : undefined,
+    /** A ZIP of the app folder; undefined without a repo URL or while off. */
+    download:
+      downloadsAvailable && site.links.github
+        ? `${site.links.github}/releases/latest/download/${id}.zip`
+        : undefined,
     /** Copy-paste command that pulls just this app's folder. */
     degit: site.repoSlug
       ? `bunx degit ${site.repoSlug}/apps/${id} ${id}`

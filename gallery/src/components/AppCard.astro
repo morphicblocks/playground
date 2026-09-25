@@ -63,6 +63,17 @@ const stack = [
 		</ul>
 
 		<div class="actions">
+			{
+				links.download ? (
+					<a class="btn btn-primary" href={links.download} download>
+						Download
+					</a>
+				) : (
+					<button class="btn btn-primary" type="button" disabled>
+						Download
+					</button>
+				)
+			}
 			{links.source && (
 				<a
 					class="btn btn-ghost"
@@ -197,6 +208,11 @@ const stack = [
 	.btn-primary {
 		background: var(--accent);
 		color: #fff;
+	}
+	.btn:disabled {
+		background: var(--border);
+		color: var(--text-muted);
+		cursor: default;
 	}
 	.btn-ghost {
 		background: transparent;
