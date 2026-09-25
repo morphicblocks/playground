@@ -14,15 +14,14 @@
 import { cpSync, existsSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { PlaygroundApp } from './manifest';
+import { validateManifest } from './manifest';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const dist = join(root, 'dist');
 const only = process.env.ONLY;
 
-const { apps }: { apps: PlaygroundApp[] } = JSON.parse(
-  readFileSync(join(root, 'apps.json'), 'utf8'),
-);
+// Checked first, so a typo in apps.json stops the build before anything runs.
+const apps = validateManifest(JSON.parse(readFileSync(join(root, 'apps.json'), 'utf8')));
 
 /** Infer the package manager from whichever lockfile the app committed. */
 function detectPackageManager(dir: string): string {

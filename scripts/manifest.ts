@@ -97,3 +97,75 @@ export interface PlaygroundApp {
   /** Build output directory, only set when the toolchain differs from `dist`. */
   outDir?: string;
 }
+
+const TERMS: Partial<Record<keyof PlaygroundApp, Record<string, Term>>> = {
+  framework: FRAMEWORKS,
+  bundler: BUNDLERS,
+  packageManager: PACKAGE_MANAGERS,
+  styling: STYLING,
+  setup: SETUPS,
+  difficulty: DIFFICULTIES,
+};
+const TEXT_FIELDS = ['id', 'name', 'description', 'details', 'useCase'] as const;
+const KNOWN_FIELDS = new Set<string>([
+  ...TEXT_FIELDS, ...Object.keys(TERMS), 'views', 'codeShown', 'preview', 'outDir',
+]);
+
+/**
+ * Check the parsed apps.json and return its apps. Throws one error listing
+ * every problem, so a typo stops the build instead of showing a broken card.
+ */
+export function validateManifest(data: unknown): PlaygroundApp[] {
+  const problems: string[] = [];
+  const list = (data as { apps?: unknown })?.apps;
+  if (!Array.isArray(list)) throw new Error('apps.json: "apps" must be a list.');
+
+  const seen = new Set<string>();
+  list.forEach((entry: Record<string, unknown>, index) => {
+    const at = `apps[${index}]${typeof entry?.id === 'string' ? ` (${entry.id})` : ''}`;
+    const oneOf = (field: string, allowed: Record<string, Term>, value: unknown) => {
+      if (typeof value !== 'string' || !Object.hasOwn(allowed, value)) {
+        problems.push(`${at}: "${field}" must be one of ${Object.keys(allowed).join(', ')}.`);
+      }
+    };
+
+    for (const key of Object.keys(entry ?? {})) {
+      if (!KNOWN_FIELDS.has(key)) problems.push(`${at}: unknown field "${key}".`);
+    }
+    for (const field of TEXT_FIELDS) {
+      if (typeof entry?.[field] !== 'string' || !(entry[field] as string).trim()) {
+        problems.push(`${at}: "${field}" is required.`);
+      }
+    }
+    if (typeof entry?.id === 'string') {
+      if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(entry.id)) {
+        problems.push(`${at}: "id" may only use lowercase letters, digits and single hyphens.`);
+      }
+      if (seen.has(entry.id)) problems.push(`${at}: "id" is used twice.`);
+      seen.add(entry.id);
+    }
+    for (const [field, allowed] of Object.entries(TERMS)) oneOf(field, allowed, entry?.[field]);
+
+    const views = entry?.views;
+    if (!Array.isArray(views) || views.length === 0) {
+      problems.push(`${at}: "views" must list at least one of ${Object.keys(VIEWS).join(', ')}.`);
+    } else {
+      views.forEach((view) => oneOf('views', VIEWS, view));
+    }
+    const code = entry?.codeShown;
+    if (!Array.isArray(code) || code.length === 0 || code.some((c) => typeof c !== 'string' || !c.trim())) {
+      problems.push(`${at}: "codeShown" must list at least one language.`);
+    }
+    if (entry?.preview !== null && typeof entry?.preview !== 'string') {
+      problems.push(`${at}: "preview" must be a path or null.`);
+    }
+    if (entry?.outDir !== undefined && typeof entry.outDir !== 'string') {
+      problems.push(`${at}: "outDir" must be a folder name.`);
+    }
+  });
+
+  if (problems.length > 0) {
+    throw new Error(`apps.json has ${problems.length} problem(s):\n  ${problems.join('\n  ')}`);
+  }
+  return list as PlaygroundApp[];
+}
