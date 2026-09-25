@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import { appLinks, externalAttrs } from '../config';
 import type { PlaygroundApp } from '../apps';
+import { BUNDLERS, FRAMEWORKS, PACKAGE_MANAGERS } from '../../../scripts/manifest';
 
 interface Props {
 	app: PlaygroundApp;
@@ -10,27 +11,15 @@ interface Props {
 const { app } = Astro.props;
 const links = appLinks(app.id);
 
-/**
- * Stack keys → display label and (where one exists) a simple-icons slug.
- * Not every tool ships an icon — Parcel, for one — so entries without `icon`
- * render as a text pill instead. Unknown keys fall back to the raw key, which
- * keeps a typo or a new tool from breaking the build.
- */
-const STACK: Record<string, { label: string; icon?: string }> = {
-	typescript: { label: 'TypeScript', icon: 'simple-icons:typescript' },
-	javascript: { label: 'JavaScript', icon: 'simple-icons:javascript' },
-	react: { label: 'React', icon: 'simple-icons:react' },
-	vuedotjs: { label: 'Vue', icon: 'simple-icons:vuedotjs' },
-	svelte: { label: 'Svelte', icon: 'simple-icons:svelte' },
-	nextdotjs: { label: 'Next.js', icon: 'simple-icons:nextdotjs' },
-	vite: { label: 'Vite', icon: 'simple-icons:vite' },
-	webpack: { label: 'webpack', icon: 'simple-icons:webpack' },
-	parcel: { label: 'Parcel' },
-	bun: { label: 'Bun', icon: 'simple-icons:bun' },
-	npm: { label: 'npm', icon: 'simple-icons:npm' },
-	pnpm: { label: 'pnpm', icon: 'simple-icons:pnpm' },
-	yarn: { label: 'Yarn', icon: 'simple-icons:yarn' },
-};
+// Framework, bundler and package manager as logos, each tool once (Bun can
+// be both bundler and package manager). "No framework" has no logo to show.
+const stack = [
+	app.framework === 'none' ? undefined : FRAMEWORKS[app.framework],
+	BUNDLERS[app.bundler],
+	PACKAGE_MANAGERS[app.packageManager],
+].filter((term, index, all): term is { label: string; icon?: string } =>
+	!!term && all.findIndex((other) => other?.label === term.label) === index,
+);
 ---
 
 <article class="card">
@@ -50,8 +39,7 @@ const STACK: Record<string, { label: string; icon?: string }> = {
 
 		<ul class="stack" aria-label="Tech stack">
 			{
-				app.stack.map((key) => {
-					const entry = STACK[key] ?? { label: key };
+				stack.map((entry) => {
 					return (
 						<li title={entry.label}>
 							{entry.icon ? (

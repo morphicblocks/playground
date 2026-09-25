@@ -14,17 +14,13 @@
 import { cpSync, existsSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import type { PlaygroundApp } from './manifest';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const dist = join(root, 'dist');
 const only = process.env.ONLY;
 
-interface AppEntry {
-  id: string;
-  outDir?: string;
-}
-
-const { apps }: { apps: AppEntry[] } = JSON.parse(
+const { apps }: { apps: PlaygroundApp[] } = JSON.parse(
   readFileSync(join(root, 'apps.json'), 'utf8'),
 );
 
