@@ -1,61 +1,8 @@
 {
   "$comment": [
-    "Single source of truth for the playground. The gallery renders every entry; the build only builds entries with status 'ready'.",
-    "`id` is immutable: it is the folder name under apps/, the URL segment, and the key used to derive the GitHub + degit links.",
-    "The package manager is inferred from each app's lockfile (bun.lock, package-lock.json, pnpm-lock.yaml, yarn.lock).",
+    "Single source of truth for the playground: every app listed here exists in apps/<id>/ and is built and shown in the gallery.",
+    "`id` is immutable: it is the folder name under apps/, the URL segment, and the key used to derive the GitHub and CLI links.",
     "Build output is assumed to be 'dist'; add \"outDir\" only when the toolchain differs (e.g. Next.js static export writes to 'out')."
   ],
-  "apps": [
-    {
-      "id": "vanilla-minimal",
-      "name": "Vanilla: Minimal Embed",
-      "description": "The smallest possible embed: plain TypeScript, bundled with Bun, no framework.",
-      "stack": ["typescript", "bun"],
-      "level": "TBD",
-      "scope": "TBD",
-      "preview": null,
-      "status": "planned"
-    },
-    {
-      "id": "react-basic",
-      "name": "React: Basic Workspace",
-      "description": "DESCRIPTION",
-      "stack": ["react", "vite", "bun"],
-      "level": "TBD",
-      "scope": "TBD",
-      "preview": null,
-      "status": "planned"
-    },
-    {
-      "id": "nextjs-basic",
-      "name": "Next.js: Static Export",
-      "description": "DESCRIPTION",
-      "stack": ["nextdotjs", "react", "npm"],
-      "level": "TBD",
-      "scope": "TBD",
-      "preview": null,
-      "outDir": "out",
-      "status": "planned"
-    },
-    {
-      "id": "vue-basic",
-      "name": "Vue: Basic Workspace",
-      "description": "DESCRIPTION",
-      "stack": ["vuedotjs", "parcel", "pnpm"],
-      "level": "TBD",
-      "scope": "TBD",
-      "preview": null,
-      "status": "planned"
-    },
-    {
-      "id": "svelte-basic",
-      "name": "Svelte: Basic Workspace",
-      "description": "DESCRIPTION",
-      "stack": ["svelte", "vite", "yarn"],
-      "level": "TBD",
-      "scope": "TBD",
-      "preview": null,
-      "status": "planned"
-    }
-  ]
+  "apps": []
 }

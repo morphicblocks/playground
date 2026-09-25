@@ -3,7 +3,7 @@
  * Builds the playground into a single deployable `dist/`:
  *
  *   dist/            ← the gallery (Astro)
- *   dist/<id>/       ← each ready app's own build output
+ *   dist/<id>/       ← each app's own build output
  *
  * Each app under apps/<id>/ is an independent project with its own toolchain.
  * The package manager is inferred from its lockfile; the output directory is
@@ -22,7 +22,6 @@ const only = process.env.ONLY;
 interface AppEntry {
   id: string;
   outDir?: string;
-  status: 'planned' | 'ready';
 }
 
 const { apps }: { apps: AppEntry[] } = JSON.parse(
@@ -54,19 +53,14 @@ rmSync(dist, { recursive: true, force: true });
 mkdirSync(dist, { recursive: true });
 cpSync(join(gallery, 'dist'), dist, { recursive: true });
 
-// 2. Each ready app into dist/<id>/
+// 2. Each app into dist/<id>/
 for (const app of apps) {
   if (only && app.id !== only) continue;
 
-  if (app.status !== 'ready') {
-    console.log(`▸ skipping ${app.id} (${app.status})`);
-    continue;
-  }
-
+  // Only existing apps are listed, so a missing folder is a mistake.
   const dir = join(root, 'apps', app.id);
   if (!existsSync(dir)) {
-    console.warn(`▸ skipping ${app.id} — apps/${app.id}/ does not exist`);
-    continue;
+    throw new Error(`${app.id}: listed in apps.json, but apps/${app.id}/ does not exist`);
   }
 
   const pm = detectPackageManager(dir);

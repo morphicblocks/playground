@@ -17,7 +17,6 @@ export interface PlaygroundApp {
   preview: string | null;
   /** Build output directory — only set when the toolchain differs from `dist`. */
   outDir?: string;
-  status: 'planned' | 'ready';
 }
 
 export const apps: PlaygroundApp[] = data.apps as PlaygroundApp[];

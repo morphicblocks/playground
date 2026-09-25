@@ -4,7 +4,6 @@ import { apps } from '../apps';
 import { site, externalAttrs } from '../config';
 import '../styles/global.css';
 
-const readyCount = apps.filter((a) => a.status === 'ready').length;
 
 // Absolute URLs, which link previews and canonical tags both require. They are
 // only emitted when PUBLIC_SITE_URL is set, since a relative one is rejected.
@@ -104,10 +103,9 @@ const legalLinks = [
 			</p>
 
 			{
-				readyCount === 0 && (
+				apps.length === 0 && (
 					<p class="notice">
-						These apps are planned. The shell is in place and each one will
-						land here as it is built.
+						The first apps are being built and will appear here soon.
 					</p>
 				)
 			}
