@@ -11,31 +11,22 @@
  *
  * Uses the installed Chrome; set CHROME_PATH if it is not found.
  */
-import { existsSync, statSync } from 'node:fs';
+import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import puppeteer from 'puppeteer-core';
 import { validateManifest } from './manifest';
+import { serveDist } from './serve';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
-const dist = join(root, 'dist');
 
 // 1. Build
 const build = Bun.spawnSync(['bun', 'run', 'build'], { cwd: root, stdout: 'inherit', stderr: 'inherit' });
 if (build.exitCode !== 0) process.exit(build.exitCode ?? 1);
 const apps = validateManifest(await Bun.file(join(root, 'apps.json')).json());
 
-// 2. Serve dist/ the way nginx does: folders answer with their index.html.
-const server = Bun.serve({
-  port: 0,
-  fetch(request) {
-    const path = decodeURIComponent(new URL(request.url).pathname);
-    let file = join(dist, path);
-    if (!file.startsWith(dist)) return new Response('Not found', { status: 404 });
-    if (existsSync(file) && statSync(file).isDirectory()) file = join(file, 'index.html');
-    return existsSync(file) ? new Response(Bun.file(file)) : new Response('Not found', { status: 404 });
-  },
-});
+// 2. Serve dist/ the way nginx does.
+const server = serveDist();
 const origin = `http://localhost:${server.port}`;
 
 function findChrome(): string {

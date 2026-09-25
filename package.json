@@ -6,7 +6,7 @@
     "dev": "cd gallery && bun run dev",
     "build": "bun run scripts/build-all.ts",
     "check": "bun run scripts/check.ts",
-    "preview": "cd gallery && bun run preview"
+    "preview": "bun run scripts/preview.ts"
   },
   "devDependencies": {
     "@types/bun": "^1.4.2",

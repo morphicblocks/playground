@@ -9,8 +9,9 @@ is self contained:** download its folder and run it on its own.
 ```sh
 cp .env.example .env   # then edit .env
 bun install            # tools for the check script
-bun run dev            # gallery dev server
+bun run dev            # gallery dev server (the gallery page only)
 bun run build          # assemble the whole playground into ./dist
+bun run preview        # build, then serve it all at localhost:4321
 bun run check          # build, then fail on any external request
 ```
 
@@ -26,6 +27,7 @@ gallery/               the front door (Astro): cards and the comparison table
 scripts/manifest.ts    allowed values for apps.json, and its validation
 scripts/build-all.ts   builds the gallery into dist/, then each app into dist/<id>/
 scripts/check.ts       the pre-push check
+scripts/preview.ts     builds and serves the whole playground locally
 LICENSE-APPS           the license of everything in apps/
 ```
 
