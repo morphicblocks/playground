@@ -10,6 +10,8 @@ interface Props {
 
 const { app } = Astro.props;
 const links = appLinks(app.id);
+// Blank lines in `details` separate paragraphs.
+const paragraphs = app.details.split(/\n\s*\n/).map((text) => text.trim()).filter(Boolean);
 
 // Framework, bundler and package manager as logos, each tool once (Bun can
 // be both bundler and package manager). "No framework" has no logo to show.
@@ -42,6 +44,11 @@ const stack = [
 			</a>
 		</h2>
 		<p class="desc">{app.description}</p>
+
+		<details class="more">
+			<summary>More</summary>
+			{paragraphs.map((text) => <p>{text}</p>)}
+		</details>
 
 		<ul class="stack" aria-label="Tech stack">
 			{
@@ -158,14 +165,14 @@ const stack = [
 		margin: 0;
 		color: var(--text-muted);
 		font-size: 0.92rem;
-		flex: 1;
 	}
 
+	/* Logos and buttons sit at the bottom, level across a row of cards. */
 	.stack {
 		display: flex;
 		gap: 0.55rem;
 		list-style: none;
-		margin: 0;
+		margin: auto 0 0;
 		padding: 0;
 		color: var(--text-muted);
 	}
@@ -184,6 +191,44 @@ const stack = [
 		padding: 0.25rem 0.4rem;
 		border: 1px solid var(--border);
 		border-radius: var(--radius-sm);
+	}
+
+	/* Above the card link, so opening it does not open the app. */
+	.more {
+		position: relative;
+		z-index: 1;
+		font-size: 0.88rem;
+		color: var(--text-muted);
+	}
+	.more summary {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.3rem;
+		cursor: pointer;
+		font-weight: 600;
+		color: var(--text);
+		list-style: none;
+	}
+	.more summary::-webkit-details-marker {
+		display: none;
+	}
+	.more summary::after {
+		content: '';
+		width: 0.4rem;
+		height: 0.4rem;
+		border-right: 2px solid currentColor;
+		border-bottom: 2px solid currentColor;
+		transform: translateY(-0.1rem) rotate(45deg);
+		transition: transform 0.15s ease;
+	}
+	.more[open] summary::after {
+		transform: translateY(0.1rem) rotate(-135deg);
+	}
+	.more summary:hover {
+		color: var(--accent);
+	}
+	.more p {
+		margin: 0.5rem 0 0;
 	}
 
 	/* Above the card link, so each button keeps its own action. */
