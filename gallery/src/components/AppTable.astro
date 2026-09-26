@@ -3,7 +3,6 @@ import { appLinks } from '../config';
 import type { PlaygroundApp } from '../apps';
 import {
 	BUNDLERS,
-	DIFFICULTIES,
 	FRAMEWORKS,
 	LANGUAGES,
 	PACKAGE_MANAGERS,
@@ -32,7 +31,6 @@ const { apps } = Astro.props;
 					<th scope="col">Styling</th>
 					<th scope="col">Views</th>
 					<th scope="col">Code shown</th>
-					<th scope="col">Difficulty</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -55,9 +53,6 @@ const { apps } = Astro.props;
 							<td>{STYLING[app.styling].label}</td>
 							<td>{app.views.map((view) => VIEWS[view].label).join(', ')}</td>
 							<td>{app.codeShown.join(', ')}</td>
-							<td>
-								<span class="level">{DIFFICULTIES[app.difficulty].label}</span>
-							</td>
 						</tr>
 					))
 				}
@@ -127,13 +122,5 @@ const { apps } = Astro.props;
 	}
 	td {
 		color: var(--text-muted);
-	}
-	.level {
-		font-size: 0.75rem;
-		font-weight: 600;
-		padding: 0.15rem 0.5rem;
-		border-radius: 999px;
-		background: var(--badge-bg);
-		color: var(--badge-text);
 	}
 </style>

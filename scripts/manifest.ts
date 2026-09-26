@@ -65,12 +65,6 @@ export const VIEWS = {
   preview: { label: 'Preview' },
 } satisfies Record<string, Term>;
 
-export const DIFFICULTIES = {
-  beginner: { label: 'Beginner' },
-  intermediate: { label: 'Intermediate' },
-  advanced: { label: 'Advanced' },
-} satisfies Record<string, Term>;
-
 export interface PlaygroundApp {
   /** Immutable: folder name under apps/, URL segment, and link key. */
   id: string;
@@ -92,7 +86,6 @@ export interface PlaygroundApp {
   views: (keyof typeof VIEWS)[];
   /** The languages the blocks turn into, e.g. ["Python"]. */
   codeShown: string[];
-  difficulty: keyof typeof DIFFICULTIES;
   /** Card image; when null the card falls back to a titled box. */
   preview: string | null;
   /** Build output directory, only set when the toolchain differs from `dist`. */
@@ -104,7 +97,6 @@ const TERMS: Partial<Record<keyof PlaygroundApp, Record<string, Term>>> = {
   bundler: BUNDLERS,
   packageManager: PACKAGE_MANAGERS,
   styling: STYLING,
-  difficulty: DIFFICULTIES,
 };
 const TEXT_FIELDS = ['id', 'name', 'description', 'details', 'useCase'] as const;
 const KNOWN_FIELDS = new Set<string>([

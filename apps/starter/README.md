@@ -12,7 +12,6 @@ The smallest setup that still shows what Morphic Blocks is made of: elements, mo
 | **Styling** | Plain CSS |
 | **Views** | Blocks, Text editor |
 | **Code shown** | JavaScript |
-| **Difficulty** | Beginner |
 
 ## Run
 

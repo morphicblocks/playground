@@ -12,7 +12,6 @@ One Python program moves step by step from plain word blocks to Python blocks to
 | **Styling** | CSS modules |
 | **Views** | Blocks, Text editor |
 | **Code shown** | Python |
-| **Difficulty** | Intermediate |
 
 ## Run
 

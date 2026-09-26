@@ -14,7 +14,6 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   BUNDLERS,
-  DIFFICULTIES,
   PACKAGE_MANAGERS,
   STYLING,
   VIEWS,
@@ -94,7 +93,6 @@ function top(app: PlaygroundApp): string {
     `| **Styling** | ${STYLING[app.styling].label} |`,
     `| **Views** | ${app.views.map((view) => VIEWS[view].label).join(', ')} |`,
     `| **Code shown** | ${app.codeShown.join(', ')} |`,
-    `| **Difficulty** | ${DIFFICULTIES[app.difficulty].label} |`,
     '',
     '## Run',
     '',

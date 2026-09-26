@@ -12,7 +12,6 @@ A friendly tutorial article about loops with three small block editors placed be
 | **Styling** | Plain CSS |
 | **Views** | Blocks, Preview |
 | **Code shown** | Python |
-| **Difficulty** | Intermediate |
 
 ## Run
 

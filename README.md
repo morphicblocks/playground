@@ -49,7 +49,6 @@ has these fields:
 | `language` | `typescript` or `javascript`; only for apps without a framework, and required for them |
 | `views` | What is on screen: `blocks`, `text`, `preview` |
 | `codeShown` | The languages the blocks turn into, e.g. `["Python"]` |
-| `difficulty` | `beginner`, `intermediate` or `advanced` |
 | `preview` | Card image path, or `null` for a titled box |
 | `outDir` | Build output folder, only when it is not `dist` |
 
