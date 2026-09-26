@@ -27,7 +27,7 @@ const { apps } = Astro.props;
 					<th scope="col">Use case</th>
 					<th scope="col">Framework</th>
 					<th scope="col">Bundler</th>
-					<th scope="col">Package manager</th>
+					<th scope="col">Packages</th>
 					<th scope="col">Styling</th>
 					<th scope="col">Views</th>
 					<th scope="col">Code shown</th>
@@ -42,12 +42,15 @@ const { apps } = Astro.props;
 									{app.name}
 								</a>
 							</th>
-							<td>
+							<td class="use-case">
 								{app.useCase}
-								<details class="question">
-									<summary aria-label="The question this app answers">ⓘ</summary>
-									<p>{app.question}</p>
-								</details>
+								<button
+									class="question"
+									type="button"
+									aria-label={`The question this app answers: ${app.question}`}
+									data-question={app.question}>
+									i
+								</button>
 							</td>
 							<td>
 								{app.framework === 'none' && app.language
@@ -67,7 +70,72 @@ const { apps } = Astro.props;
 	</div>
 </section>
 
+<!-- One floating box for all questions. It lives outside the table, so the
+     table's sideways scrolling cannot cut it off. -->
+<div id="question-tip" role="tooltip" hidden></div>
+
+<script is:inline>
+	(() => {
+		const tip = document.getElementById('question-tip');
+		if (!tip) return;
+		let current = null;
+		let shownAt = 0;
+		const place = () => {
+			if (!current) return;
+			const box = current.getBoundingClientRect();
+			const left = Math.min(box.left, innerWidth - tip.offsetWidth - 8);
+			tip.style.left = `${Math.max(8, left)}px`;
+			tip.style.top = `${box.bottom + 6}px`;
+		};
+		const show = (button) => {
+			if (current !== button) shownAt = Date.now();
+			current = button;
+			tip.textContent = button.dataset.question;
+			tip.hidden = false;
+			place();
+		};
+		const hide = () => {
+			current = null;
+			tip.hidden = true;
+		};
+		document.querySelectorAll('button.question').forEach((button) => {
+			button.addEventListener('mouseenter', () => show(button));
+			button.addEventListener('mouseleave', hide);
+			button.addEventListener('focus', () => show(button));
+			button.addEventListener('blur', hide);
+			// Phones have no hover: a tap opens the box, a later tap closes it. A
+			// tap also focuses the button, so ignore the click that comes with it.
+			button.addEventListener('click', () => {
+				if (current === button && Date.now() - shownAt > 300) hide();
+				else show(button);
+			});
+		});
+		addEventListener('keydown', (event) => event.key === 'Escape' && hide());
+		// The box is fixed on screen, so it follows its icon when the page or
+		// the table scrolls.
+		addEventListener('scroll', place, true);
+		addEventListener('resize', place);
+	})();
+</script>
+
 <style>
+	#question-tip {
+		position: fixed;
+		z-index: 10;
+		max-width: 20rem;
+		padding: 0.75rem 1rem;
+		font-size: 0.95rem;
+		font-weight: 600;
+		line-height: 1.4;
+		color: var(--badge-text);
+		background: var(--badge-bg);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-sm);
+		box-shadow: 0 6px 18px rgb(0 0 0 / 0.18);
+	}
+	#question-tip[hidden] {
+		display: none;
+	}
 	.compare {
 		padding-bottom: 3rem;
 	}
@@ -129,32 +197,28 @@ const { apps } = Astro.props;
 	td {
 		color: var(--text-muted);
 	}
-	/* The ⓘ opens the app's question inside the cell, which also works on
-	   phones, where a floating box would be cut off by the scrolling table. */
-	.question {
-		display: inline;
+	/* The use case and its ⓘ stay on one line. */
+	.use-case {
+		white-space: nowrap;
 	}
-	.question summary {
+	.question {
 		display: inline-grid;
 		place-items: center;
-		width: 1.2rem;
-		height: 1.2rem;
-		margin-left: 0.2rem;
-		font-size: 0.75rem;
-		border-radius: 999px;
+		width: 1.35rem;
+		height: 1.35rem;
+		margin-left: 0.35rem;
+		padding: 0;
+		vertical-align: -0.15rem;
+		font: italic 700 0.8rem/1 Georgia, serif;
 		color: var(--badge-text);
 		background: var(--badge-bg);
-		cursor: pointer;
-		list-style: none;
+		border: 0;
+		border-radius: 999px;
+		cursor: help;
 	}
-	.question summary::-webkit-details-marker {
-		display: none;
-	}
-	.question p {
-		margin: 0.4rem 0 0;
-		max-width: 16rem;
-		font-size: 0.8rem;
-		font-style: italic;
-		color: var(--text);
+	.question:hover,
+	.question:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 1px;
 	}
 </style>
