@@ -56,7 +56,7 @@ export const STYLING = {
   'css-modules': { label: 'CSS modules', icon: 'simple-icons:cssmodules' },
   scoped: { label: 'Scoped styles' },
   tailwind: { label: 'Tailwind', icon: 'simple-icons:tailwindcss' },
-  sass: { label: 'Sass', icon: 'simple-icons:sass' },
+  sass: { label: 'SCSS', icon: 'simple-icons:sass' },
 } satisfies Record<string, Term>;
 
 export const VIEWS = {
