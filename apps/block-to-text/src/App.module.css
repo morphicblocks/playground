@@ -1,0 +1,284 @@
+:global(:root) {
+  --bg: #0b0c11;
+  --panel: #13141c;
+  --panel-head: #191b26;
+  --line: #262a3d;
+  --text: #d5d9f0;
+  --muted: #7b82a8;
+  --accent: #ff9e64;
+  --accent-soft: rgba(255, 158, 100, 0.14);
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+:global(*) {
+  box-sizing: border-box;
+}
+
+:global(body) {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 14px;
+}
+
+.shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* Top bar */
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0 1rem;
+  height: 48px;
+  background: var(--panel-head);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.tabs {
+  display: flex;
+  align-self: stretch;
+  gap: 2px;
+  flex: 1;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.tab[aria-selected="true"] {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.step {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.tab[aria-selected="true"] .step {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.hint {
+  margin: 0;
+  padding: 0.45rem 1rem;
+  font-size: 13px;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+}
+
+/* Panes: each step has its own grid areas. */
+
+.grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  gap: 1px;
+  background: var(--line);
+  grid-template-columns: 240px minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) 220px;
+}
+
+.stepOne {
+  grid-template-areas:
+    "toolbox workspace workspace"
+    "toolbox output output";
+}
+
+.stepTwo {
+  grid-template-areas:
+    "toolbox workspace mirror"
+    "toolbox output output";
+}
+
+.stepThree {
+  grid-template-areas:
+    "toolbox workspace code"
+    "toolbox output output";
+}
+
+.pane {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  background: var(--panel);
+}
+
+.pane[hidden] {
+  display: none;
+}
+
+.toolbox { grid-area: toolbox; }
+.workspace { grid-area: workspace; }
+.mirror { grid-area: mirror; }
+.code { grid-area: code; }
+.output { grid-area: output; }
+
+.paneTitle {
+  margin: 0;
+  padding: 0.4rem 0.75rem;
+  background: var(--panel-head);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.fill {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+/* Output: what the program printed, with its Run button in the header. */
+
+.outputHead {
+  display: flex;
+  align-items: center;
+  background: var(--panel-head);
+  border-bottom: 1px solid var(--line);
+}
+
+.outputHead .paneTitle {
+  flex: 1;
+  border-bottom: 0;
+}
+
+.run {
+  margin-right: 0.5rem;
+  padding: 0.15rem 0.7rem;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font: 600 12px var(--mono);
+  cursor: pointer;
+}
+
+.run:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.run:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.outputBody {
+  flex: 1;
+  min-height: 0;
+  margin: 0;
+  padding: 0.6rem 0.9rem;
+  overflow: auto;
+  font: 14px/1.6 var(--mono);
+  color: var(--text);
+  background: #0e0f15;
+}
+
+.error {
+  color: #f7768e;
+}
+
+.quiet {
+  color: var(--muted);
+}
+
+.toolboxBody {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 0.5rem;
+}
+
+/* Phones: one column, each pane gets a fixed share of the scroll. */
+
+@media (max-width: 760px) {
+  .shell {
+    height: auto;
+    min-height: 100dvh;
+  }
+
+  .bar {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 0.5rem 1rem;
+    gap: 0.5rem 1rem;
+  }
+
+  .tabs {
+    flex-basis: 100%;
+    flex-wrap: wrap;
+  }
+
+  .tab {
+    padding: 0.5rem 0.7rem;
+  }
+
+  .grid,
+  .stepOne,
+  .stepTwo,
+  .stepThree {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .toolbox { height: 220px; }
+  .workspace,
+  .mirror { height: 60vh; }
+  .code { height: 50vh; }
+  .output { height: 30vh; }
+}

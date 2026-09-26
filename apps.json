@@ -45,6 +45,26 @@
       ],
       "difficulty": "intermediate",
       "preview": null
+    },
+    {
+      "id": "block-to-text",
+      "name": "Block to Text",
+      "description": "One Python program moves step by step from plain word blocks to Python blocks to Python text, and Run shows what it prints.",
+      "details": "Nine blocks (print, text, number, math, compare, if, repeat and a variable set and get pair) in two modes: plain words such as \"repeat 3 times\" and Python. Three presets are the steps: plain word blocks; plain word blocks next to the same program as Python blocks, which come from a second, read only engine that copies the program after every change; and Python blocks next to Python text that can be edited by structure.\n\nEvery step has an Output area with a Run button. A behaviors file turns each block into JavaScript that does what its Python does, so the output matches what Python would print, and loops stop after 1,000 rounds.",
+      "useCase": "Block to text transition",
+      "framework": "react",
+      "bundler": "vite",
+      "packageManager": "bun",
+      "styling": "css-modules",
+      "views": [
+        "blocks",
+        "text"
+      ],
+      "codeShown": [
+        "Python"
+      ],
+      "difficulty": "intermediate",
+      "preview": null
     }
   ]
 }

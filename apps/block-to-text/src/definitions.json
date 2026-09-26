@@ -1,0 +1,355 @@
+{
+  "elementTypes": {
+    "words": "code",
+    "python": "code"
+  },
+  "modes": [
+    {
+      "name": "plain",
+      "elements": [
+        "words"
+      ]
+    },
+    {
+      "name": "py",
+      "elements": [
+        "python"
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "blocks",
+      "label": "Blocks",
+      "toolbox": "plain",
+      "workspace": "plain"
+    },
+    {
+      "name": "blocks-and-python",
+      "label": "Blocks and Python blocks",
+      "toolbox": "plain",
+      "workspace": "plain"
+    },
+    {
+      "name": "python-text",
+      "label": "Python blocks and Python text",
+      "toolbox": "py",
+      "workspace": "py",
+      "codespace": "py"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Output",
+      "color": "#d9822b"
+    },
+    {
+      "name": "Values",
+      "color": "#3fa37c"
+    },
+    {
+      "name": "Math",
+      "color": "#7a6ff0"
+    },
+    {
+      "name": "Control",
+      "color": "#c75a8a"
+    },
+    {
+      "name": "Variables",
+      "color": "#c9a227"
+    }
+  ],
+  "highlighting": {
+    "python": {
+      "keywords": [
+        "if",
+        "else",
+        "for",
+        "in",
+        "range",
+        "print",
+        "True",
+        "False"
+      ],
+      "strings": [
+        "\""
+      ],
+      "comment": "#",
+      "colors": {
+        "keyword": "#ff9e64",
+        "string": "#9ece6a",
+        "number": "#e0af68",
+        "comment": "#565f89"
+      }
+    }
+  },
+  "blocks": [
+    {
+      "identifier": "print",
+      "category": "Output",
+      "elements": {
+        "words": "show %1",
+        "python": "print(%1)"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "VALUE",
+          "default": {
+            "shadow": "text",
+            "fieldValues": {
+              "TEXT": "hello"
+            }
+          }
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "text",
+      "category": "Values",
+      "elements": {
+        "words": "\"%TEXT\"",
+        "python": "\"%TEXT\""
+      },
+      "fields": {
+        "TEXT": {
+          "type": "text",
+          "default": "hello"
+        }
+      },
+      "output": "String"
+    },
+    {
+      "identifier": "number",
+      "category": "Values",
+      "elements": {
+        "words": "%NUM",
+        "python": "%NUM"
+      },
+      "fields": {
+        "NUM": {
+          "type": "number",
+          "default": 0
+        }
+      },
+      "output": "Number"
+    },
+    {
+      "identifier": "math",
+      "category": "Math",
+      "elements": {
+        "words": "%1 %OP %2",
+        "python": "%1 %OP %2"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "A",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "1"
+            }
+          }
+        },
+        "2": {
+          "kind": "value",
+          "name": "B",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "2"
+            }
+          }
+        }
+      },
+      "fields": {
+        "OP": {
+          "type": "dropdown",
+          "options": [
+            "+",
+            {
+              "value": "-",
+              "display": {
+                "words": "−"
+              }
+            },
+            {
+              "value": "*",
+              "display": {
+                "words": "×"
+              }
+            },
+            {
+              "value": "/",
+              "display": {
+                "words": "÷"
+              }
+            }
+          ],
+          "default": "+"
+        }
+      },
+      "output": "Number",
+      "inputsInline": true
+    },
+    {
+      "identifier": "compare",
+      "category": "Math",
+      "elements": {
+        "words": "%1 %OP %2",
+        "python": "%1 %OP %2"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "A",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "5"
+            }
+          }
+        },
+        "2": {
+          "kind": "value",
+          "name": "B",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "3"
+            }
+          }
+        }
+      },
+      "fields": {
+        "OP": {
+          "type": "dropdown",
+          "options": [
+            {
+              "value": ">",
+              "display": {
+                "words": "is more than"
+              }
+            },
+            {
+              "value": "<",
+              "display": {
+                "words": "is less than"
+              }
+            },
+            {
+              "value": "==",
+              "display": {
+                "words": "equals"
+              }
+            },
+            {
+              "value": "!=",
+              "display": {
+                "words": "is not"
+              }
+            }
+          ],
+          "default": ">"
+        }
+      },
+      "output": "Boolean",
+      "inputsInline": true
+    },
+    {
+      "identifier": "if",
+      "category": "Control",
+      "elements": {
+        "words": "if %1 then %2",
+        "python": "if %1:\n    %2"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "CONDITION",
+          "check": "Boolean"
+        },
+        "2": {
+          "kind": "statement",
+          "name": "DO"
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "repeat",
+      "category": "Control",
+      "elements": {
+        "words": "repeat %1 times %2",
+        "python": "for i in range(%1):\n    %2"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "TIMES",
+          "check": "Number",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "3"
+            }
+          }
+        },
+        "2": {
+          "kind": "statement",
+          "name": "DO"
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "set",
+      "category": "Variables",
+      "elements": {
+        "words": "set %NAME to %1",
+        "python": "%NAME = %1"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "VALUE",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "0"
+            }
+          }
+        }
+      },
+      "fields": {
+        "NAME": {
+          "type": "text",
+          "default": "score"
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "get",
+      "category": "Variables",
+      "elements": {
+        "words": "%NAME",
+        "python": "%NAME"
+      },
+      "fields": {
+        "NAME": {
+          "type": "text",
+          "default": "score"
+        }
+      },
+      "output": true
+    }
+  ]
+}

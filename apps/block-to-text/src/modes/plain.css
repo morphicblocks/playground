@@ -1,0 +1,11 @@
+/* The "plain" mode: blocks in everyday words ("repeat 3 times"). */
+
+.morphic-block.morphic-mode-plain {
+  padding: 6px;
+  border-radius: 6px;
+  cursor: grab;
+}
+
+.morphic-block.morphic-mode-plain:hover {
+  background: rgba(255, 255, 255, 0.05);
+}

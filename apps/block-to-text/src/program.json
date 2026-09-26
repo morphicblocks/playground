@@ -1,0 +1,139 @@
+{
+  "blocks": {
+    "languageVersion": 0,
+    "blocks": [
+      {
+        "type": "morphic:set",
+        "x": 24,
+        "y": 24,
+        "fields": {
+          "NAME": "score"
+        },
+        "inputs": {
+          "VALUE": {
+            "block": {
+              "type": "morphic:number",
+              "fields": {
+                "NUM": 0
+              }
+            }
+          }
+        },
+        "next": {
+          "block": {
+            "type": "morphic:repeat",
+            "inputs": {
+              "TIMES": {
+                "block": {
+                  "type": "morphic:number",
+                  "fields": {
+                    "NUM": 3
+                  }
+                }
+              },
+              "DO": {
+                "block": {
+                  "type": "morphic:set",
+                  "fields": {
+                    "NAME": "score"
+                  },
+                  "inputs": {
+                    "VALUE": {
+                      "block": {
+                        "type": "morphic:math",
+                        "fields": {
+                          "OP": "+"
+                        },
+                        "inputs": {
+                          "A": {
+                            "block": {
+                              "type": "morphic:get",
+                              "fields": {
+                                "NAME": "score"
+                              }
+                            }
+                          },
+                          "B": {
+                            "block": {
+                              "type": "morphic:number",
+                              "fields": {
+                                "NUM": 5
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "next": {
+                    "block": {
+                      "type": "morphic:if",
+                      "inputs": {
+                        "CONDITION": {
+                          "block": {
+                            "type": "morphic:compare",
+                            "fields": {
+                              "OP": ">"
+                            },
+                            "inputs": {
+                              "A": {
+                                "block": {
+                                  "type": "morphic:get",
+                                  "fields": {
+                                    "NAME": "score"
+                                  }
+                                }
+                              },
+                              "B": {
+                                "block": {
+                                  "type": "morphic:number",
+                                  "fields": {
+                                    "NUM": 10
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "DO": {
+                          "block": {
+                            "type": "morphic:print",
+                            "inputs": {
+                              "VALUE": {
+                                "block": {
+                                  "type": "morphic:text",
+                                  "fields": {
+                                    "TEXT": "high score"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "next": {
+              "block": {
+                "type": "morphic:print",
+                "inputs": {
+                  "VALUE": {
+                    "block": {
+                      "type": "morphic:get",
+                      "fields": {
+                        "NAME": "score"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

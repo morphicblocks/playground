@@ -1,0 +1,21 @@
+/* The "py" mode: Python source, set in a monospaced font on blocks. The
+   text views use it as their source too. */
+
+.morphic-block.morphic-mode-py {
+  padding: 6px;
+  border-radius: 6px;
+  cursor: grab;
+}
+
+.morphic-block.morphic-mode-py:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.morphic-mode-py > .morphic-element-python {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13px;
+}
+
+.morphic-workspace-root.morphic-mode-py .blocklyText {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
