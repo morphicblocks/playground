@@ -83,6 +83,11 @@ Download stays disabled until the ZIPs are published; `downloadsAvailable` in
   servers, and Blockly's images and sounds are served by the app itself (see
   the docs guide *Privacy & External Requests*). `bun run check` opens every
   app in headless Chrome and fails on any request to another server.
+- **Blockly's media is copied, not committed.** Each app's
+  `scripts/copy-blockly-media.mjs` copies Blockly's images, cursors and sounds
+  into `public/blockly-media/`. The app's `dev` and `build` scripts run it
+  first, so nobody runs it by hand, and the copy always matches the installed
+  Blockly. The app's `.gitignore` keeps the copy out of git.
 
 ## License
 
