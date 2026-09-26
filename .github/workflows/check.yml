@@ -11,9 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: oven-sh/setup-bun@v2
-      # Node, npm and Chrome come with the runner; apps may also use pnpm. An
-      # app that uses Yarn or Deno needs that tool set up here first.
-      - run: npm install -g pnpm
+      # Node, npm and Chrome come with the runner; apps may also use pnpm and
+      # Yarn. An app that uses Deno needs that tool set up here first.
+      - run: npm install -g pnpm yarn
       - run: bun install --frozen-lockfile
       # Builds the gallery and every app, then fails on any external request.
       - run: bun run check
