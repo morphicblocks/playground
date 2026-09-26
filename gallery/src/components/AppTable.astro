@@ -6,7 +6,6 @@ import {
 	DIFFICULTIES,
 	FRAMEWORKS,
 	PACKAGE_MANAGERS,
-	SETUPS,
 	STYLING,
 	VIEWS,
 } from '../../../scripts/manifest';
@@ -32,7 +31,6 @@ const { apps } = Astro.props;
 					<th scope="col">Styling</th>
 					<th scope="col">Views</th>
 					<th scope="col">Code shown</th>
-					<th scope="col">Setup</th>
 					<th scope="col">Difficulty</th>
 				</tr>
 			</thead>
@@ -52,7 +50,6 @@ const { apps } = Astro.props;
 							<td>{STYLING[app.styling].label}</td>
 							<td>{app.views.map((view) => VIEWS[view].label).join(', ')}</td>
 							<td>{app.codeShown.join(', ')}</td>
-							<td>{SETUPS[app.setup].label}</td>
 							<td>
 								<span class="level">{DIFFICULTIES[app.difficulty].label}</span>
 							</td>
@@ -62,11 +59,6 @@ const { apps } = Astro.props;
 			</tbody>
 		</table>
 	</div>
-	<p class="note">
-		<strong>Setup:</strong> <em>Config only</em> apps need just the definitions
-		file and the mode CSS; <em>Config + code</em> apps add behaviors or other
-		code of their own.
-	</p>
 </section>
 
 <style>
@@ -138,10 +130,5 @@ const { apps } = Astro.props;
 		border-radius: 999px;
 		background: var(--badge-bg);
 		color: var(--badge-text);
-	}
-	.note {
-		margin: 0.7rem 0 0;
-		font-size: 0.85rem;
-		color: var(--text-muted);
 	}
 </style>

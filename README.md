@@ -46,7 +46,6 @@ has these fields:
 | `framework`, `bundler`, `packageManager`, `styling` | The stack, as keys from `scripts/manifest.ts` |
 | `views` | What is on screen: `blocks`, `text`, `preview` |
 | `codeShown` | The languages the blocks turn into, e.g. `["Python"]` |
-| `setup` | `config` (definitions and CSS only) or `config-and-code` |
 | `difficulty` | `beginner`, `intermediate` or `advanced` |
 | `preview` | Card image path, or `null` for a titled box |
 | `outDir` | Build output folder, only when it is not `dist` |

@@ -59,11 +59,6 @@ export const VIEWS = {
   preview: { label: 'Preview' },
 } satisfies Record<string, Term>;
 
-export const SETUPS = {
-  config: { label: 'Config only' },
-  'config-and-code': { label: 'Config + code' },
-} satisfies Record<string, Term>;
-
 export const DIFFICULTIES = {
   beginner: { label: 'Beginner' },
   intermediate: { label: 'Intermediate' },
@@ -89,8 +84,6 @@ export interface PlaygroundApp {
   views: (keyof typeof VIEWS)[];
   /** The languages the blocks turn into, e.g. ["Python"]. */
   codeShown: string[];
-  /** Whether the app needs code beyond definitions and CSS. */
-  setup: keyof typeof SETUPS;
   difficulty: keyof typeof DIFFICULTIES;
   /** Card image; when null the card falls back to a titled box. */
   preview: string | null;
@@ -103,7 +96,6 @@ const TERMS: Partial<Record<keyof PlaygroundApp, Record<string, Term>>> = {
   bundler: BUNDLERS,
   packageManager: PACKAGE_MANAGERS,
   styling: STYLING,
-  setup: SETUPS,
   difficulty: DIFFICULTIES,
 };
 const TEXT_FIELDS = ['id', 'name', 'description', 'details', 'useCase'] as const;
