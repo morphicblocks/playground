@@ -2,7 +2,8 @@
 /**
  * Run before pushing: `bun run check`.
  *
- * 1. Builds everything, which also validates apps.json.
+ * 1. Checks that every app README matches apps.json, then builds everything,
+ *    which also validates apps.json.
  * 2. Serves the result locally and opens the gallery and every app in
  *    headless Chrome, moving the pointer the way a visitor would (Blockly
  *    loads its sounds on the first pointer move).
@@ -20,7 +21,9 @@ import { serveDist } from './serve';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 
-// 1. Build
+// 1. READMEs, then the build
+const readmes = Bun.spawnSync(['bun', 'run', 'scripts/readmes.ts', '--check'], { cwd: root, stdout: 'inherit', stderr: 'inherit' });
+if (readmes.exitCode !== 0) process.exit(readmes.exitCode ?? 1);
 const build = Bun.spawnSync(['bun', 'run', 'build'], { cwd: root, stdout: 'inherit', stderr: 'inherit' });
 if (build.exitCode !== 0) process.exit(build.exitCode ?? 1);
 const apps = validateManifest(await Bun.file(join(root, 'apps.json')).json());

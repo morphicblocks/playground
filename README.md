@@ -12,7 +12,8 @@ bun install            # tools for the check script
 bun run dev            # gallery dev server (the gallery page only)
 bun run build          # assemble the whole playground into ./dist
 bun run preview        # build, then serve it all at localhost:4321
-bun run check          # build, then fail on any external request
+bun run readmes        # write the generated parts of every app README
+bun run check          # READMEs, build, then fail on any external request
 ```
 
 Run `bun run check` before pushing; CI runs it on every push too.
@@ -28,6 +29,7 @@ scripts/manifest.ts    allowed values for apps.json, and its validation
 scripts/build-all.ts   builds the gallery into dist/, then each app into dist/<id>/
 scripts/check.ts       the pre-push check
 scripts/preview.ts     builds and serves the whole playground locally
+scripts/readmes.ts     writes the generated parts of the app READMEs
 LICENSE-APPS           the license of everything in apps/
 ```
 
@@ -90,11 +92,21 @@ Everything else in this repository is Apache-2.0 ([LICENSE](LICENSE)). Each
 app's README ends with a line pointing to LICENSE-APPS, so a downloaded copy
 still shows its license.
 
+## App READMEs
+
+Every app README has the same layout. `bun run readmes` writes two parts of
+it from `apps.json`, each between hidden markers: the top (title,
+description, badges, the table and the run commands) and the license at the
+end. The part between them is written by hand, usually a "Where to look"
+list of the files worth opening first. `bun run check` fails when a README
+no longer matches `apps.json`.
+
 ## Adding an app
 
 1. Create `apps/<id>/` as a normal standalone project, with its lockfile.
 2. Add its entry to `apps.json`.
-3. Run `bun run check`.
+3. Run `bun run readmes`, then fill in the hand written part of its README.
+4. Run `bun run check`.
 
 ## Configuration
 

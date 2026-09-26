@@ -6,7 +6,8 @@
     "dev": "cd gallery && bun run dev",
     "build": "bun run scripts/build-all.ts",
     "check": "bun run scripts/check.ts",
-    "preview": "bun run scripts/preview.ts"
+    "preview": "bun run scripts/preview.ts",
+    "readmes": "bun run scripts/readmes.ts"
   },
   "devDependencies": {
     "@types/bun": "^1.4.2",
