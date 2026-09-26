@@ -1,0 +1,21 @@
+{
+  "name": "morphic-blocks-embed-anywhere",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/copy-blockly-media.mjs && vite",
+    "build": "node scripts/copy-blockly-media.mjs && tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@codemirror/lang-javascript": "^6.2.5",
+    "@codemirror/state": "^6.7.6",
+    "@codemirror/view": "^6.43.13",
+    "lit": "^3.3.3",
+    "morphic-blocks": "^0.2.1"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vite": "^8.3.1"
+  }
+}

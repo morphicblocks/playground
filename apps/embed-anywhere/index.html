@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>Loops in three steps</title>
+  </head>
+  <body>
+    <header class="masthead">
+      <p class="masthead-name">The Tinkering Notebook</p>
+    </header>
+
+    <main>
+      <article class="post">
+        <header class="post-head">
+          <p class="kicker">Beginner friendly · 6 minute read</p>
+          <h1>Loops in three steps</h1>
+          <p class="lede">
+            Computers are wonderfully patient. Ask one to do something a thousand times and it
+            will not sigh once. In this post we look at loops, the tool that makes this possible,
+            and we build each idea with blocks while Python writes itself next to them.
+          </p>
+        </header>
+
+        <h2><span class="step">1</span> Repeat n times</h2>
+        <p>
+          The simplest loop just says <em>do this a few times</em>. Below, a single print block
+          sits inside a repeat block, so the greeting is printed three times. The Python on the
+          right uses <code>range(3)</code>, which counts off three rounds. The underscore is the
+          usual Python name for a counter we never look at.
+        </p>
+        <p>
+          Try it: change the 3 to a 10, or drag a second print block from the row of blocks into
+          the loop and watch the Python grow a line. Then press Run to see what the program
+          prints now.
+        </p>
+        <morphic-editor
+          blocks="repeat,print,text,number"
+          program="repeat"
+          height="260"
+          caption="Figure 1. A repeat block runs whatever sits inside it a fixed number of times."
+        ></morphic-editor>
+
+        <h2><span class="step">2</span> Count with a variable</h2>
+        <p>
+          Often we want to know <em>which</em> round we are in. A counting loop gives each round
+          a number and keeps it in a variable, here called <code>i</code>. Printing
+          <code>i</code> inside the loop shows the numbers 1 to 5.
+        </p>
+        <p>
+          Notice the <code>+ 1</code> in the Python version: <code>range</code> stops just
+          before its second number, so counting up to 5 means asking for a range that ends at 6.
+          The blocks hide this detail; the text shows it.
+        </p>
+        <morphic-editor
+          blocks="count,print,variable,number"
+          program="count"
+          height="260"
+          caption="Figure 2. A counting loop hands each round its number through the variable i."
+        ></morphic-editor>
+
+        <h2><span class="step">3</span> Repeat while a condition holds</h2>
+        <p>
+          Sometimes we do not know in advance how many rounds we need. A while loop keeps going
+          as long as a question is answered with yes. Here <code>i</code> starts at 90 and
+          goes up by one in every round. The loop stops once <code>i</code> is no longer
+          below 100, so the output ends at 99.
+        </p>
+        <p>
+          Can you make it count in steps of 2, or stop at 95? Change the blocks, guess the
+          output, then press Run. Careful: a loop whose condition never becomes false would run
+          forever, which is the classic loop mistake. This page stops such a loop after a
+          thousand rounds and tells you so.
+        </p>
+        <morphic-editor
+          blocks="set,change,compare,while,print,variable,number"
+          program="while"
+          height="320"
+          caption="Figure 3. A while loop checks its condition before every round."
+        ></morphic-editor>
+
+        <h2>Where to go next</h2>
+        <p>
+          These three shapes cover most loops you will ever write. Every editor on this page is
+          the same small web component, placed between paragraphs like an image. The same tag
+          works in a blog, a wiki or a course page: pick the blocks with an attribute and the
+          editor does the rest.
+        </p>
+      </article>
+    </main>
+
+    <footer class="colophon">
+      <p>Made with Morphic Blocks and a single custom element.</p>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,247 @@
+/* An ordinary article page. The editors are styled here too, as figures. */
+
+:root {
+  --paper: #f6efe1;
+  --paper-deep: #efe4cf;
+  --card: #fbf6ea;
+  --ink: #2e2620;
+  --ink-soft: #6b5d4f;
+  --rule: #d9c9ab;
+  --accent: #a8432b;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 1.125rem/1.7 var(--serif);
+}
+
+.masthead {
+  border-bottom: 1px solid var(--rule);
+  padding: 0.9rem 1rem;
+  text-align: center;
+}
+
+.masthead-name {
+  margin: 0;
+  font: 600 0.8rem/1 var(--sans);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.post {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 2.5rem 1rem 3rem;
+}
+
+.kicker {
+  margin: 0 0 0.5rem;
+  font: 0.85rem var(--sans);
+  color: var(--accent);
+}
+
+h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2.1rem, 6vw, 3rem);
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.lede {
+  font-size: 1.25rem;
+  color: var(--ink-soft);
+}
+
+h2 {
+  margin: 2.6rem 0 0.6rem;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.step {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--card);
+  font: 700 0.95rem/1 var(--sans);
+}
+
+code {
+  font: 0.9em var(--mono);
+  background: var(--paper-deep);
+  padding: 0.05em 0.3em;
+  border-radius: 4px;
+}
+
+.colophon {
+  border-top: 1px solid var(--rule);
+  padding: 1.2rem 1rem 2rem;
+  text-align: center;
+  font: 0.85rem var(--sans);
+  color: var(--ink-soft);
+}
+
+/* ---- The editor figure ---------------------------------------------- */
+
+/* Figures share the text column's width, so page and editors line up. */
+morphic-editor {
+  display: block;
+  margin: 1.8rem 0;
+}
+
+.editor {
+  margin: 0;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  box-shadow: 0 1px 0 var(--rule), 0 10px 24px -18px rgba(70, 45, 20, 0.45);
+  overflow: hidden;
+}
+
+/* Tiles sit in one row that wraps, like a tray of pieces. The category
+   wrappers step aside so all tiles share that row. */
+.editor-toolbox {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.2rem 0.5rem;
+  border-bottom: 1px dashed var(--rule);
+  background: var(--paper-deep);
+  padding: 0.4rem 0.6rem;
+  font-family: var(--sans);
+}
+
+.editor-toolbox [data-category] {
+  display: contents;
+}
+
+.editor-panes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: var(--editor-height);
+}
+
+.editor-workspace {
+  position: relative;
+  min-width: 0;
+  height: 100%;
+}
+
+/* The right half: Python on top, what the program printed below. */
+.editor-side {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  min-width: 0;
+  min-height: 0;
+  border-left: 1px solid var(--rule);
+}
+
+.editor-preview {
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+}
+
+.editor-run {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-top: 1px dashed var(--rule);
+  background: var(--paper-deep);
+}
+
+.editor-run-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.3rem 0.4rem 0.3rem 0.8rem;
+  font: 600 0.72rem/1 var(--sans);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.editor-run-head button {
+  font: 600 0.8rem/1 var(--sans);
+  color: var(--card);
+  background: var(--accent);
+  border: 0;
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  cursor: pointer;
+}
+
+.editor-run-head button:hover {
+  background: #8e3522;
+}
+
+.editor-run-head button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.editor-output {
+  flex: 1;
+  min-height: 0;
+  margin: 0;
+  padding: 0.1rem 0.8rem 0.6rem;
+  overflow: auto;
+  font: 0.85rem/1.45 var(--mono);
+  color: var(--ink);
+  white-space: pre-wrap;
+}
+
+.editor-preview .cm-editor {
+  height: 100%;
+}
+
+.editor .blocklyMainBackground {
+  fill: var(--card);
+  stroke: none;
+}
+
+.editor figcaption {
+  border-top: 1px solid var(--rule);
+  padding: 0.55rem 0.9rem;
+  font: italic 0.95rem/1.45 var(--serif);
+  color: var(--ink-soft);
+}
+
+@media (max-width: 44rem) {
+  body {
+    font-size: 1.05rem;
+  }
+
+  .editor-panes {
+    grid-template-columns: 1fr;
+    grid-template-rows: var(--editor-height) auto;
+    height: auto;
+  }
+
+  .editor-side {
+    grid-template-rows: auto 10rem;
+    border-left: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .editor-preview {
+    min-height: 6rem;
+  }
+}

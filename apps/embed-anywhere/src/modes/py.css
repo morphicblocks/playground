@@ -1,0 +1,6 @@
+/* The "py" mode: Python source, shown as text in each figure's preview. If a
+   workspace were switched to it, block text would be monospaced. */
+
+.morphic-workspace-root.morphic-mode-py .blocklyText {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}

@@ -1,0 +1,11 @@
+/* The "blocks" mode: blocks in plain words, in the toolbox and the workspace. */
+
+.morphic-block.morphic-mode-blocks {
+  padding: 0.3rem;
+  border-radius: 6px;
+  cursor: grab;
+}
+
+.morphic-block.morphic-mode-blocks:hover {
+  background: #efe3cc;
+}
