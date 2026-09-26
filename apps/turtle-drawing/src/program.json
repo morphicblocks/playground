@@ -1,0 +1,33 @@
+{
+  "blocks": {
+    "languageVersion": 0,
+    "blocks": [
+      {
+        "type": "morphic:pen",
+        "x": 32,
+        "y": 32,
+        "fields": { "COLOR": "blue" },
+        "next": {
+          "block": {
+            "type": "morphic:repeat",
+            "fields": { "TIMES": 4 },
+            "inputs": {
+              "DO": {
+                "block": {
+                  "type": "morphic:forward",
+                  "fields": { "STEPS": 100 },
+                  "next": {
+                    "block": {
+                      "type": "morphic:right",
+                      "fields": { "ANGLE": 90 }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

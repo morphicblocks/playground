@@ -1,0 +1,165 @@
+{
+  "elementTypes": {
+    "icon": {
+      "type": "image",
+      "size": 40
+    },
+    "picture": "code",
+    "turtle": "code"
+  },
+  "modes": [
+    {
+      "name": "crayons",
+      "elements": [
+        "icon"
+      ]
+    },
+    {
+      "name": "pictures",
+      "elements": [
+        "picture"
+      ]
+    },
+    {
+      "name": "logo",
+      "elements": [
+        "turtle"
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "draw",
+      "toolbox": "crayons",
+      "workspace": "pictures",
+      "preview": "logo"
+    }
+  ],
+  "highlighting": {
+    "turtle": {
+      "keywords": [
+        "forward",
+        "left",
+        "right",
+        "pen",
+        "repeat"
+      ],
+      "numbers": true,
+      "colors": {
+        "keyword": "#16786a",
+        "number": "#c0612b"
+      }
+    }
+  },
+  "categories": [
+    {
+      "name": "Move",
+      "color": "#1f9e89"
+    },
+    {
+      "name": "Turn",
+      "color": "#7a5cc7"
+    },
+    {
+      "name": "Pen",
+      "color": "#e0674b"
+    },
+    {
+      "name": "Loop",
+      "color": "#d9922e"
+    }
+  ],
+  "blocks": [
+    {
+      "identifier": "forward",
+      "category": "Move",
+      "elements": {
+        "icon": "icons/forward.svg",
+        "picture": "<img src='icons/forward.svg' width='30' height='30'> %STEPS",
+        "turtle": "forward %STEPS"
+      },
+      "fields": {
+        "STEPS": {
+          "type": "number",
+          "default": 50,
+          "min": 0,
+          "max": 400,
+          "precision": 1
+        }
+      },
+      "shape": "statement"
+    },
+    {
+      "identifier": "left",
+      "category": "Turn",
+      "elements": {
+        "icon": "icons/left.svg",
+        "picture": "<img src='icons/left.svg' width='30' height='30'> %ANGLE",
+        "turtle": "left %ANGLE"
+      },
+      "fields": {
+        "ANGLE": {
+          "type": "number",
+          "default": 90,
+          "min": 0,
+          "max": 360,
+          "precision": 1
+        }
+      },
+      "shape": "statement"
+    },
+    {
+      "identifier": "right",
+      "category": "Turn",
+      "elements": {
+        "icon": "icons/right.svg",
+        "picture": "<img src='icons/right.svg' width='30' height='30'> %ANGLE",
+        "turtle": "right %ANGLE"
+      },
+      "fields": {
+        "ANGLE": {
+          "type": "number",
+          "default": 90,
+          "min": 0,
+          "max": 360,
+          "precision": 1
+        }
+      },
+      "shape": "statement"
+    },
+    {
+      "identifier": "pen",
+      "category": "Pen",
+      "elements": {
+        "icon": "icons/pen.svg",
+        "picture": "<img src='icons/pen.svg' width='30' height='30'> %COLOR",
+        "turtle": "pen %COLOR"
+      },
+      "shape": "statement"
+    },
+    {
+      "identifier": "repeat",
+      "category": "Loop",
+      "elements": {
+        "icon": "icons/repeat.svg",
+        "picture": "<img src='icons/repeat.svg' width='30' height='30'> %TIMES %1",
+        "turtle": "repeat %TIMES [\n  %1\n]"
+      },
+      "fields": {
+        "TIMES": {
+          "type": "number",
+          "default": 4,
+          "min": 0,
+          "precision": 1
+        }
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "statement",
+          "name": "DO"
+        }
+      },
+      "shape": "statement"
+    }
+  ]
+}

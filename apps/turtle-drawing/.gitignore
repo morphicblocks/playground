@@ -1,0 +1,4 @@
+node_modules/
+dist/
+# Copied from Blockly before dev and build
+public/blockly-media/

@@ -1,0 +1,8 @@
+/* The "pictures" mode, shown in the workspace: a picture and a number (or a
+   color) per block. Big, bold numbers are easy for young learners to read.
+   The framework measures this font, so the blocks grow to fit. */
+
+.morphic-workspace-root.morphic-mode-pictures .blocklyText {
+  font-size: 22px;
+  font-weight: 800;
+}

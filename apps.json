@@ -65,6 +65,26 @@
         "Python"
       ],
       "preview": null
+    },
+    {
+      "id": "turtle-drawing",
+      "name": "Turtle Drawing",
+      "description": "Picture blocks with no words steer a turtle that draws on a big canvas, so even children who cannot read yet can program a drawing.",
+      "details": "Five blocks show only a picture and a number or a color: forward, turn left, turn right, pen color and repeat. The toolbox is a set of big colored tiles to drag onto the workspace, and both float above the drawing paper. The workspace starts with a square, and the drawing can be dragged and zoomed.\n\nRun turns the blocks into JavaScript that calls a turtle (turtle.forward(100), turtle.right(90) and so on). The app runs that code with its own turtle, which writes down every move, and then plays the moves back step by step on the canvas. Children never see code: a small </> button shows parents and teachers the same program in Logo (pen blue, repeat 4 [ forward 100 right 90 ]) in a read only preview view. A program that loops more than 1,000 rounds is stopped with a short message.",
+      "useCase": "Blocks that drive a drawing",
+      "question": "Can blocks drive something else, like a drawing?",
+      "framework": "svelte",
+      "bundler": "vite",
+      "packageManager": "yarn",
+      "styling": "tailwind",
+      "views": [
+        "blocks",
+        "preview"
+      ],
+      "codeShown": [
+        "Logo (turtle)"
+      ],
+      "preview": null
     }
   ]
 }

@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+/* The page colors, kept as variables so the utilities and plain CSS share them. */
+@theme inline {
+  --color-ink: var(--ink);
+  --color-card: var(--card);
+  --color-go: var(--go);
+  --color-go-dark: var(--go-dark);
+  --color-wipe: var(--wipe);
+  --color-wipe-dark: var(--wipe-dark);
+  --font-sans: ui-rounded, "SF Pro Rounded", "Nunito", system-ui, sans-serif;
+}
+
+/* Warm paper with dots. */
+:root {
+  --paper: #fff7ea;
+  --paper-pattern: radial-gradient(#efdcc0 1.6px, transparent 1.6px) 0 0 / 28px 28px;
+  --ink: #3b2f2a;
+  --card: #fffdf8;
+  --go: #1f9e89;
+  --go-dark: #16786a;
+  --wipe: #f2b33d;
+  --wipe-dark: #c98d1f;
+  --shadow: rgb(90 60 30 / 0.18);
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  overscroll-behavior: none;
+}
+
+.paper {
+  background: var(--paper-pattern), var(--paper);
+}
+
+/* Toolbox groups (one per category) sit in a row or a column of tiles. */
+.toolbox [data-category] {
+  display: contents;
+}
+
+/* The small, quiet buttons in the corners of the paper. */
+.small-button {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background: var(--card);
+  color: var(--ink);
+  opacity: 0.8;
+  box-shadow: 0 3px 10px var(--shadow);
+}
+
+.small-button:hover {
+  opacity: 1;
+}
+
+/* The pen color list: color boxes only. The chosen one gets a thick
+   outline instead of Blockly's check mark, and all seven fit without
+   scrolling. */
+.blocklyDropDownContent:has(.pen-colors) {
+  max-height: none;
+}
+
+.pen-colors .blocklyMenuItemCheckbox {
+  display: none;
+}
+
+.pen-colors .blocklyMenuItem {
+  padding: 4px 8px;
+  min-width: 0;
+}
+
+.pen-colors .blocklyMenuItemContent img {
+  display: block;
+  border-radius: 10px;
+  outline: 4px solid transparent;
+  outline-offset: 2px;
+}
+
+.pen-colors .blocklyMenuItemSelected img {
+  outline-color: #ffffff;
+}
+
