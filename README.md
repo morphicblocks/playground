@@ -45,6 +45,7 @@ has these fields:
 | `description` | One or two sentences on the card |
 | `details` | The longer text behind the card's "More"; blank lines start paragraphs |
 | `useCase` | What the app demonstrates, e.g. "Block to text transition" |
+| `question` | The question the app answers, shown behind a ⓘ next to the use case in the table |
 | `framework`, `bundler`, `packageManager`, `styling` | The stack, as keys from `scripts/manifest.ts` |
 | `language` | `typescript` or `javascript`; only for apps without a framework, and required for them |
 | `views` | What is on screen: `blocks`, `text`, `preview` |

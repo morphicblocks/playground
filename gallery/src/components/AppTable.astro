@@ -42,7 +42,13 @@ const { apps } = Astro.props;
 									{app.name}
 								</a>
 							</th>
-							<td>{app.useCase}</td>
+							<td>
+								{app.useCase}
+								<details class="question">
+									<summary aria-label="The question this app answers">ⓘ</summary>
+									<p>{app.question}</p>
+								</details>
+							</td>
 							<td>
 								{app.framework === 'none' && app.language
 									? `None (${LANGUAGES[app.language].label})`
@@ -122,5 +128,33 @@ const { apps } = Astro.props;
 	}
 	td {
 		color: var(--text-muted);
+	}
+	/* The ⓘ opens the app's question inside the cell, which also works on
+	   phones, where a floating box would be cut off by the scrolling table. */
+	.question {
+		display: inline;
+	}
+	.question summary {
+		display: inline-grid;
+		place-items: center;
+		width: 1.2rem;
+		height: 1.2rem;
+		margin-left: 0.2rem;
+		font-size: 0.75rem;
+		border-radius: 999px;
+		color: var(--badge-text);
+		background: var(--badge-bg);
+		cursor: pointer;
+		list-style: none;
+	}
+	.question summary::-webkit-details-marker {
+		display: none;
+	}
+	.question p {
+		margin: 0.4rem 0 0;
+		max-width: 16rem;
+		font-size: 0.8rem;
+		font-style: italic;
+		color: var(--text);
 	}
 </style>

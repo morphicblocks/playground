@@ -76,6 +76,8 @@ export interface PlaygroundApp {
   details: string;
   /** What the app demonstrates, e.g. "Block to text transition". */
   useCase: string;
+  /** The question the app answers, e.g. "Can I put it into any page?". */
+  question: string;
   framework: keyof typeof FRAMEWORKS;
   /** Required when `framework` is "none", and only then. */
   language?: keyof typeof LANGUAGES;
@@ -98,7 +100,7 @@ const TERMS: Partial<Record<keyof PlaygroundApp, Record<string, Term>>> = {
   packageManager: PACKAGE_MANAGERS,
   styling: STYLING,
 };
-const TEXT_FIELDS = ['id', 'name', 'description', 'details', 'useCase'] as const;
+const TEXT_FIELDS = ['id', 'name', 'description', 'details', 'useCase', 'question'] as const;
 const KNOWN_FIELDS = new Set<string>([
   ...TEXT_FIELDS, ...Object.keys(TERMS), 'language', 'views', 'codeShown', 'preview', 'outDir',
 ]);
