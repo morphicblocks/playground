@@ -44,6 +44,7 @@ has these fields:
 | `details` | The longer text behind the card's "More"; blank lines start paragraphs |
 | `useCase` | What the app demonstrates, e.g. "Block to text transition" |
 | `framework`, `bundler`, `packageManager`, `styling` | The stack, as keys from `scripts/manifest.ts` |
+| `language` | `typescript` or `javascript`; only for apps without a framework, and required for them |
 | `views` | What is on screen: `blocks`, `text`, `preview` |
 | `codeShown` | The languages the blocks turn into, e.g. `["Python"]` |
 | `difficulty` | `beginner`, `intermediate` or `advanced` |

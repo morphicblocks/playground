@@ -26,6 +26,12 @@ export const FRAMEWORKS = {
   astro: { label: 'Astro', icon: 'simple-icons:astro' },
 } satisfies Record<string, Term>;
 
+/** Only for apps without a framework; a framework already implies its setup. */
+export const LANGUAGES = {
+  typescript: { label: 'TypeScript', icon: 'simple-icons:typescript' },
+  javascript: { label: 'JavaScript', icon: 'simple-icons:javascript' },
+} satisfies Record<string, Term>;
+
 export const BUNDLERS = {
   vite: { label: 'Vite', icon: 'simple-icons:vite' },
   parcel: { label: 'Parcel' },
@@ -77,6 +83,8 @@ export interface PlaygroundApp {
   /** What the app demonstrates, e.g. "Block to text transition". */
   useCase: string;
   framework: keyof typeof FRAMEWORKS;
+  /** Required when `framework` is "none", and only then. */
+  language?: keyof typeof LANGUAGES;
   bundler: keyof typeof BUNDLERS;
   packageManager: keyof typeof PACKAGE_MANAGERS;
   styling: keyof typeof STYLING;
@@ -100,8 +108,13 @@ const TERMS: Partial<Record<keyof PlaygroundApp, Record<string, Term>>> = {
 };
 const TEXT_FIELDS = ['id', 'name', 'description', 'details', 'useCase'] as const;
 const KNOWN_FIELDS = new Set<string>([
-  ...TEXT_FIELDS, ...Object.keys(TERMS), 'views', 'codeShown', 'preview', 'outDir',
+  ...TEXT_FIELDS, ...Object.keys(TERMS), 'language', 'views', 'codeShown', 'preview', 'outDir',
 ]);
+
+/** The framework, or for apps without one, the language they are written in. */
+export function frameworkOrLanguage(app: PlaygroundApp): Term {
+  return app.framework === 'none' && app.language ? LANGUAGES[app.language] : FRAMEWORKS[app.framework];
+}
 
 /**
  * Check the parsed apps.json and return its apps. Throws one error listing
@@ -137,6 +150,10 @@ export function validateManifest(data: unknown): PlaygroundApp[] {
       seen.add(entry.id);
     }
     for (const [field, allowed] of Object.entries(TERMS)) oneOf(field, allowed, entry?.[field]);
+    if (entry?.framework === 'none') oneOf('language', LANGUAGES, entry?.language);
+    else if (entry?.language !== undefined) {
+      problems.push(`${at}: "language" is only for apps without a framework.`);
+    }
 
     const views = entry?.views;
     if (!Array.isArray(views) || views.length === 0) {

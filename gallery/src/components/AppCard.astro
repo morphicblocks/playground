@@ -2,7 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import { appLinks, externalAttrs } from '../config';
 import type { PlaygroundApp } from '../apps';
-import { BUNDLERS, FRAMEWORKS, PACKAGE_MANAGERS } from '../../../scripts/manifest';
+import { BUNDLERS, PACKAGE_MANAGERS, frameworkOrLanguage } from '../../../scripts/manifest';
 
 interface Props {
 	app: PlaygroundApp;
@@ -13,10 +13,10 @@ const links = appLinks(app.id);
 // Blank lines in `details` separate paragraphs.
 const paragraphs = app.details.split(/\n\s*\n/).map((text) => text.trim()).filter(Boolean);
 
-// Framework, bundler and package manager as logos, each tool once (Bun can
-// be both bundler and package manager). "No framework" has no logo to show.
+// Framework (or, without one, the language), bundler and package manager as
+// logos, each tool once (Bun can be both bundler and package manager).
 const stack = [
-	app.framework === 'none' ? undefined : FRAMEWORKS[app.framework],
+	frameworkOrLanguage(app),
 	BUNDLERS[app.bundler],
 	PACKAGE_MANAGERS[app.packageManager],
 ].filter((term, index, all): term is { label: string; icon?: string } =>

@@ -5,6 +5,7 @@ import {
 	BUNDLERS,
 	DIFFICULTIES,
 	FRAMEWORKS,
+	LANGUAGES,
 	PACKAGE_MANAGERS,
 	STYLING,
 	VIEWS,
@@ -44,7 +45,11 @@ const { apps } = Astro.props;
 								</a>
 							</th>
 							<td>{app.useCase}</td>
-							<td>{FRAMEWORKS[app.framework].label}</td>
+							<td>
+								{app.framework === 'none' && app.language
+									? `None (${LANGUAGES[app.language].label})`
+									: FRAMEWORKS[app.framework].label}
+							</td>
 							<td>{BUNDLERS[app.bundler].label}</td>
 							<td>{PACKAGE_MANAGERS[app.packageManager].label}</td>
 							<td>{STYLING[app.styling].label}</td>
