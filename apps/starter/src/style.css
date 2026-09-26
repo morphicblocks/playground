@@ -1,0 +1,182 @@
+/* Page layout. How tiles and blocks look in each mode lives in src/modes/. */
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --line: #e3e6ea;
+  --muted: #6b7580;
+  --teal: #1f7a6d;
+  --teal-dark: #17605a;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  color: #1f2933;
+  background: #fff;
+}
+
+.top {
+  height: 3rem;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Toolbox on the left; workspace and code share the rest equally, with the
+   output running under both. The 1px gaps show the grey grid as borders. */
+.app {
+  display: grid;
+  grid-template-columns: 250px 1fr 1fr;
+  grid-template-rows: 1fr 19rem;
+  grid-template-areas:
+    "toolbox workspace code"
+    "toolbox output output";
+  gap: 1px;
+  height: calc(100vh - 3rem);
+  background: var(--line);
+}
+
+.toolbox-pane { grid-area: toolbox; }
+.workspace-pane { grid-area: workspace; }
+.code-pane { grid-area: code; }
+.output-pane { grid-area: output; }
+
+.pane {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  background: #fff;
+}
+
+.pane-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 2.6rem;
+  flex: none;
+  padding: 0 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.pane-head h2 {
+  margin: 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.info {
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--teal);
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.info:hover,
+.info[aria-expanded="true"] {
+  color: #fff;
+  background: var(--teal);
+}
+
+/* The note floats over the pane so opening it never resizes the workspace
+   or the code view underneath. */
+.note {
+  position: absolute;
+  top: 2.6rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  z-index: 10;
+  margin: 0.4rem 0 0;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--teal);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.08);
+}
+
+.note[hidden] {
+  display: none;
+}
+
+#toolbox {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  overflow-y: auto;
+}
+
+#workspace,
+#code {
+  flex: 1;
+  min-height: 0;
+}
+
+#run {
+  margin-left: auto;
+  font: inherit;
+  font-weight: 600;
+  padding: 0.3rem 1.1rem;
+  color: #fff;
+  background: var(--teal);
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#run:hover {
+  background: var(--teal-dark);
+}
+
+#output {
+  flex: 1;
+  margin: 0;
+  padding: 0.75rem;
+  overflow: auto;
+  font-family: ui-monospace, "SF Mono", Consolas, monospace;
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+}
+
+/* Phones: everything stacks, each area with its own height. */
+@media (max-width: 800px) {
+  .app {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "toolbox" "workspace" "code" "output";
+    height: auto;
+  }
+  #toolbox {
+    max-height: 22rem;
+  }
+  #workspace {
+    height: 60vh;
+    flex: none;
+  }
+  #code {
+    height: 16rem;
+    flex: none;
+  }
+  #output {
+    min-height: 16rem;
+  }
+}

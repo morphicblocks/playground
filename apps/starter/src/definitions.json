@@ -1,0 +1,145 @@
+{
+  "elementTypes": {
+    "title": "text",
+    "icon": { "type": "image", "size": 22 },
+    "hint": "text",
+    "pseudocode": "code",
+    "code-js": "code"
+  },
+  "modes": [
+    { "name": "blocks", "elements": ["title", "icon", "pseudocode", "hint"] },
+    { "name": "pseudo", "elements": ["pseudocode"] },
+    { "name": "javascript", "elements": ["code-js"] }
+  ],
+  "presets": [
+    { "name": "main", "toolbox": "blocks", "workspace": "pseudo", "codespace": "javascript" }
+  ],
+  "highlighting": {
+    "code-js": {
+      "keywords": ["for", "let", "const", "if", "else", "while", "return", "function", "true", "false"],
+      "strings": ["\"", "'"],
+      "numbers": true,
+      "comment": "//",
+      "colors": {
+        "keyword": "#1F7A6D",
+        "string": "#B5562B",
+        "number": "#6A4FC2",
+        "comment": "#8A949E"
+      }
+    }
+  },
+  "categories": [
+    { "name": "Output", "color": "#4A90D9" },
+    { "name": "Values", "color": "#3DAE8A" },
+    { "name": "Math", "color": "#9C6ADE" },
+    { "name": "Loops", "color": "#EE9A4D" }
+  ],
+  "blocks": [
+    {
+      "identifier": "print",
+      "category": "Output",
+      "elements": {
+        "title": "Print",
+        "icon": "icons/print.svg",
+        "hint": "Shows a value in the output.",
+        "pseudocode": "print %1",
+        "code-js": "console.log(%1);"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "VALUE",
+          "default": { "shadow": "text", "fieldValues": { "TEXT": "Hello, world!" } }
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "text",
+      "category": "Values",
+      "elements": {
+        "title": "Text",
+        "icon": "icons/text.svg",
+        "hint": "A piece of text in quotes.",
+        "pseudocode": "\"%TEXT\"",
+        "code-js": "\"%TEXT\""
+      },
+      "fields": {
+        "TEXT": { "type": "text", "default": "hello" }
+      },
+      "output": "String"
+    },
+    {
+      "identifier": "number",
+      "category": "Values",
+      "elements": {
+        "title": "Number",
+        "icon": "icons/number.svg",
+        "hint": "A number you can type.",
+        "pseudocode": "%NUM",
+        "code-js": "%NUM"
+      },
+      "fields": {
+        "NUM": { "type": "number", "default": 0 }
+      },
+      "output": "Number"
+    },
+    {
+      "identifier": "math",
+      "category": "Math",
+      "elements": {
+        "title": "Math",
+        "icon": "icons/math.svg",
+        "hint": "Adds, subtracts, multiplies or divides two numbers.",
+        "pseudocode": "%1 %OP %2",
+        "code-js": "%1 %OP %2"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "A",
+          "check": "Number",
+          "default": { "shadow": "number", "fieldValues": { "NUM": "1" } }
+        },
+        "2": {
+          "kind": "value",
+          "name": "B",
+          "check": "Number",
+          "default": { "shadow": "number", "fieldValues": { "NUM": "2" } }
+        }
+      },
+      "fields": {
+        "OP": {
+          "type": "dropdown",
+          "options": ["+", ["-", "−"], ["*", "×"], ["/", "÷"]],
+          "default": "+"
+        }
+      },
+      "output": "Number",
+      "inputsInline": true
+    },
+    {
+      "identifier": "repeat",
+      "category": "Loops",
+      "elements": {
+        "title": "Repeat",
+        "icon": "icons/repeat.svg",
+        "hint": "Runs the blocks inside a number of times.",
+        "pseudocode": "repeat %1 times %2",
+        "code-js": "for (let i = 0; i < %1; i++) {\n  %2\n}"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "TIMES",
+          "check": "Number",
+          "default": { "shadow": "number", "fieldValues": { "NUM": "3" } }
+        },
+        "2": { "kind": "statement", "name": "DO" }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    }
+  ]
+}

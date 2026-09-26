@@ -1,0 +1,6 @@
+/* The "pseudo" mode, shown in the workspace: blocks read as plain words.
+   A slightly bolder label keeps those words easy to read on the colors. */
+
+.morphic-workspace-root.morphic-mode-pseudo .blocklyText {
+  font-weight: 600;
+}

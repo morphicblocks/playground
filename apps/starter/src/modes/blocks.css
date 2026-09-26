@@ -1,0 +1,42 @@
+/* The "blocks" mode, shown in the toolbox. Each tile lists its elements in
+   the mode's order: title, icon, the block drawn from pseudocode, hint. The
+   framework hides every element the mode does not name. */
+
+.morphic-block.morphic-mode-blocks {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  padding: 0.6rem 0.7rem;
+  background: #fff;
+  border: 1px solid #e3e6ea;
+  border-left: 4px solid var(--morphic-block-color, #999);
+  border-radius: 8px;
+  cursor: grab;
+}
+
+.morphic-block.morphic-mode-blocks:hover {
+  border-color: #cfd4da;
+  border-left-color: var(--morphic-block-color, #999);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.06);
+}
+
+.morphic-mode-blocks > .morphic-element-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.morphic-mode-blocks > .morphic-element-icon img {
+  display: block;
+}
+
+.morphic-mode-blocks > .morphic-element-pseudocode,
+.morphic-mode-blocks > .morphic-element-hint {
+  grid-column: 1 / -1;
+}
+
+.morphic-mode-blocks > .morphic-element-hint {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: #6b7580;
+}

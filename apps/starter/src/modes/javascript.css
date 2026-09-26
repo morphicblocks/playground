@@ -1,0 +1,7 @@
+/* The "javascript" mode, shown in the code view as text. That view takes
+   its look from `editorTheme` in main.ts; this file only matters if the
+   workspace is switched to this mode, where block text turns monospaced. */
+
+.morphic-workspace-root.morphic-mode-javascript .blocklyText {
+  font-family: ui-monospace, "SF Mono", Consolas, monospace;
+}

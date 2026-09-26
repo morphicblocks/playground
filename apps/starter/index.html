@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>Morphic Blocks Starter</title>
+  </head>
+  <body>
+    <header class="top">Morphic Blocks Starter</header>
+    <main class="app">
+      <section class="pane toolbox-pane" aria-label="Toolbox">
+        <div class="pane-head">
+          <h2>Toolbox</h2>
+          <button class="info" type="button" aria-expanded="false" aria-controls="note-toolbox" aria-label="About the toolbox">ⓘ</button>
+        </div>
+        <p class="note" id="note-toolbox" hidden>
+          This view shows the blocks mode: each tile's title, icon, pseudocode block and hint.
+        </p>
+        <div id="toolbox"></div>
+      </section>
+
+      <section class="pane workspace-pane" aria-label="Workspace">
+        <div class="pane-head">
+          <h2>Workspace</h2>
+          <button class="info" type="button" aria-expanded="false" aria-controls="note-workspace" aria-label="About the workspace">ⓘ</button>
+        </div>
+        <p class="note" id="note-workspace" hidden>
+          This view shows the pseudo mode: each block's pseudocode element.
+        </p>
+        <div id="workspace"></div>
+      </section>
+
+      <section class="pane code-pane" aria-label="Code">
+        <div class="pane-head">
+          <h2>Code</h2>
+          <button class="info" type="button" aria-expanded="false" aria-controls="note-code" aria-label="About the code view">ⓘ</button>
+        </div>
+        <p class="note" id="note-code" hidden>
+          This view shows the javascript mode: each block's code-js element. It is editable by structure: drag blocks in or around, and click a value to change it.
+        </p>
+        <div id="code"></div>
+      </section>
+
+      <section class="pane output-pane" aria-label="Output">
+        <div class="pane-head">
+          <h2>Output</h2>
+          <button id="run" type="button">Run</button>
+        </div>
+        <pre id="output" aria-live="polite">Press Run to see what the program prints.</pre>
+      </section>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

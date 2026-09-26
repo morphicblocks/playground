@@ -4,5 +4,27 @@
     "`id` is immutable: it is the folder name under apps/, the URL segment, and the key used to derive the GitHub and CLI links.",
     "Build output is assumed to be 'dist'; add \"outDir\" only when the toolchain differs (e.g. Next.js static export writes to 'out')."
   ],
-  "apps": []
+  "apps": [
+    {
+      "id": "starter",
+      "name": "Starter",
+      "description": "The smallest setup that still shows what Morphic Blocks is made of: elements, modes and views, with one mount call and five short behaviors.",
+      "details": "Each of the five blocks (print, text, number, math and repeat) has five elements: a title, an icon, a one sentence hint, pseudocode and JavaScript. Three modes pick from these elements, one per view: toolbox tiles show title, icon, block and hint; the workspace shows plain word pseudocode; the code view shows JavaScript and is editable by structure.\n\nA small ⓘ button next to each pane names the mode it shows. Run executes the program and shows what it printed. Copy this app to start your own project.",
+      "useCase": "Starting point",
+      "framework": "none",
+      "language": "typescript",
+      "bundler": "vite",
+      "packageManager": "npm",
+      "styling": "css",
+      "views": [
+        "blocks",
+        "text"
+      ],
+      "codeShown": [
+        "JavaScript"
+      ],
+      "difficulty": "beginner",
+      "preview": null
+    }
+  ]
 }
