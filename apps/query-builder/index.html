@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="icon.svg" />
+    <title>Query Builder</title>
+  </head>
+  <body>
+    <header class="bar">
+      <div class="brand">
+        <img class="logo" src="icon.svg" alt="" width="22" height="22" />
+        <span class="name">Query Builder</span>
+        <span class="db">planets.db</span>
+      </div>
+      <button id="run" class="run" type="button" title="Run the query (Ctrl or Cmd with Enter)">
+        Run query
+      </button>
+    </header>
+
+    <main class="app">
+      <aside class="side" aria-label="Table and blocks">
+        <section class="schema">
+          <h2>Table</h2>
+          <p class="table-name">planets <span id="row-count"></span></p>
+          <ul id="schema"></ul>
+        </section>
+        <section class="palette">
+          <h2>Blocks</h2>
+          <div id="toolbox"></div>
+        </section>
+      </aside>
+
+      <section class="pane builder" aria-label="Query blocks">
+        <div class="pane-head tabs" role="group" aria-label="How the blocks read">
+          <button type="button" data-preset="word-blocks" aria-pressed="true">Word blocks</button>
+          <button type="button" data-preset="sql-blocks" aria-pressed="false">SQL blocks</button>
+          <span class="aside">Clauses fit only in SQL's order: where, order by, limit</span>
+        </div>
+        <div id="workspace"></div>
+      </section>
+
+      <section class="pane text" aria-label="Query text">
+        <div class="pane-head tabs" role="tablist" aria-label="Code">
+          <button type="button" role="tab" id="tab-sql" aria-controls="sql" aria-selected="true">
+            SQL Editor <small>editable</small>
+          </button>
+          <button type="button" role="tab" id="tab-js" aria-controls="js" aria-selected="false">
+            JavaScript Preview <small>read only</small>
+          </button>
+        </div>
+        <p class="notice">
+          <strong>Output is not JavaScript.</strong>
+          <span>Edit the SQL here: drag blocks in or click a value to change it. When
+          you run the query, the same blocks turn into JavaScript with the same meaning.</span>
+        </p>
+        <div id="sql" role="tabpanel" aria-labelledby="tab-sql"></div>
+        <div id="js" role="tabpanel" aria-labelledby="tab-js"></div>
+      </section>
+
+      <section class="pane results" aria-label="Results">
+        <div class="pane-head">
+          <h2>Results</h2>
+          <span id="status" class="status" aria-live="polite"></span>
+        </div>
+        <div id="results"></div>
+      </section>
+
+      <section class="pane reference" aria-label="The whole table">
+        <div class="pane-head">
+          <h2>planets</h2>
+          <span class="aside">The whole table, to check a query against</span>
+        </div>
+        <div id="table"></div>
+      </section>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

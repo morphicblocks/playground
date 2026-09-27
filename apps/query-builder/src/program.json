@@ -1,0 +1,46 @@
+{
+  "blocks": {
+    "languageVersion": 0,
+    "blocks": [
+      {
+        "type": "morphic:select",
+        "x": 32,
+        "y": 32,
+        "inputs": {
+          "COLUMNS": {
+            "shadow": { "type": "morphic:all_columns" },
+            "block": {
+              "type": "morphic:column_pair",
+              "inputs": {
+                "FIRST": { "shadow": { "type": "morphic:column", "fields": { "COL": "name" } } },
+                "SECOND": { "shadow": { "type": "morphic:column", "fields": { "COL": "moons" } } }
+              }
+            }
+          },
+          "CLAUSES": {
+            "block": {
+              "type": "morphic:where",
+              "inputs": {
+                "CONDITION": {
+                  "block": {
+                    "type": "morphic:compare_number",
+                    "fields": { "COL": "moons", "OP": ">", "NUM": 1 }
+                  }
+                }
+              },
+              "next": {
+                "block": {
+                  "type": "morphic:order_by",
+                  "fields": { "COL": "moons", "DIR": "desc" },
+                  "next": {
+                    "block": { "type": "morphic:limit", "fields": { "N": 5 } }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

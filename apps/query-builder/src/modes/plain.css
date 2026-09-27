@@ -1,0 +1,7 @@
+/* "plain": blocks read as plain words. Toolbox tiles show the label, the
+   block and a hint (their card look is in style.css); workspace blocks use
+   only the words. */
+
+.morphic-workspace-root.morphic-mode-plain .blocklyText {
+  font-weight: 600;
+}

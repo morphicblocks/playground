@@ -1,0 +1,7 @@
+/* "query": blocks read as SQL, so their text is monospaced like the SQL view.
+   Toolbox tiles show the label, the block and a hint (their card look is in
+   style.css); workspace blocks and the SQL editor use only the sql element. */
+
+.morphic-workspace-root.morphic-mode-query .blocklyText {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}

@@ -1,0 +1,469 @@
+{
+  "elementTypes": {
+    "label": "text",
+    "hint": "text",
+    "words": "code",
+    "sql": "code"
+  },
+  "modes": [
+    {
+      "name": "plain",
+      "elements": [
+        "label",
+        "words",
+        "hint"
+      ]
+    },
+    {
+      "name": "query",
+      "elements": [
+        "label",
+        "sql",
+        "hint"
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "word-blocks",
+      "label": "Word blocks",
+      "toolbox": "plain",
+      "workspace": "plain",
+      "codespace": "query"
+    },
+    {
+      "name": "sql-blocks",
+      "label": "SQL blocks",
+      "toolbox": "query",
+      "workspace": "query",
+      "codespace": "query"
+    }
+  ],
+  "highlighting": {
+    "sql": {
+      "keywords": [
+        "SELECT",
+        "FROM",
+        "WHERE",
+        "ORDER",
+        "BY",
+        "ASC",
+        "DESC",
+        "LIMIT",
+        "AND",
+        "OR",
+        "LIKE"
+      ],
+      "strings": [
+        "'"
+      ],
+      "numbers": true,
+      "comment": "--",
+      "colors": {
+        "keyword": "#c2410c",
+        "string": "#2f7d32",
+        "number": "#7048b6",
+        "comment": "#8a8f98"
+      }
+    }
+  },
+  "categories": [
+    {
+      "name": "Query",
+      "color": "#3b4048"
+    },
+    {
+      "name": "Columns",
+      "color": "#2f7d5b"
+    },
+    {
+      "name": "Conditions",
+      "color": "#d9621a"
+    },
+    {
+      "name": "Clauses",
+      "color": "#7048b6"
+    }
+  ],
+  "blocks": [
+    {
+      "identifier": "select",
+      "category": "Query",
+      "elements": {
+        "label": "Query",
+        "hint": "Reads rows from a table. Put clauses inside.",
+        "words": "show %1 from planets %2",
+        "sql": "SELECT %1\nFROM planets\n%2;"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "COLUMNS",
+          "check": "Columns",
+          "default": {
+            "shadow": "all_columns"
+          }
+        },
+        "2": {
+          "kind": "statement",
+          "name": "CLAUSES",
+          "check": [
+            "where",
+            "order",
+            "limit"
+          ]
+        }
+      },
+      "shape": "standalone",
+      "inputsInline": true
+    },
+    {
+      "identifier": "all_columns",
+      "category": "Columns",
+      "elements": {
+        "label": "Every column",
+        "hint": "Every column of the table.",
+        "words": "every column",
+        "sql": "*"
+      },
+      "output": "Columns"
+    },
+    {
+      "identifier": "column",
+      "category": "Columns",
+      "elements": {
+        "label": "Column",
+        "hint": "One column, picked from the list.",
+        "words": "%COL",
+        "sql": "%COL"
+      },
+      "fields": {
+        "COL": {
+          "type": "dropdown",
+          "options": [
+            "name",
+            "type",
+            "moons",
+            "diameter",
+            "distance"
+          ],
+          "default": "name"
+        }
+      },
+      "output": "Columns"
+    },
+    {
+      "identifier": "column_pair",
+      "category": "Columns",
+      "elements": {
+        "label": "Two columns",
+        "hint": "Joins two column picks. Nest it for more.",
+        "words": "%1 and %2",
+        "sql": "%1, %2"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "FIRST",
+          "check": "Columns",
+          "default": {
+            "shadow": "column",
+            "fieldValues": {
+              "COL": "name"
+            }
+          }
+        },
+        "2": {
+          "kind": "value",
+          "name": "SECOND",
+          "check": "Columns",
+          "default": {
+            "shadow": "column",
+            "fieldValues": {
+              "COL": "moons"
+            }
+          }
+        }
+      },
+      "output": "Columns",
+      "inputsInline": true
+    },
+    {
+      "identifier": "where",
+      "category": "Clauses",
+      "elements": {
+        "label": "Where",
+        "hint": "Keeps only the rows that match a condition.",
+        "words": "only rows where %1",
+        "sql": "WHERE %1"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "CONDITION",
+          "check": "Condition"
+        }
+      },
+      "previousStatement": "where",
+      "nextStatement": [
+        "order",
+        "limit"
+      ],
+      "inputsInline": true
+    },
+    {
+      "identifier": "order_by",
+      "category": "Clauses",
+      "elements": {
+        "label": "Order by",
+        "hint": "Sorts the rows by one column.",
+        "words": "sort by %COL %DIR",
+        "sql": "ORDER BY %COL %DIR"
+      },
+      "fields": {
+        "COL": {
+          "type": "dropdown",
+          "options": [
+            "name",
+            "type",
+            "moons",
+            "diameter",
+            "distance"
+          ],
+          "default": "name"
+        },
+        "DIR": {
+          "type": "dropdown",
+          "options": [
+            {
+              "value": "asc",
+              "display": {
+                "words": "low to high",
+                "sql": "ASC"
+              }
+            },
+            {
+              "value": "desc",
+              "display": {
+                "words": "high to low",
+                "sql": "DESC"
+              }
+            }
+          ],
+          "default": "asc"
+        }
+      },
+      "previousStatement": "order",
+      "nextStatement": "limit"
+    },
+    {
+      "identifier": "limit",
+      "category": "Clauses",
+      "elements": {
+        "label": "Limit",
+        "hint": "Keeps only the first rows.",
+        "words": "keep the first %N",
+        "sql": "LIMIT %N"
+      },
+      "fields": {
+        "N": {
+          "type": "number",
+          "default": 3,
+          "min": 0,
+          "precision": 1
+        }
+      },
+      "previousStatement": "limit"
+    },
+    {
+      "identifier": "compare_number",
+      "category": "Conditions",
+      "elements": {
+        "label": "Compare a number",
+        "hint": "Checks a number column against a value.",
+        "words": "%COL %OP %NUM",
+        "sql": "%COL %OP %NUM"
+      },
+      "fields": {
+        "COL": {
+          "type": "dropdown",
+          "options": [
+            "moons",
+            "diameter",
+            "distance"
+          ],
+          "default": "moons"
+        },
+        "OP": {
+          "type": "dropdown",
+          "options": [
+            {
+              "value": "===",
+              "display": {
+                "words": "is",
+                "sql": "="
+              }
+            },
+            {
+              "value": "!==",
+              "display": {
+                "words": "is not",
+                "sql": "<>"
+              }
+            },
+            {
+              "value": "<",
+              "display": {
+                "words": "is below",
+                "sql": "<"
+              }
+            },
+            {
+              "value": ">",
+              "display": {
+                "words": "is above",
+                "sql": ">"
+              }
+            },
+            {
+              "value": "<=",
+              "display": {
+                "words": "is at most",
+                "sql": "<="
+              }
+            },
+            {
+              "value": ">=",
+              "display": {
+                "words": "is at least",
+                "sql": ">="
+              }
+            }
+          ],
+          "default": ">"
+        },
+        "NUM": {
+          "type": "number",
+          "default": 10
+        }
+      },
+      "output": "Condition"
+    },
+    {
+      "identifier": "compare_text",
+      "category": "Conditions",
+      "elements": {
+        "label": "Compare a text",
+        "hint": "Checks a text column against a word.",
+        "words": "%COL %OP \"%TEXT\"",
+        "sql": "%COL %OP '%TEXT'"
+      },
+      "fields": {
+        "COL": {
+          "type": "dropdown",
+          "options": [
+            "type",
+            "name"
+          ],
+          "default": "type"
+        },
+        "OP": {
+          "type": "dropdown",
+          "options": [
+            {
+              "value": "===",
+              "display": {
+                "words": "is",
+                "sql": "="
+              }
+            },
+            {
+              "value": "!==",
+              "display": {
+                "words": "is not",
+                "sql": "<>"
+              }
+            }
+          ],
+          "default": "==="
+        },
+        "TEXT": {
+          "type": "text",
+          "default": "rocky"
+        }
+      },
+      "output": "Condition"
+    },
+    {
+      "identifier": "starts_with",
+      "category": "Conditions",
+      "elements": {
+        "label": "Starts with",
+        "hint": "Checks how a text column begins.",
+        "words": "%COL starts with \"%TEXT\"",
+        "sql": "%COL LIKE '%TEXT%'"
+      },
+      "fields": {
+        "COL": {
+          "type": "dropdown",
+          "options": [
+            "name",
+            "type"
+          ],
+          "default": "name"
+        },
+        "TEXT": {
+          "type": "text",
+          "default": "M"
+        }
+      },
+      "output": "Condition"
+    },
+    {
+      "identifier": "both",
+      "category": "Conditions",
+      "elements": {
+        "label": "And, or",
+        "hint": "Joins two conditions: both must hold, or either one.",
+        "words": "%1 %LOGIC %2",
+        "sql": "(%1 %LOGIC %2)"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "A",
+          "check": "Condition"
+        },
+        "2": {
+          "kind": "value",
+          "name": "B",
+          "check": "Condition"
+        }
+      },
+      "fields": {
+        "LOGIC": {
+          "type": "dropdown",
+          "options": [
+            {
+              "value": "&&",
+              "display": {
+                "words": "and",
+                "sql": "AND"
+              }
+            },
+            {
+              "value": "||",
+              "display": {
+                "words": "or",
+                "sql": "OR"
+              }
+            }
+          ],
+          "default": "&&"
+        }
+      },
+      "output": "Condition",
+      "inputsInline": true
+    }
+  ]
+}

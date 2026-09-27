@@ -1,0 +1,447 @@
+/* Page layout and the data tool look. How tiles and blocks look in each
+   mode lives in src/modes/. */
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --paper: #e3e5df;
+  --panel: #fcfcfa;
+  --line: #cdd1c8;
+  --ink: #1b1d21;
+  --muted: #676d66;
+  --bar: #1f2226;
+  --accent: #c2410c;
+  --accent-dark: #9a3412;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Top bar: the name and the Run button. */
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 3.25rem;
+  padding: 0 1rem;
+  color: #eef0ea;
+  background: var(--bar);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+/* A tiny table grid drawn with gradients. */
+.logo {
+  flex: none;
+}
+
+.name {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.db {
+  padding: 0.1rem 0.45rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: #b9beb4;
+  border: 1px solid #3a3f45;
+  border-radius: 4px;
+}
+
+.run {
+  margin-left: auto;
+  padding: 0.4rem 1rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent);
+  border: 0;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.run::before {
+  content: "▶ ";
+  font-size: 0.75em;
+}
+
+.run:hover {
+  background: var(--accent-dark);
+}
+
+/* Sidebar left; builder and text above, the results grid below both. */
+.app {
+  display: grid;
+  grid-template-columns: 21rem 1.15fr 1fr;
+  grid-template-rows: minmax(0, 1fr) 30rem;
+  grid-template-areas:
+    "side builder text"
+    "side results reference";
+  /* No gaps between the four work areas: builder, text, results and table
+     read as one panel. Only the sidebar stands apart. */
+  gap: 0;
+  height: calc(100vh - 3.25rem);
+  padding: 6px;
+}
+
+.side { grid-area: side; margin-right: 6px; }
+.builder { grid-area: builder; }
+.text { grid-area: text; }
+.results { grid-area: results; }
+.reference { grid-area: reference; }
+
+.text,
+.reference {
+  border-left: 0;
+}
+
+.results,
+.reference {
+  border-top: 0;
+}
+
+.side,
+.pane {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.side h2,
+.pane-head h2 {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.pane-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 2.4rem;
+  flex: none;
+  padding: 0 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.aside {
+  margin-left: auto;
+  font-size: 0.78rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Schema: the table's columns with their SQL types. */
+.schema {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.table-name {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0 0.35rem;
+  font-family: var(--mono);
+  font-weight: 700;
+}
+
+.table-name span {
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+#schema {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+}
+
+#schema li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.18rem 0 0.18rem 0.75rem;
+  border-left: 1px solid var(--line);
+}
+
+#schema .kind {
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+
+.palette {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding: 0.75rem 0 0;
+}
+
+.palette h2 {
+  padding: 0 0.75rem;
+}
+
+#toolbox {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem 0.75rem;
+  overflow-y: auto;
+}
+
+#workspace,
+#sql,
+#js {
+  flex: 1;
+  min-height: 0;
+}
+
+#sql[hidden] {
+  display: none;
+}
+
+.blocklyMainBackground {
+  fill: var(--panel) !important;
+}
+
+/* Tabs: the block presets over the builder, the SQL editor and the
+   JavaScript preview over the text pane. */
+.tabs {
+  gap: 0;
+  padding: 0;
+}
+
+.tabs button {
+  align-self: stretch;
+  padding: 0 1rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--muted);
+  background: none;
+  border: 0;
+  border-right: 1px solid var(--line);
+  border-bottom: 2px solid transparent;
+}
+
+.tabs button small {
+  font-weight: 400;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  margin-left: 0.25rem;
+}
+
+.tabs button[aria-selected="true"],
+.tabs button[aria-pressed="true"] {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+.notice {
+  margin: 0;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: #4a3a2c;
+  background: #f7eee5;
+  border-bottom: 1px solid var(--line);
+}
+
+.notice strong {
+  color: var(--accent-dark);
+}
+
+/* Results: a spreadsheet style grid. */
+.status {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.status.warn {
+  color: var(--accent-dark);
+}
+
+.status.stale::before {
+  content: "● ";
+  color: var(--accent);
+}
+
+#results,
+#table {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+table {
+  border-collapse: collapse;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 0.75rem;
+}
+
+caption {
+  padding: 0.4rem 0.75rem;
+  text-align: left;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+th,
+td {
+  padding: 0.3rem 0.9rem;
+  text-align: left;
+  white-space: nowrap;
+  border-right: 1px solid #e6e8e2;
+  border-bottom: 1px solid #e6e8e2;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  font-weight: 700;
+  background: #eef0ea;
+  border-bottom: 1px solid var(--line);
+}
+
+tbody tr:hover {
+  background: #fbf3ea;
+}
+
+.num {
+  text-align: right;
+}
+
+.rownum {
+  min-width: 2.5rem;
+  text-align: right;
+  font-weight: 400;
+  color: #a0a59d;
+  background: #f4f5f1;
+}
+
+.empty {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Phones: everything stacks and each area gets its own height. */
+@media (max-width: 860px) {
+  .bar {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 0.6rem 0.75rem;
+    gap: 0.6rem;
+  }
+  .db {
+    display: none;
+  }
+  .run {
+    margin-left: auto;
+  }
+  .app {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "builder" "side" "text" "results" "reference";
+    gap: 6px;
+    height: auto;
+  }
+  .aside {
+    display: none;
+  }
+  #toolbox {
+    max-height: 20rem;
+  }
+  #workspace {
+    height: 55vh;
+    flex: none;
+  }
+  #sql,
+  #js {
+    height: 15rem;
+    flex: none;
+  }
+  #table {
+    max-height: 20rem;
+  }
+  .side {
+    margin-right: 0;
+  }
+  .text,
+  .reference,
+  .results {
+    border-left: 1px solid var(--line);
+    border-top: 1px solid var(--line);
+  }
+}
+
+.tabs .aside {
+  padding-right: 0.75rem;
+}
+
+/* Toolbox tiles, the same card in both block views: the label, the block and
+   a hint. The framework is headless, so the app styles them. */
+.morphic-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.45rem 0.55rem 0.5rem;
+  background: #fff;
+  border: 1px solid #dcdfd8;
+  border-top: 3px solid var(--morphic-block-color, #888);
+  border-radius: 3px;
+  cursor: grab;
+}
+
+.morphic-block:hover {
+  background: #fbf8f4;
+}
+
+.morphic-block > .morphic-element-label {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--morphic-block-color, #555);
+}
+
+.morphic-block > .morphic-element-hint {
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: #676d66;
+}

@@ -170,6 +170,27 @@
       ],
       "preview": null,
       "outDir": "out"
+    },
+    {
+      "id": "query-builder",
+      "name": "Query Builder",
+      "description": "Blocks build a database query over a small table of planets and the text view shows it as real SQL, while Run quietly executes JavaScript with the same meaning and shows the rows as a table.",
+      "details": "Eleven blocks cover a query, column picks, conditions (compare a number, compare a text, starts with, and/or) and the clauses WHERE, ORDER BY and LIMIT. The blocks read either as plain words (\"only rows where moons is above 1\") or as SQL, and the text view always shows the SQL. Dropdowns store one value but show it per element, so the same choice reads \"is\" in words, = in SQL and === in JavaScript. Connection checks let the clauses fit only in SQL's order.\n\nNothing here runs SQL. Behaviors turn every block into JavaScript that copies, filters, sorts and cuts a plain array of planets, and the app hands that array in and draws the rows as a results grid. A second tab shows the JavaScript that actually runs: the language on screen does not have to be the one that executes.",
+      "useCase": "Output that is not JavaScript",
+      "question": "Can blocks write something other than a program?",
+      "framework": "none",
+      "language": "typescript",
+      "bundler": "vite",
+      "packageManager": "deno",
+      "styling": "css",
+      "views": [
+        "blocks",
+        "text"
+      ],
+      "codeShown": [
+        "SQL"
+      ],
+      "preview": null
     }
   ]
 }
