@@ -85,6 +85,30 @@
         "Logo (turtle)"
       ],
       "preview": null
+    },
+    {
+      "id": "side-by-side",
+      "name": "Side by Side",
+      "description": "Programs are built entirely in text, with no blocks on screen, and the same program can be read side by side in Go, C++, Java, Python and JavaScript.",
+      "details": "Blockly runs hidden and holds the program; people only see and edit text. Snippets from the toolbox are dragged into the code on the left, and values, names and types are changed by clicking them. Each of the two text views has its own language dropdown, and the snippets follow the language on the left.\n\nSixteen blocks cover printing, values, math, comparisons, variables, if and else, loops and functions. A single type dropdown (number, text, true/false) turns into int, std::string, String, str or nothing at all, depending on the language shown. The code is shown as snippets without a main function. Run turns the program into JavaScript with the same meaning, ignores the types, and stops loops after 1,000 rounds.",
+      "useCase": "Text only editing",
+      "question": "Does it work without visible blocks?",
+      "framework": "vue",
+      "bundler": "rsbuild",
+      "packageManager": "npm",
+      "styling": "scoped",
+      "views": [
+        "text",
+        "preview"
+      ],
+      "codeShown": [
+        "Go",
+        "C++",
+        "Java",
+        "Python",
+        "JavaScript"
+      ],
+      "preview": null
     }
   ]
 }

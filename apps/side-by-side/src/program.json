@@ -1,0 +1,213 @@
+{
+  "blocks": {
+    "languageVersion": 0,
+    "blocks": [
+      {
+        "type": "morphic:declare",
+        "fields": {
+          "TYPE": "text",
+          "NAME": "name"
+        },
+        "inputs": {
+          "VALUE": {
+            "block": {
+              "type": "morphic:text",
+              "fields": {
+                "TEXT": "Ada"
+              }
+            }
+          }
+        },
+        "next": {
+          "block": {
+            "type": "morphic:declare",
+            "fields": {
+              "TYPE": "number",
+              "NAME": "count"
+            },
+            "inputs": {
+              "VALUE": {
+                "block": {
+                  "type": "morphic:number",
+                  "fields": {
+                    "NUM": 3
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x": 20,
+        "y": 20
+      },
+      {
+        "type": "morphic:function",
+        "x": 20,
+        "y": 200,
+        "fields": {
+          "RET": "text",
+          "NAME": "greet",
+          "PTYPE": "text",
+          "PARAM": "who"
+        },
+        "inputs": {
+          "BODY": {
+            "block": {
+              "type": "morphic:return",
+              "inputs": {
+                "VALUE": {
+                  "block": {
+                    "type": "morphic:math",
+                    "fields": {
+                      "OP": "+"
+                    },
+                    "inputs": {
+                      "A": {
+                        "block": {
+                          "type": "morphic:text",
+                          "fields": {
+                            "TEXT": "Hello, "
+                          }
+                        }
+                      },
+                      "B": {
+                        "block": {
+                          "type": "morphic:variable",
+                          "fields": {
+                            "NAME": "who"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "morphic:repeat",
+        "inputs": {
+          "TIMES": {
+            "block": {
+              "type": "morphic:variable",
+              "fields": {
+                "NAME": "count"
+              }
+            }
+          },
+          "DO": {
+            "block": {
+              "type": "morphic:print",
+              "inputs": {
+                "VALUE": {
+                  "block": {
+                    "type": "morphic:call",
+                    "fields": {
+                      "NAME": "greet"
+                    },
+                    "inputs": {
+                      "ARG": {
+                        "block": {
+                          "type": "morphic:variable",
+                          "fields": {
+                            "NAME": "name"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "next": {
+          "block": {
+            "type": "morphic:declare",
+            "fields": {
+              "TYPE": "bool",
+              "NAME": "done"
+            },
+            "inputs": {
+              "VALUE": {
+                "block": {
+                  "type": "morphic:compare",
+                  "fields": {
+                    "OP": ">"
+                  },
+                  "inputs": {
+                    "A": {
+                      "block": {
+                        "type": "morphic:variable",
+                        "fields": {
+                          "NAME": "count"
+                        }
+                      }
+                    },
+                    "B": {
+                      "block": {
+                        "type": "morphic:number",
+                        "fields": {
+                          "NUM": 2
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "next": {
+              "block": {
+                "type": "morphic:if_else",
+                "inputs": {
+                  "CONDITION": {
+                    "block": {
+                      "type": "morphic:variable",
+                      "fields": {
+                        "NAME": "done"
+                      }
+                    }
+                  },
+                  "THEN": {
+                    "block": {
+                      "type": "morphic:print",
+                      "inputs": {
+                        "VALUE": {
+                          "block": {
+                            "type": "morphic:text",
+                            "fields": {
+                              "TEXT": "many"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "ELSE": {
+                    "block": {
+                      "type": "morphic:print",
+                      "inputs": {
+                        "VALUE": {
+                          "block": {
+                            "type": "morphic:text",
+                            "fields": {
+                              "TEXT": "few"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x": 20,
+        "y": 400
+      }
+    ]
+  }
+}

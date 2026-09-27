@@ -1,0 +1,23 @@
+{
+  "name": "morphic-blocks-side-by-side",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/copy-blockly-media.mjs && rsbuild dev",
+    "build": "node scripts/copy-blockly-media.mjs && vue-tsc --noEmit && rsbuild build",
+    "preview": "rsbuild preview"
+  },
+  "dependencies": {
+    "@codemirror/lang-javascript": "^6.2.5",
+    "@codemirror/state": "^6.7.6",
+    "@codemirror/view": "^6.43.13",
+    "morphic-blocks": "^0.2.1",
+    "vue": "^3.5.43"
+  },
+  "devDependencies": {
+    "@rsbuild/core": "^2.2.9",
+    "@rsbuild/plugin-vue": "^2.0.1",
+    "typescript": "^6.0.3",
+    "vue-tsc": "^3.3.11"
+  }
+}

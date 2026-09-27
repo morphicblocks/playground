@@ -1,0 +1,15 @@
+/* The "in-go" mode: Go. Toolbox tiles show a small title and the Go
+   snippet as plain text; the text views use the same element as their source. */
+
+.morphic-block.morphic-mode-in-go > .morphic-element-title {
+  font: 600 10.5px/1.2 var(--font-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.morphic-block.morphic-mode-in-go > .morphic-element-go {
+  font: 12.5px/1.45 var(--font-code);
+  color: var(--ink);
+  white-space: pre;
+}

@@ -1,0 +1,806 @@
+{
+  "elementTypes": {
+    "title": "text",
+    "go": {
+      "type": "code",
+      "stringQuote": "\""
+    },
+    "cpp": {
+      "type": "code",
+      "stringQuote": "\""
+    },
+    "java": {
+      "type": "code",
+      "stringQuote": "\""
+    },
+    "python": {
+      "type": "code",
+      "stringQuote": "\""
+    },
+    "js": {
+      "type": "code",
+      "stringQuote": "\""
+    },
+    "outline": "code"
+  },
+  "modes": [
+    {
+      "name": "in-go",
+      "elements": [
+        "title",
+        "go"
+      ]
+    },
+    {
+      "name": "in-cpp",
+      "elements": [
+        "title",
+        "cpp"
+      ]
+    },
+    {
+      "name": "in-java",
+      "elements": [
+        "title",
+        "java"
+      ]
+    },
+    {
+      "name": "in-python",
+      "elements": [
+        "title",
+        "python"
+      ]
+    },
+    {
+      "name": "in-js",
+      "elements": [
+        "title",
+        "js"
+      ]
+    },
+    {
+      "name": "model",
+      "elements": [
+        "outline"
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "start",
+      "label": "Python and Java",
+      "toolbox": {
+        "mode": "in-python",
+        "render": {
+          "go": "text",
+          "cpp": "text",
+          "java": "text",
+          "python": "text",
+          "js": "text",
+          "outline": "text"
+        }
+      },
+      "workspace": "model",
+      "codespace": "in-python",
+      "preview": "in-java"
+    }
+  ],
+  "highlighting": {
+    "go": {
+      "keywords": [
+        "func",
+        "var",
+        "if",
+        "else",
+        "for",
+        "return",
+        "true",
+        "false",
+        "int",
+        "string",
+        "bool",
+        "fmt"
+      ],
+      "strings": [
+        "\""
+      ],
+      "comment": "//",
+      "numbers": true,
+      "colors": {
+        "keyword": "#1d8660",
+        "string": "#c14f78",
+        "number": "#5b58c9",
+        "comment": "#8fa89f"
+      }
+    },
+    "cpp": {
+      "keywords": [
+        "if",
+        "else",
+        "for",
+        "while",
+        "return",
+        "true",
+        "false",
+        "int",
+        "bool",
+        "std",
+        "string",
+        "cout",
+        "endl"
+      ],
+      "strings": [
+        "\""
+      ],
+      "comment": "//",
+      "numbers": true,
+      "colors": {
+        "keyword": "#1d8660",
+        "string": "#c14f78",
+        "number": "#5b58c9",
+        "comment": "#8fa89f"
+      }
+    },
+    "java": {
+      "keywords": [
+        "static",
+        "if",
+        "else",
+        "for",
+        "while",
+        "return",
+        "true",
+        "false",
+        "int",
+        "boolean",
+        "String",
+        "System"
+      ],
+      "strings": [
+        "\""
+      ],
+      "comment": "//",
+      "numbers": true,
+      "colors": {
+        "keyword": "#1d8660",
+        "string": "#c14f78",
+        "number": "#5b58c9",
+        "comment": "#8fa89f"
+      }
+    },
+    "python": {
+      "keywords": [
+        "def",
+        "if",
+        "else",
+        "for",
+        "in",
+        "range",
+        "while",
+        "return",
+        "True",
+        "False",
+        "int",
+        "str",
+        "bool",
+        "print"
+      ],
+      "strings": [
+        "\""
+      ],
+      "comment": "#",
+      "numbers": true,
+      "colors": {
+        "keyword": "#1d8660",
+        "string": "#c14f78",
+        "number": "#5b58c9",
+        "comment": "#8fa89f"
+      }
+    },
+    "js": {
+      "keywords": [
+        "function",
+        "let",
+        "if",
+        "else",
+        "for",
+        "while",
+        "return",
+        "true",
+        "false",
+        "console"
+      ],
+      "strings": [
+        "\""
+      ],
+      "comment": "//",
+      "numbers": true,
+      "colors": {
+        "keyword": "#1d8660",
+        "string": "#c14f78",
+        "number": "#5b58c9",
+        "comment": "#8fa89f"
+      }
+    }
+  },
+  "categories": [
+    {
+      "name": "Output",
+      "color": "#c2410c"
+    },
+    {
+      "name": "Values",
+      "color": "#4d7c0f"
+    },
+    {
+      "name": "Math",
+      "color": "#7c3aed"
+    },
+    {
+      "name": "Variables",
+      "color": "#a16207"
+    },
+    {
+      "name": "Control",
+      "color": "#be185d"
+    },
+    {
+      "name": "Functions",
+      "color": "#0f766e"
+    }
+  ],
+  "blocks": [
+    {
+      "identifier": "print",
+      "category": "Output",
+      "elements": {
+        "title": "print",
+        "go": "fmt.Println(%1)",
+        "cpp": "std::cout << %1 << std::endl;",
+        "java": "System.out.println(%1);",
+        "python": "print(%1)",
+        "js": "console.log(%1);",
+        "outline": "print %1"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "VALUE",
+          "default": {
+            "shadow": "text",
+            "fieldValues": {
+              "TEXT": "hello"
+            }
+          }
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "text",
+      "category": "Values",
+      "elements": {
+        "title": "text",
+        "default": "\"%TEXT\""
+      },
+      "fields": {
+        "TEXT": {
+          "type": "text",
+          "default": "hello"
+        }
+      },
+      "output": "String"
+    },
+    {
+      "identifier": "number",
+      "category": "Values",
+      "elements": {
+        "title": "number",
+        "default": "%NUM"
+      },
+      "fields": {
+        "NUM": {
+          "type": "number",
+          "default": 0
+        }
+      },
+      "output": "Number"
+    },
+    {
+      "identifier": "bool",
+      "category": "Values",
+      "elements": {
+        "title": "true or false",
+        "default": "%VALUE"
+      },
+      "fields": {
+        "VALUE": {
+          "type": "dropdown",
+          "options": [
+            {
+              "value": "true",
+              "display": {
+                "python": "True"
+              }
+            },
+            {
+              "value": "false",
+              "display": {
+                "python": "False"
+              }
+            }
+          ],
+          "default": "true"
+        }
+      },
+      "output": "Boolean"
+    },
+    {
+      "identifier": "math",
+      "category": "Math",
+      "elements": {
+        "title": "math",
+        "default": "%1 %OP %2"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "A",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "1"
+            }
+          }
+        },
+        "2": {
+          "kind": "value",
+          "name": "B",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "2"
+            }
+          }
+        }
+      },
+      "fields": {
+        "OP": {
+          "type": "dropdown",
+          "options": [
+            "+",
+            "-",
+            "*",
+            "/"
+          ],
+          "default": "+"
+        }
+      },
+      "output": true,
+      "inputsInline": true
+    },
+    {
+      "identifier": "compare",
+      "category": "Math",
+      "elements": {
+        "title": "compare",
+        "default": "%1 %OP %2"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "A",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "1"
+            }
+          }
+        },
+        "2": {
+          "kind": "value",
+          "name": "B",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "2"
+            }
+          }
+        }
+      },
+      "fields": {
+        "OP": {
+          "type": "dropdown",
+          "options": [
+            "==",
+            "!=",
+            "<",
+            ">"
+          ],
+          "default": "<"
+        }
+      },
+      "output": "Boolean",
+      "inputsInline": true
+    },
+    {
+      "identifier": "declare",
+      "category": "Variables",
+      "elements": {
+        "title": "create variable",
+        "go": "var %NAME %TYPE = %1",
+        "cpp": "%TYPE %NAME = %1;",
+        "java": "%TYPE %NAME = %1;",
+        "python": "%NAME: %TYPE = %1",
+        "js": "let %NAME = %1;",
+        "outline": "create %TYPE %NAME = %1"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "VALUE",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "0"
+            }
+          }
+        }
+      },
+      "fields": {
+        "TYPE": {
+          "type": "dropdown",
+          "options": [
+            {
+              "value": "number",
+              "display": {
+                "go": "int",
+                "cpp": "int",
+                "java": "int",
+                "python": "int"
+              }
+            },
+            {
+              "value": "text",
+              "display": {
+                "go": "string",
+                "cpp": "std::string",
+                "java": "String",
+                "python": "str"
+              }
+            },
+            {
+              "value": "bool",
+              "label": "true/false",
+              "display": {
+                "go": "bool",
+                "cpp": "bool",
+                "java": "boolean",
+                "python": "bool"
+              }
+            }
+          ],
+          "default": "number"
+        },
+        "NAME": {
+          "type": "text",
+          "default": "x"
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "assign",
+      "category": "Variables",
+      "elements": {
+        "title": "set variable",
+        "default": "%NAME = %1",
+        "cpp": "%NAME = %1;",
+        "java": "%NAME = %1;",
+        "js": "%NAME = %1;"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "VALUE",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "0"
+            }
+          }
+        }
+      },
+      "fields": {
+        "NAME": {
+          "type": "text",
+          "default": "x"
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "variable",
+      "category": "Variables",
+      "elements": {
+        "title": "get variable",
+        "default": "%NAME"
+      },
+      "fields": {
+        "NAME": {
+          "type": "text",
+          "default": "x"
+        }
+      },
+      "output": true
+    },
+    {
+      "identifier": "if",
+      "category": "Control",
+      "elements": {
+        "title": "if",
+        "go": "if %1 {\n    %2\n}",
+        "cpp": "if (%1) {\n    %2\n}",
+        "java": "if (%1) {\n    %2\n}",
+        "python": "if %1:\n    %2",
+        "js": "if (%1) {\n    %2\n}",
+        "outline": "if %1 then\n    %2"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "CONDITION",
+          "check": "Boolean"
+        },
+        "2": {
+          "kind": "statement",
+          "name": "THEN"
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "if_else",
+      "category": "Control",
+      "elements": {
+        "title": "if else",
+        "go": "if %1 {\n    %2\n} else {\n    %3\n}",
+        "cpp": "if (%1) {\n    %2\n} else {\n    %3\n}",
+        "java": "if (%1) {\n    %2\n} else {\n    %3\n}",
+        "python": "if %1:\n    %2\nelse:\n    %3",
+        "js": "if (%1) {\n    %2\n} else {\n    %3\n}",
+        "outline": "if %1 then\n    %2\notherwise\n    %3"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "CONDITION",
+          "check": "Boolean"
+        },
+        "2": {
+          "kind": "statement",
+          "name": "THEN"
+        },
+        "3": {
+          "kind": "statement",
+          "name": "ELSE"
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "repeat",
+      "category": "Control",
+      "elements": {
+        "title": "repeat n times",
+        "go": "for i := 0; i < %1; i++ {\n    %2\n}",
+        "cpp": "for (int i = 0; i < %1; i++) {\n    %2\n}",
+        "java": "for (int i = 0; i < %1; i++) {\n    %2\n}",
+        "python": "for i in range(%1):\n    %2",
+        "js": "for (let i = 0; i < %1; i++) {\n    %2\n}",
+        "outline": "repeat %1 times\n    %2"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "TIMES",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "3"
+            }
+          }
+        },
+        "2": {
+          "kind": "statement",
+          "name": "DO"
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "while",
+      "category": "Control",
+      "elements": {
+        "title": "while",
+        "go": "for %1 {\n    %2\n}",
+        "cpp": "while (%1) {\n    %2\n}",
+        "java": "while (%1) {\n    %2\n}",
+        "python": "while %1:\n    %2",
+        "js": "while (%1) {\n    %2\n}",
+        "outline": "while %1\n    %2"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "CONDITION",
+          "check": "Boolean"
+        },
+        "2": {
+          "kind": "statement",
+          "name": "DO"
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "function",
+      "category": "Functions",
+      "elements": {
+        "title": "define function",
+        "go": "func %NAME(%PARAM %PTYPE) %RET {\n    %1\n}",
+        "cpp": "%RET %NAME(%PTYPE %PARAM) {\n    %1\n}",
+        "java": "static %RET %NAME(%PTYPE %PARAM) {\n    %1\n}",
+        "python": "def %NAME(%PARAM: %PTYPE) -> %RET:\n    %1",
+        "js": "function %NAME(%PARAM) {\n    %1\n}",
+        "outline": "function %NAME takes %PTYPE %PARAM gives %RET\n    %1"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "statement",
+          "name": "BODY"
+        }
+      },
+      "fields": {
+        "RET": {
+          "type": "dropdown",
+          "options": [
+            {
+              "value": "number",
+              "display": {
+                "go": "int",
+                "cpp": "int",
+                "java": "int",
+                "python": "int"
+              }
+            },
+            {
+              "value": "text",
+              "display": {
+                "go": "string",
+                "cpp": "std::string",
+                "java": "String",
+                "python": "str"
+              }
+            },
+            {
+              "value": "bool",
+              "label": "true/false",
+              "display": {
+                "go": "bool",
+                "cpp": "bool",
+                "java": "boolean",
+                "python": "bool"
+              }
+            }
+          ],
+          "default": "text"
+        },
+        "NAME": {
+          "type": "text",
+          "default": "greet"
+        },
+        "PTYPE": {
+          "type": "dropdown",
+          "options": [
+            {
+              "value": "number",
+              "display": {
+                "go": "int",
+                "cpp": "int",
+                "java": "int",
+                "python": "int"
+              }
+            },
+            {
+              "value": "text",
+              "display": {
+                "go": "string",
+                "cpp": "std::string",
+                "java": "String",
+                "python": "str"
+              }
+            },
+            {
+              "value": "bool",
+              "label": "true/false",
+              "display": {
+                "go": "bool",
+                "cpp": "bool",
+                "java": "boolean",
+                "python": "bool"
+              }
+            }
+          ],
+          "default": "text"
+        },
+        "PARAM": {
+          "type": "text",
+          "default": "name"
+        }
+      },
+      "shape": "standalone"
+    },
+    {
+      "identifier": "call",
+      "category": "Functions",
+      "elements": {
+        "title": "call function",
+        "default": "%NAME(%1)"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "ARG",
+          "default": {
+            "shadow": "text",
+            "fieldValues": {
+              "TEXT": "Ada"
+            }
+          }
+        }
+      },
+      "fields": {
+        "NAME": {
+          "type": "text",
+          "default": "greet"
+        }
+      },
+      "output": true,
+      "inputsInline": true
+    },
+    {
+      "identifier": "return",
+      "category": "Functions",
+      "elements": {
+        "title": "return",
+        "default": "return %1",
+        "cpp": "return %1;",
+        "java": "return %1;",
+        "js": "return %1;"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "VALUE",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "0"
+            }
+          }
+        }
+      },
+      "shape": "end",
+      "inputsInline": true
+    }
+  ]
+}

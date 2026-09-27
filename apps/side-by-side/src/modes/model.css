@@ -1,0 +1,10 @@
+/* The "model" mode is only used by the hidden workspace that holds the
+   program. Its outline templates carry every field and slot, and its type
+   dropdowns use plain words (number, text, true/false), which is what the
+   inline type picker in the code view lists. Nothing of it is ever seen; the
+   rule below only makes that explicit (the framework expects one stylesheet
+   per mode). */
+
+.morphic-workspace-root.morphic-mode-model {
+  visibility: hidden;
+}
