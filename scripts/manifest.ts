@@ -57,6 +57,7 @@ export const STYLING = {
   scoped: { label: 'Scoped styles' },
   tailwind: { label: 'Tailwind', icon: 'simple-icons:tailwindcss' },
   sass: { label: 'SCSS', icon: 'simple-icons:sass' },
+  bootstrap: { label: 'Bootstrap', icon: 'simple-icons:bootstrap' },
 } satisfies Record<string, Term>;
 
 export const VIEWS = {
