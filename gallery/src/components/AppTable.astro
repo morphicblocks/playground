@@ -1,5 +1,6 @@
 ---
 import { appLinks } from '../config';
+import { blockColor } from '../palette';
 import type { PlaygroundApp } from '../apps';
 import {
 	BUNDLERS,
@@ -35,10 +36,11 @@ const { apps } = Astro.props;
 			</thead>
 			<tbody>
 				{
-					apps.map((app) => (
-						<tr>
+					apps.map((app, index) => (
+						<tr style={`--card: ${blockColor(index)}`}>
 							<th scope="row">
 								<a href={appLinks(app.id).open} target="_blank" rel="noopener">
+									<span class="dot" aria-hidden="true" />
 									{app.name}
 								</a>
 							</th>
@@ -192,7 +194,17 @@ const { apps } = Astro.props;
 		text-decoration: none;
 	}
 	tbody th a:hover {
-		color: var(--accent);
+		color: var(--card);
+	}
+	/* The app's block color, as on its card. */
+	.dot {
+		display: inline-block;
+		width: 0.7rem;
+		height: 0.7rem;
+		margin-right: 0.5rem;
+		vertical-align: -0.05rem;
+		background: var(--card);
+		border-radius: 3px;
 	}
 	td {
 		color: var(--text-muted);

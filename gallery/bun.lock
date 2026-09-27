@@ -9,6 +9,9 @@
         "astro": "^7.0.9",
         "astro-icon": "^1.1.5",
       },
+      "devDependencies": {
+        "@iconify-json/logos": "^1.2.14",
+      },
     },
   },
   "packages": {
@@ -135,6 +138,8 @@
     "@esbuild/win32-ia32": ["@esbuild/win32-ia32@0.28.1", "", { "os": "win32", "cpu": "ia32" }, "sha512-zvb/mB2bSCoJOpoCBgYKKpX6YM6mJBlBUVUtVj41DlZJVEB6/0CKlRYxP5wWl1C1ILiCoAU5wZZ4q1P3qeS6Eg=="],
 
     "@esbuild/win32-x64": ["@esbuild/win32-x64@0.28.1", "", { "os": "win32", "cpu": "x64" }, "sha512-bm4Mowrv+GXMlpWX++EcXw/iLyd1o3+bJkC2DkWXYVvgZCqD/bSj9ctZeAMC3cIxgjRVR2Dufaiu4YPxr5gW1A=="],
+
+    "@iconify-json/logos": ["@iconify-json/logos@1.2.14", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-O36DicXkgAMT6NAsH7MTWlOql8NktHz9fBCItTjz6L/9gyRXw4vQj6qTeVgww5UZWiVugUV1MhVFA/g9HWIkBw=="],
 
     "@iconify-json/simple-icons": ["@iconify-json/simple-icons@1.2.91", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-plQJHZxzpkIXaeYjJF0Sc9nkzYF32EDX9olx7j1hcKYFaiTrQXbcngZmvzuV0pG6uZPU3ZuA/GIsgxSHOm6jrQ=="],
 

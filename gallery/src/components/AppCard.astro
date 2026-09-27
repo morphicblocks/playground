@@ -2,35 +2,42 @@
 import { Icon } from 'astro-icon/components';
 import { appLinks, externalAttrs } from '../config';
 import type { PlaygroundApp } from '../apps';
-import { BUNDLERS, PACKAGE_MANAGERS, frameworkOrLanguage } from '../../../scripts/manifest';
+import { blockColor, displayIcon, iconColor } from '../palette';
+import { logoOf } from '../logos';
+import { BUNDLERS, PACKAGE_MANAGERS, STYLING, frameworkOrLanguage } from '../../../scripts/manifest';
 
 interface Props {
 	app: PlaygroundApp;
+	/** Position in apps.json; picks the card's block color. */
+	index: number;
 }
 
-const { app } = Astro.props;
+const { app, index } = Astro.props;
 const links = appLinks(app.id);
+const logo = logoOf(app.id);
 // Blank lines in `details` separate paragraphs.
 const paragraphs = app.details.split(/\n\s*\n/).map((text) => text.trim()).filter(Boolean);
 
-// Framework (or, without one, the language), bundler and package manager as
-// logos, each tool once (Bun can be both bundler and package manager).
+// Framework (or, without one, the language), bundler, package manager and
+// styling as logos, each tool once (Bun can be both bundler and package
+// manager).
 const stack = [
 	frameworkOrLanguage(app),
 	BUNDLERS[app.bundler],
 	PACKAGE_MANAGERS[app.packageManager],
+	STYLING[app.styling],
 ].filter((term, index, all): term is { label: string; icon?: string } =>
 	!!term && all.findIndex((other) => other?.label === term.label) === index,
 );
 ---
 
-<article class="card">
+<article class="card" style={`--card: ${blockColor(index)}`}>
 	<div class="preview">
 		{
 			app.preview ? (
 				<img src={app.preview} alt={`${app.name} preview`} loading="lazy" />
 			) : (
-				<span class="preview-fallback">{app.name}</span>
+				<span class="preview-fallback" aria-hidden="true">{app.name}</span>
 			)
 		}
 	</div>
@@ -41,6 +48,7 @@ const stack = [
 			     over the card, while the buttons below sit on top of it. -->
 			<a class="card-link" href={links.open} target="_blank" rel="noopener">
 				{app.name}
+				{logo && <img class="logo" src={logo} alt="" width="28" height="28" />}
 			</a>
 		</h2>
 		<p class="desc">{app.description}</p>
@@ -54,14 +62,14 @@ const stack = [
 			{
 				stack.map((entry) => {
 					return (
-						<li title={entry.label}>
+						<li title={entry.label} style={iconColor(entry.icon) && `color: ${iconColor(entry.icon)}`}>
 							{entry.icon ? (
 								<>
-									<Icon name={entry.icon} />
+									<Icon name={displayIcon(entry.icon)} />
 									<span class="sr-only">{entry.label}</span>
 								</>
 							) : (
-								<span class="pill">{entry.label}</span>
+								<span class="short" aria-label={entry.label}>{entry.label.slice(0, 2)}</span>
 							)}
 						</li>
 					);
@@ -111,7 +119,7 @@ const stack = [
 	}
 	.card:hover,
 	.card:has(.card-link:focus-visible) {
-		border-color: var(--accent);
+		border-color: var(--card);
 	}
 	.card-link {
 		color: inherit;
@@ -126,7 +134,7 @@ const stack = [
 		outline: none;
 	}
 	.card:has(.card-link:focus-visible) {
-		outline: 2px solid var(--accent);
+		outline: 2px solid var(--card);
 		outline-offset: 2px;
 	}
 
@@ -135,19 +143,42 @@ const stack = [
 		aspect-ratio: 16 / 9;
 		display: grid;
 		place-items: center;
-		background: var(--preview-bg);
-		border-bottom: 1px solid var(--border);
+		/* The card's block color, faint, behind the preview. */
+		background: color-mix(in srgb, var(--card) 14%, var(--preview-bg));
+		border-bottom: 3px solid var(--card);
 	}
 	.preview img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
 	}
+	/* Until there is a preview image, the name sits on a block: a colored
+	   plate with the notch a statement block has on top. */
 	.preview-fallback {
-		font-weight: 600;
-		color: var(--text-muted);
-		padding: 0 1rem;
+		position: relative;
+		max-width: calc(100% - 3rem);
+		padding: 0.7rem 1.2rem;
+		font-size: 1.15rem;
+		font-weight: 700;
+		color: #fff;
 		text-align: center;
+		background: var(--card);
+		border-radius: 8px;
+		box-shadow: 0 3px 0 color-mix(in srgb, var(--card) 70%, #000);
+		transition: transform 0.15s ease;
+	}
+	.preview-fallback::before {
+		content: '';
+		position: absolute;
+		top: -6px;
+		left: 1.1rem;
+		width: 1.6rem;
+		height: 8px;
+		background: var(--card);
+		border-radius: 3px 3px 0 0;
+	}
+	.card:hover .preview-fallback {
+		transform: translateY(-3px);
 	}
 
 	.body {
@@ -161,6 +192,17 @@ const stack = [
 		font-size: 1.05rem;
 		margin: 0;
 	}
+	/* The app's name on the left, its logo at the right end of the line. */
+	.card-link {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.6rem;
+	}
+	.logo {
+		flex: none;
+		border-radius: 7px;
+	}
 	.desc {
 		margin: 0;
 		color: var(--text-muted);
@@ -170,7 +212,7 @@ const stack = [
 	/* Logos and buttons sit at the bottom, level across a row of cards. */
 	.stack {
 		display: flex;
-		gap: 0.55rem;
+		gap: 0.7rem;
 		list-style: none;
 		margin: auto 0 0;
 		padding: 0;
@@ -181,16 +223,21 @@ const stack = [
 		place-items: center;
 	}
 	.stack [data-icon] {
-		width: 1.15rem;
-		height: 1.15rem;
+		width: 1.3rem;
+		height: 1.3rem;
 	}
-	.pill {
-		font-size: 0.7rem;
-		font-weight: 600;
+	/* A tool without a logo: its first letters in a framed square the size of
+	   a logo, the full name in the tooltip. */
+	.short {
+		display: grid;
+		place-items: center;
+		width: 1.3rem;
+		height: 1.3rem;
+		font-size: 0.6rem;
+		font-weight: 800;
 		line-height: 1;
-		padding: 0.25rem 0.4rem;
-		border: 1px solid var(--border);
-		border-radius: var(--radius-sm);
+		border: 2px solid currentColor;
+		border-radius: 4px;
 	}
 
 	/* Above the card link, so opening it does not open the app. */
@@ -225,7 +272,7 @@ const stack = [
 		transform: translateY(0.1rem) rotate(-135deg);
 	}
 	.more summary:hover {
-		color: var(--accent);
+		color: var(--card);
 	}
 	.more p {
 		margin: 0.5rem 0 0;
@@ -251,8 +298,11 @@ const stack = [
 		text-decoration: none;
 	}
 	.btn-primary {
-		background: var(--accent);
+		background: var(--card);
 		color: #fff;
+	}
+	.btn-primary:not(:disabled):hover {
+		background: color-mix(in srgb, var(--card) 85%, #000);
 	}
 	.btn:disabled {
 		background: var(--border);
@@ -265,7 +315,8 @@ const stack = [
 		color: var(--text);
 	}
 	.btn-ghost:hover {
-		border-color: var(--accent);
+		border-color: var(--card);
+		color: var(--card);
 	}
 
 	.sr-only {
