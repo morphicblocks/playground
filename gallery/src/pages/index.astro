@@ -39,7 +39,14 @@ const legalLinks = [
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!-- SVG for modern browsers, sized PNGs as fallback. Google wants a search
+		     favicon larger than 48px, so the 192px icon is declared here as well.
+		     /favicon.ico is served at the root for tools that request it directly. -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+		<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		<script is:inline>
 			// Pre-paint: apply a saved choice only. With none, the CSS media
 			// query follows the operating system, so this also works without JS.
