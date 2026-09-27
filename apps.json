@@ -109,6 +109,25 @@
         "JavaScript"
       ],
       "preview": null
+    },
+    {
+      "id": "level-up",
+      "name": "Level Up",
+      "description": "One language, Python, at every level: the toolbox grows from print and values to variables, decisions, loops and functions, and Run shows what the program prints.",
+      "details": "A staircase of five levels runs across the top: Output, Variables and math, Decisions, Loops and Functions. Every level keeps the blocks of the levels before it and adds its own, so the toolbox grows with the learner while the language on the blocks stays Python all the way. The newest group of blocks is marked and scrolled into view.\n\nGoing back down a level removes the blocks that level does not have yet. A small dialog says how many blocks will go and offers Cancel, Continue and a checkbox to stop asking for the rest of the session.\n\nThe Output pane shows what the program prints as soon as it loads, and Run refreshes it. A behaviors file turns each block into JavaScript with the same meaning as its Python: range counts from 0, True and False print as in Python, 10 / 2 prints 5.0, and mistakes show up with Python's error names. Loops stop after 1,000 rounds.",
+      "useCase": "Learning in levels",
+      "question": "Can the toolbox grow with the learner?",
+      "framework": "solid",
+      "bundler": "vite",
+      "packageManager": "bun",
+      "styling": "css",
+      "views": [
+        "blocks"
+      ],
+      "codeShown": [
+        "Python"
+      ],
+      "preview": null
     }
   ]
 }

@@ -1,0 +1,39 @@
+/* The "py" mode: the Python a block stands for, with a short hint under it
+   in the toolbox. The workspace shows only the Python. */
+
+.morphic-block.morphic-mode-py {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 6px 8px 8px;
+  border-radius: 8px;
+  cursor: grab;
+}
+
+.morphic-block.morphic-mode-py:hover {
+  background: var(--tile-hover, rgba(0, 0, 0, 0.04));
+}
+
+.morphic-mode-py > .morphic-element-python {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13px;
+}
+
+.morphic-mode-py > .morphic-element-hint {
+  padding-left: 4px;
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--muted, #7a746a);
+}
+
+.morphic-workspace-root.morphic-mode-py .blocklyText {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* Decisions blocks are sunflower yellow, where white text is hard to read:
+   their own labels and fields get dark text. Blocks nested inside keep
+   theirs, because only the block's direct text is matched. */
+.morphic-workspace-root.morphic-mode-py .morphic-category-decisions > g > .blocklyText {
+  fill: #22292e;
+}

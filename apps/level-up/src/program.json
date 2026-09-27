@@ -1,0 +1,17 @@
+{
+  "blocks": {
+    "languageVersion": 0,
+    "blocks": [
+      {
+        "type": "morphic:print",
+        "x": 32,
+        "y": 32,
+        "inputs": {
+          "VALUE": {
+            "shadow": { "type": "morphic:text", "fields": { "TEXT": "Hello" } }
+          }
+        }
+      }
+    ]
+  }
+}

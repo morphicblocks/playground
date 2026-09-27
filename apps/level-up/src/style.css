@@ -1,0 +1,418 @@
+:root {
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* A deep navy teal page with teal blue accents */
+:root {
+  color-scheme: dark;
+  --paper: #0e2530;
+  --panel: #14303d;
+  --line: #22495a;
+  --ink: #e3f1f6;
+  --muted: #93b4c2;
+  --soft: #1c3e4d;
+  --tile-hover: #1a3b49;
+  --accent: #35a8cf;
+  --accent-hover: #5bbcdc;
+  /* Light text on this teal is weak, so the label is the page color. */
+  --on-accent: #0e2530;
+  --bad: #ff8a7a;
+  --backdrop: rgba(0, 0, 0, 0.55);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 14px;
+}
+
+button {
+  font: inherit;
+}
+
+.shell {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 100vh;
+  height: 100dvh;
+  padding: 16px 20px 20px;
+}
+
+/* Top: the name and the staircase of levels */
+
+.top {
+  display: flex;
+  align-items: flex-end;
+  gap: 28px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 4px;
+  white-space: nowrap;
+}
+
+.logo {
+  display: flex;
+  width: 38px;
+  height: 38px;
+  flex: none;
+}
+
+.logo svg {
+  width: 100%;
+  height: 100%;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brand-name {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.brand-sub {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.stairs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: end;
+  gap: 6px;
+  flex: 1;
+}
+
+/* Each step is a little taller than the one before, so the bar reads as a
+   staircase the learner climbs. */
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  text-align: left;
+  cursor: pointer;
+}
+
+.step-number {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.step-topic {
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.step-bar {
+  width: 100%;
+  height: calc(6px + var(--rise) * 5px);
+  margin-top: 5px;
+  border-radius: 4px 4px 2px 2px;
+  background: var(--soft);
+  transition: background 0.2s;
+}
+
+.step:hover .step-bar {
+  background: var(--line);
+}
+
+.step.reached {
+  color: var(--ink);
+}
+
+.step.reached .step-bar {
+  background: color-mix(in srgb, var(--step-color) 45%, var(--paper));
+}
+
+.step.current .step-topic {
+  font-weight: 600;
+}
+
+.step.current .step-bar {
+  background: var(--accent);
+}
+
+.step:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Panes */
+
+.panes {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr) 340px;
+  gap: 14px;
+  flex: 1;
+  min-height: 0;
+}
+
+.pane {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.pane-title {
+  margin: 0;
+  padding: 12px 16px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.workspace .pane-title {
+  border-bottom: 1px solid var(--line);
+}
+
+.workspace-body {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+/* Toolbox: one group per category, the newest one marked */
+
+.toolbox-body {
+  position: relative;
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 10px 12px;
+}
+
+.toolbox-body [data-category] {
+  margin-bottom: 10px;
+  padding: 8px 4px 4px;
+  border-top: 1px solid var(--line);
+}
+
+/* Category names are single words, so the attribute reads as a heading. */
+.toolbox-body [data-category]::before {
+  content: attr(data-category);
+  display: block;
+  margin: 0 0 4px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: var(--morphic-category-color);
+}
+
+.toolbox-body[data-newest="output"] [data-category="output"]::after,
+.toolbox-body[data-newest="variables"] [data-category="variables"]::after,
+.toolbox-body[data-newest="decisions"] [data-category="decisions"]::after,
+.toolbox-body[data-newest="loops"] [data-category="loops"]::after,
+.toolbox-body[data-newest="functions"] [data-category="functions"]::after {
+  content: "new at this level";
+  position: absolute;
+  top: 9px;
+  right: 8px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  color: var(--on-accent);
+  background: var(--accent);
+}
+
+.toolbox-body [data-category] {
+  position: relative;
+}
+
+/* Output */
+
+.output-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 12px;
+}
+
+.output-body {
+  flex: 1;
+  margin: 0;
+  padding: 4px 16px 16px;
+  overflow: auto;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.output-error {
+  color: var(--bad);
+}
+
+.output-quiet {
+  color: var(--muted);
+}
+
+.run {
+  padding: 6px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.run:hover {
+  background: var(--accent-hover);
+}
+
+.quiet-button {
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.quiet-button:hover {
+  background: var(--soft);
+}
+
+/* The question before a lower level removes blocks */
+
+.confirm {
+  width: min(360px, calc(100vw - 32px));
+  padding: 20px 22px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+  color: var(--ink);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+}
+
+.confirm::backdrop {
+  background: var(--backdrop);
+}
+
+.confirm p {
+  margin: 0 0 14px;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.confirm-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+/* Narrow screens: everything in one column, the page scrolls */
+
+@media (max-width: 800px) {
+  .shell {
+    height: auto;
+    padding: 12px 16px 16px;
+  }
+
+  .top {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .brand {
+    padding: 0;
+  }
+
+  .logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .brand-text {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .step-number {
+    font-size: 10px;
+  }
+
+  .step-topic {
+    font-size: 11px;
+  }
+
+  .panes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .toolbox {
+    max-height: 300px;
+  }
+
+  /* Tiles side by side, so more of a level fits the short toolbox. */
+  .toolbox-body [data-category] {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 4px;
+  }
+
+  .toolbox-body [data-category]::before {
+    flex-basis: 100%;
+  }
+
+  .toolbox-body .morphic-block {
+    flex: 1 1 160px;
+    min-width: 0;
+  }
+
+  .toolbox-body .morphic-block svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .workspace {
+    height: 60vh;
+  }
+
+  .output {
+    min-height: 160px;
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "morphic-blocks-level-up",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/copy-blockly-media.mjs && vite",
+    "build": "node scripts/copy-blockly-media.mjs && tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "morphic-blocks": "^0.2.1",
+    "solid-js": "^1.9.15"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vite": "^8.3.1",
+    "vite-plugin-solid": "^2.11.14"
+  }
+}

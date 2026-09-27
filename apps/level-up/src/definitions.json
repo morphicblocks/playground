@@ -1,0 +1,511 @@
+{
+  "elementTypes": {
+    "python": "code",
+    "hint": "text"
+  },
+  "modes": [
+    {
+      "name": "py",
+      "elements": [
+        "python",
+        "hint"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "name": "Output",
+      "color": "#4a7bea"
+    },
+    {
+      "name": "Variables",
+      "color": "#e9604a"
+    },
+    {
+      "name": "Decisions",
+      "color": "#f2c230"
+    },
+    {
+      "name": "Loops",
+      "color": "#ee903a"
+    },
+    {
+      "name": "Functions",
+      "color": "#9670df"
+    }
+  ],
+  "blocks": [
+    {
+      "identifier": "print",
+      "category": "Output",
+      "elements": {
+        "python": "print(%1)",
+        "hint": "Show a value in the output"
+      },
+      "shape": "statement",
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "VALUE",
+          "default": {
+            "shadow": "text",
+            "fieldValues": {
+              "TEXT": "Hello"
+            }
+          }
+        }
+      },
+      "inputsInline": true
+    },
+    {
+      "identifier": "text",
+      "category": "Output",
+      "elements": {
+        "python": "\"%TEXT\"",
+        "hint": "Text, in quotes"
+      },
+      "output": true,
+      "fields": {
+        "TEXT": {
+          "type": "text",
+          "default": "Hello"
+        }
+      },
+      "inputsInline": true
+    },
+    {
+      "identifier": "number",
+      "category": "Output",
+      "elements": {
+        "python": "%NUM",
+        "hint": "A number"
+      },
+      "output": true,
+      "fields": {
+        "NUM": {
+          "type": "number",
+          "default": 0
+        }
+      },
+      "inputsInline": true
+    },
+    {
+      "identifier": "set",
+      "category": "Variables",
+      "elements": {
+        "python": "%NAME = %1",
+        "hint": "Store a value under a name"
+      },
+      "shape": "statement",
+      "fields": {
+        "NAME": {
+          "type": "text",
+          "default": "x"
+        }
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "VALUE",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "0"
+            }
+          }
+        }
+      },
+      "inputsInline": true
+    },
+    {
+      "identifier": "get",
+      "category": "Variables",
+      "elements": {
+        "python": "%NAME",
+        "hint": "Read the value stored under a name"
+      },
+      "output": true,
+      "fields": {
+        "NAME": {
+          "type": "text",
+          "default": "x"
+        }
+      },
+      "inputsInline": true
+    },
+    {
+      "identifier": "math",
+      "category": "Variables",
+      "elements": {
+        "python": "%1 %OP %2",
+        "hint": "Add, subtract, multiply or divide"
+      },
+      "output": true,
+      "fields": {
+        "OP": {
+          "type": "dropdown",
+          "options": [
+            "+",
+            "-",
+            "*",
+            "/"
+          ],
+          "default": "+"
+        }
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "A",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "1"
+            }
+          }
+        },
+        "2": {
+          "kind": "value",
+          "name": "B",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "2"
+            }
+          }
+        }
+      },
+      "inputsInline": true
+    },
+    {
+      "identifier": "add",
+      "category": "Variables",
+      "elements": {
+        "python": "%NAME += %1",
+        "hint": "Add to the value stored under a name"
+      },
+      "shape": "statement",
+      "fields": {
+        "NAME": {
+          "type": "text",
+          "default": "x"
+        }
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "VALUE",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "1"
+            }
+          }
+        }
+      },
+      "inputsInline": true
+    },
+    {
+      "identifier": "if",
+      "category": "Decisions",
+      "elements": {
+        "python": "if %1:\n    %2",
+        "hint": "Run the inside only when the condition is true"
+      },
+      "shape": "statement",
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "CONDITION",
+          "default": {
+            "shadow": "bool",
+            "fieldValues": {
+              "VALUE": "True"
+            }
+          }
+        },
+        "2": {
+          "kind": "statement",
+          "name": "DO"
+        }
+      },
+      "inputsInline": true
+    },
+    {
+      "identifier": "if_else",
+      "category": "Decisions",
+      "elements": {
+        "python": "if %1:\n    %2\nelse:\n    %3",
+        "hint": "Run one part or the other"
+      },
+      "shape": "statement",
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "CONDITION",
+          "default": {
+            "shadow": "bool",
+            "fieldValues": {
+              "VALUE": "True"
+            }
+          }
+        },
+        "2": {
+          "kind": "statement",
+          "name": "DO"
+        },
+        "3": {
+          "kind": "statement",
+          "name": "ELSE"
+        }
+      },
+      "inputsInline": true
+    },
+    {
+      "identifier": "compare",
+      "category": "Decisions",
+      "elements": {
+        "python": "%1 %OP %2",
+        "hint": "Compare two values"
+      },
+      "output": true,
+      "fields": {
+        "OP": {
+          "type": "dropdown",
+          "options": [
+            "==",
+            "!=",
+            "<",
+            ">",
+            "<=",
+            ">="
+          ],
+          "default": "=="
+        }
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "A",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "1"
+            }
+          }
+        },
+        "2": {
+          "kind": "value",
+          "name": "B",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "2"
+            }
+          }
+        }
+      },
+      "inputsInline": true
+    },
+    {
+      "identifier": "logic",
+      "category": "Decisions",
+      "elements": {
+        "python": "%1 %OP %2",
+        "hint": "Both true, or at least one true"
+      },
+      "output": true,
+      "fields": {
+        "OP": {
+          "type": "dropdown",
+          "options": [
+            "and",
+            "or"
+          ],
+          "default": "and"
+        }
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "A",
+          "default": {
+            "shadow": "bool",
+            "fieldValues": {
+              "VALUE": "True"
+            }
+          }
+        },
+        "2": {
+          "kind": "value",
+          "name": "B",
+          "default": {
+            "shadow": "bool",
+            "fieldValues": {
+              "VALUE": "False"
+            }
+          }
+        }
+      },
+      "inputsInline": true
+    },
+    {
+      "identifier": "bool",
+      "category": "Decisions",
+      "elements": {
+        "python": "%VALUE",
+        "hint": "Yes or no"
+      },
+      "output": true,
+      "fields": {
+        "VALUE": {
+          "type": "dropdown",
+          "options": [
+            "True",
+            "False"
+          ],
+          "default": "True"
+        }
+      },
+      "inputsInline": true
+    },
+    {
+      "identifier": "for",
+      "category": "Loops",
+      "elements": {
+        "python": "for %VAR in range(%1):\n    %2",
+        "hint": "Repeat, counting from 0"
+      },
+      "shape": "statement",
+      "fields": {
+        "VAR": {
+          "type": "text",
+          "default": "i"
+        }
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "TIMES",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "3"
+            }
+          }
+        },
+        "2": {
+          "kind": "statement",
+          "name": "DO"
+        }
+      },
+      "inputsInline": true
+    },
+    {
+      "identifier": "while",
+      "category": "Loops",
+      "elements": {
+        "python": "while %1:\n    %2",
+        "hint": "Repeat as long as the condition is true"
+      },
+      "shape": "statement",
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "CONDITION",
+          "default": {
+            "shadow": "bool",
+            "fieldValues": {
+              "VALUE": "True"
+            }
+          }
+        },
+        "2": {
+          "kind": "statement",
+          "name": "DO"
+        }
+      },
+      "inputsInline": true
+    },
+    {
+      "identifier": "break",
+      "category": "Loops",
+      "elements": {
+        "python": "break",
+        "hint": "Leave the loop now"
+      },
+      "shape": "end",
+      "inputsInline": true
+    },
+    {
+      "identifier": "def",
+      "category": "Functions",
+      "elements": {
+        "python": "def %NAME(%PARAM):\n    %1",
+        "hint": "Give a group of steps a name"
+      },
+      "shape": "statement",
+      "fields": {
+        "NAME": {
+          "type": "text",
+          "default": "greet"
+        },
+        "PARAM": {
+          "type": "text",
+          "default": "name"
+        }
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "statement",
+          "name": "BODY"
+        }
+      },
+      "inputsInline": true
+    },
+    {
+      "identifier": "call",
+      "category": "Functions",
+      "elements": {
+        "python": "%NAME(%1)",
+        "hint": "Run a function"
+      },
+      "shape": "statement",
+      "fields": {
+        "NAME": {
+          "type": "text",
+          "default": "greet"
+        }
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "ARG",
+          "default": {
+            "shadow": "text",
+            "fieldValues": {
+              "TEXT": "Ada"
+            }
+          }
+        }
+      },
+      "inputsInline": true
+    },
+    {
+      "identifier": "return",
+      "category": "Functions",
+      "elements": {
+        "python": "return %1",
+        "hint": "Hand a result back"
+      },
+      "shape": "end",
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "VALUE"
+        }
+      },
+      "inputsInline": true
+    }
+  ]
+}
