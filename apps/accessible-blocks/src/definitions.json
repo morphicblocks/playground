@@ -1,0 +1,420 @@
+{
+  "elementTypes": {
+    "help": "text",
+    "symbols": {
+      "type": "code",
+      "stringQuote": "\""
+    },
+    "words": {
+      "type": "code",
+      "stringQuote": "\""
+    },
+    "java": {
+      "type": "code",
+      "stringQuote": "\""
+    }
+  },
+  "modes": [
+    {
+      "name": "with-symbols",
+      "elements": [
+        "symbols"
+      ]
+    },
+    {
+      "name": "with-symbols-help",
+      "elements": [
+        "symbols",
+        "help"
+      ]
+    },
+    {
+      "name": "in-words",
+      "elements": [
+        "words"
+      ]
+    },
+    {
+      "name": "in-words-help",
+      "elements": [
+        "words",
+        "help"
+      ]
+    },
+    {
+      "name": "in-java",
+      "elements": [
+        "java"
+      ]
+    },
+    {
+      "name": "in-java-help",
+      "elements": [
+        "java",
+        "help"
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "symbols",
+      "label": "Symbols",
+      "toolbox": "with-symbols",
+      "workspace": "with-symbols",
+      "preview": "in-words"
+    },
+    {
+      "name": "symbols-help",
+      "label": "Symbols with explanations",
+      "toolbox": "with-symbols-help",
+      "workspace": "with-symbols",
+      "preview": "in-words"
+    },
+    {
+      "name": "words",
+      "label": "Words",
+      "toolbox": "in-words",
+      "workspace": "in-words",
+      "preview": "in-java"
+    },
+    {
+      "name": "words-help",
+      "label": "Words with explanations",
+      "toolbox": "in-words-help",
+      "workspace": "in-words",
+      "preview": "in-java"
+    },
+    {
+      "name": "java",
+      "label": "Java",
+      "toolbox": "in-java",
+      "workspace": "in-java",
+      "preview": "in-words"
+    },
+    {
+      "name": "java-help",
+      "label": "Java with explanations",
+      "toolbox": "in-java-help",
+      "workspace": "in-java",
+      "preview": "in-words"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Output",
+      "color": "#0072b2"
+    },
+    {
+      "name": "Values",
+      "color": "#007a5e"
+    },
+    {
+      "name": "Variables",
+      "color": "#9a4b84"
+    },
+    {
+      "name": "Control",
+      "color": "#7d5c00"
+    }
+  ],
+  "highlighting": {
+    "java": {
+      "keywords": [
+        "var",
+        "if",
+        "else",
+        "for",
+        "int",
+        "System"
+      ],
+      "strings": [
+        "\""
+      ],
+      "comment": "//",
+      "numbers": true,
+      "colors": {
+        "keyword": "#6a1b9a",
+        "string": "#0b6b3a",
+        "number": "#0b4f9c",
+        "comment": "#555555"
+      }
+    },
+    "words": {
+      "keywords": [
+        "say",
+        "make",
+        "be",
+        "add",
+        "to",
+        "if",
+        "then",
+        "otherwise",
+        "repeat",
+        "times"
+      ],
+      "strings": [
+        "\""
+      ],
+      "numbers": true,
+      "colors": {
+        "keyword": "#6a1b9a",
+        "string": "#0b6b3a",
+        "number": "#0b4f9c",
+        "comment": "#555555"
+      }
+    }
+  },
+  "blocks": [
+    {
+      "identifier": "say",
+      "category": "Output",
+      "elements": {
+        "symbols": "<img src='icons/say.svg' width='24' height='24' alt='say'> say %1",
+        "words": "say %1",
+        "java": "System.out.println(%1);",
+        "help": "Shows a text or a number below the program."
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "VALUE",
+          "default": {
+            "shadow": "text",
+            "fieldValues": {
+              "TEXT": "Hello"
+            }
+          }
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "text",
+      "category": "Values",
+      "elements": {
+        "symbols": "\"%TEXT\"",
+        "words": "\"%TEXT\"",
+        "java": "\"%TEXT\"",
+        "help": "Some letters or words. Click to change them."
+      },
+      "fields": {
+        "TEXT": {
+          "type": "text",
+          "default": "Hello"
+        }
+      },
+      "output": "String"
+    },
+    {
+      "identifier": "number",
+      "category": "Values",
+      "elements": {
+        "symbols": "%NUM",
+        "words": "%NUM",
+        "java": "%NUM",
+        "help": "A whole number. Click to change it."
+      },
+      "fields": {
+        "NUM": {
+          "type": "number",
+          "default": 0
+        }
+      },
+      "output": "Number"
+    },
+    {
+      "identifier": "make",
+      "category": "Variables",
+      "elements": {
+        "symbols": "<img src='icons/new-box.svg' width='24' height='24' alt='new box'> new box %NAME = %1",
+        "words": "make %NAME be %1",
+        "java": "var %NAME = %1;",
+        "help": "Makes a new box with a name and puts a value in it. Use it once per name."
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "VALUE",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "0"
+            }
+          }
+        }
+      },
+      "fields": {
+        "NAME": {
+          "type": "text",
+          "default": "score"
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "add",
+      "category": "Variables",
+      "elements": {
+        "symbols": "<img src='icons/add.svg' width='24' height='24' alt='add'> add %1 to %NAME",
+        "words": "add %1 to %NAME",
+        "java": "%NAME += %1;",
+        "help": "Adds a number to the number already in a box."
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "VALUE",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "1"
+            }
+          }
+        }
+      },
+      "fields": {
+        "NAME": {
+          "type": "text",
+          "default": "score"
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "get",
+      "category": "Variables",
+      "elements": {
+        "symbols": "<img src='icons/box.svg' width='20' height='20' alt='box'> %NAME",
+        "words": "%NAME",
+        "java": "%NAME",
+        "help": "Gives the value that is in a box right now."
+      },
+      "fields": {
+        "NAME": {
+          "type": "text",
+          "default": "score"
+        }
+      },
+      "output": true
+    },
+    {
+      "identifier": "compare",
+      "category": "Control",
+      "elements": {
+        "symbols": "%1 %OP %2",
+        "words": "%1 %OP %2",
+        "java": "%1 %OP %2",
+        "help": "Checks two numbers. The answer is yes or no."
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "A",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "1"
+            }
+          }
+        },
+        "2": {
+          "kind": "value",
+          "name": "B",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "2"
+            }
+          }
+        }
+      },
+      "fields": {
+        "OP": {
+          "type": "dropdown",
+          "options": [
+            {
+              "value": "<",
+              "display": {
+                "words": "is less than"
+              }
+            },
+            {
+              "value": ">",
+              "display": {
+                "words": "is more than"
+              }
+            },
+            {
+              "value": "==",
+              "display": {
+                "words": "is the same as",
+                "symbols": "="
+              }
+            }
+          ],
+          "default": "<"
+        }
+      },
+      "output": "Boolean",
+      "inputsInline": true
+    },
+    {
+      "identifier": "if_else",
+      "category": "Control",
+      "elements": {
+        "symbols": "<img src='icons/if.svg' width='24' height='24' alt='if'> if %1\n%2\n<img src='icons/else.svg' width='24' height='24' alt='else'> else\n%3",
+        "words": "if %1 then\n    %2\notherwise\n    %3",
+        "java": "if (%1) {\n    %2\n} else {\n    %3\n}",
+        "help": "Runs the first blocks when the answer is yes, and the second ones when it is no."
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "CONDITION",
+          "check": "Boolean"
+        },
+        "2": {
+          "kind": "statement",
+          "name": "THEN"
+        },
+        "3": {
+          "kind": "statement",
+          "name": "ELSE"
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "repeat",
+      "category": "Control",
+      "elements": {
+        "symbols": "<img src='icons/repeat.svg' width='24' height='24' alt='repeat'> %1 times\n%2",
+        "words": "repeat %1 times\n    %2",
+        "java": "for (int i = 0; i < %1; i++) {\n    %2\n}",
+        "help": "Runs the blocks inside again and again, as many times as the number says."
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "TIMES",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "3"
+            }
+          }
+        },
+        "2": {
+          "kind": "statement",
+          "name": "DO"
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    }
+  ]
+}

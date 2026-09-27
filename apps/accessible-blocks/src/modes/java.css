@@ -1,0 +1,7 @@
+/* Java: blocks show the Java they stand for, in the code font. The help
+   variant also lists the explanation, which shows under the tile (the
+   framework hides every element a mode does not name). */
+
+.morphic-workspace-root.morphic-mode-in-java .blocklyText {
+  font-family: var(--code-font);
+}

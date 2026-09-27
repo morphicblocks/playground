@@ -1,0 +1,429 @@
+/* Warm paper with deep violet. High contrast, the text sizes and the dyslexia
+   font only change these variables (see the classes on <html> below). */
+:root {
+  --bg: #f4efe6;
+  --surface: #fffdf8;
+  --workspace: #fbf7ef;
+  --ink: #1d1a24;
+  --muted: #564f60;
+  --border: #d8cdbd;
+  --accent: #4b2a7b;
+  --accent-ink: #ffffff;
+  --focus: #e08a00;
+  --ui-font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --code-font: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --block-font: var(--ui-font);
+  --tile-zoom: 1;
+
+  /* Bootstrap reads these. */
+  --bs-body-bg: var(--bg);
+  --bs-body-color: var(--ink);
+  --bs-body-font-family: var(--ui-font);
+  --bs-border-color: var(--border);
+  --bs-secondary-color: var(--muted);
+  --bs-link-color-rgb: 75, 42, 123;
+}
+
+/* The text size slider sets the root font size and --tile-zoom inline. */
+
+html.dark {
+  --bg: #15121d;
+  --surface: #1d1928;
+  --workspace: #241f31;
+  --ink: #ece7f5;
+  --muted: #b3a9c6;
+  --border: #3a3350;
+  --accent: #5a3591;
+  --focus: #ffb238;
+  --bs-link-color-rgb: 197, 170, 240;
+}
+
+html.high-contrast {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --workspace: #ffffff;
+  --ink: #000000;
+  --muted: #000000;
+  --border: #000000;
+  --accent: #000000;
+  --focus: #0044ff;
+}
+
+html.dark.high-contrast {
+  --bg: #000000;
+  --surface: #000000;
+  --workspace: #000000;
+  --ink: #ffffff;
+  --muted: #ffffff;
+  --border: #ffffff;
+  --accent: #000000;
+  --focus: #ffd400;
+}
+
+html.dyslexia {
+  --ui-font: "OpenDyslexic", system-ui, sans-serif;
+  /* Code too: Java blocks and the output need no fixed width letters. */
+  --code-font: "OpenDyslexic", ui-monospace, monospace;
+  /* Letters in OpenDyslexic are wide; a little more room between lines helps. */
+  line-height: 1.7;
+}
+
+body {
+  font-family: var(--ui-font);
+  background: var(--bg);
+  color: var(--ink);
+}
+
+/* A focus ring that is easy to see on every background. */
+:focus-visible {
+  outline: 3px solid var(--focus) !important;
+  outline-offset: 2px;
+  box-shadow: none !important;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-radius: 0.5rem;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ── Top bar ─────────────────────────────────────────────── */
+
+/* Name on the left, levels in the middle, settings on the right. */
+.app-bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  padding: 0.75rem 1.25rem;
+  color: var(--accent-ink);
+  background: var(--accent);
+}
+/* In high contrast the bar is as dark as the page, so a line sets it off.
+   A shadow, unlike a border, keeps the bar's height. */
+html.high-contrast .app-bar {
+  box-shadow: 0 3px 0 var(--ink);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.btn-settings {
+  justify-self: end;
+}
+.brand h1 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.btn-level,
+.btn-settings {
+  --bs-btn-color: var(--accent-ink);
+  --bs-btn-border-color: rgb(255 255 255 / 0.7);
+  --bs-btn-hover-color: var(--accent);
+  --bs-btn-hover-bg: #ffffff;
+  --bs-btn-active-color: var(--accent);
+  --bs-btn-active-bg: #ffffff;
+  --bs-btn-active-border-color: #ffffff;
+  min-height: 2.75rem;
+  padding-inline: 1rem;
+  font-weight: 700;
+  border-width: 2px;
+}
+.btn-check:checked + .btn-level {
+  color: var(--accent);
+  background: #ffffff;
+}
+
+/* ── Panes ───────────────────────────────────────────────── */
+
+.app-grid {
+  display: grid;
+  /* Pixel widths, so larger text grows inside the panes instead of
+     squeezing the workspace. */
+  grid-template-columns: minmax(240px, 300px) minmax(0, 1fr) minmax(280px, 380px);
+  gap: 1rem;
+  flex: 1;
+  min-height: 0;
+  padding: 1rem;
+}
+
+.pane {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 0.9rem 1rem 1rem;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 1rem;
+}
+.pane h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+.pane-hint {
+  margin: 0 0 0.6rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 0;
+}
+.side > .pane:first-child {
+  flex: 1;
+}
+
+.toolbox-pane,
+.workspace-pane,
+.side {
+  height: calc(100vh - 6rem);
+}
+
+.toolbox {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+.workspace {
+  flex: 1;
+  min-height: 20rem;
+  background: var(--workspace);
+  border-radius: 0.6rem;
+}
+
+.preview {
+  flex: 1;
+  min-height: 8rem;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+}
+
+.output-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.output-head h2 {
+  margin: 0;
+}
+.btn-run {
+  --bs-btn-color: var(--accent-ink);
+  --bs-btn-bg: var(--accent);
+  --bs-btn-border-color: var(--accent);
+  --bs-btn-hover-color: var(--accent-ink);
+  --bs-btn-hover-bg: #3a1f61;
+  --bs-btn-active-bg: #3a1f61;
+  min-width: 5.5rem;
+  min-height: 2.75rem;
+  font-weight: 800;
+}
+.output {
+  min-height: 4.5rem;
+  max-height: 12rem;
+  margin: 0 0 0.6rem;
+  padding: 0.6rem 0.8rem;
+  overflow: auto;
+  font: 1rem/1.5 var(--code-font);
+  white-space: pre-wrap;
+  color: var(--ink);
+  background: var(--workspace);
+  border-radius: 0.6rem;
+}
+.output-error {
+  font-weight: 700;
+  color: #a4000f;
+}
+
+/* ── Toolbox tiles (the framework is headless, so the app styles them) ── */
+
+.toolbox .morphic-block {
+  margin-bottom: 0.6rem;
+  padding: 0.55rem 0.7rem 0.65rem;
+  background: var(--workspace);
+  border: 2px solid var(--border);
+  border-left: 0.5rem solid var(--morphic-block-color, var(--border));
+  border-radius: 0.75rem;
+  cursor: grab;
+}
+.toolbox .morphic-block:hover {
+  border-color: var(--ink);
+  border-left-color: var(--morphic-block-color, var(--ink));
+}
+.toolbox .morphic-block svg {
+  zoom: var(--tile-zoom);
+  /* Zoom applies after max-width, so divide by it to stay inside the tile. */
+  max-width: calc(100% / var(--tile-zoom));
+  height: auto;
+}
+.toolbox .morphic-element-help {
+  margin-top: 0.35rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* High contrast: black outlines around every block. */
+html.high-contrast .blocklyPath {
+  stroke: var(--ink);
+  stroke-width: 2.5px;
+}
+
+/* definitions.json sets highlight colors for light views; dark views get
+   lighter ones. */
+html.dark .preview .morphic-tok-keyword {
+  color: #d3a6ff;
+}
+html.dark .preview .morphic-tok-string {
+  color: #7fdca4;
+}
+html.dark .preview .morphic-tok-number {
+  color: #8cc4ff;
+}
+
+/* ── Settings panel ──────────────────────────────────────── */
+
+.settings {
+  --bs-offcanvas-width: min(26rem, 100vw);
+  --bs-offcanvas-bg: var(--surface);
+  --bs-offcanvas-color: var(--ink);
+}
+.settings legend {
+  font-size: 1rem;
+  font-weight: 700;
+}
+.size-label {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+}
+.form-range {
+  --thumb: var(--accent);
+  height: 2rem;
+}
+html.high-contrast .form-range {
+  --thumb: var(--ink);
+}
+/* Bootstrap bakes the thumb color in, so it is set on the thumb itself. */
+.form-range::-webkit-slider-thumb {
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-top: -0.45rem;
+  background: var(--thumb);
+}
+.form-range::-moz-range-thumb {
+  width: 1.4rem;
+  height: 1.4rem;
+  background: var(--thumb);
+}
+.setting {
+  margin-bottom: 1.1rem;
+  font-size: 1.05rem;
+}
+.setting .form-check-input {
+  width: 2.6em;
+  height: 1.4em;
+  margin-top: 0.1em;
+}
+.setting .form-check-input:checked {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+html.high-contrast .setting .form-check-input:checked {
+  background-color: var(--ink);
+  border-color: var(--ink);
+}
+/* On a white switch the knob turns black, so it stays visible. */
+html.dark.high-contrast .setting .form-check-input:checked {
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23000'/%3e%3c/svg%3e");
+}
+.setting .form-check-label {
+  padding-left: 0.4rem;
+  font-weight: 700;
+}
+.setting .form-text {
+  padding-left: 0.4rem;
+  color: var(--muted);
+}
+.settings-intro,
+.settings-note {
+  color: var(--muted);
+}
+.settings-note {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  font-size: 0.92rem;
+  border-top: 2px solid var(--border);
+}
+
+/* ── Phones and narrow windows: one column ───────────────── */
+
+@media (max-width: 900px) {
+  .app-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .toolbox-pane,
+  .workspace-pane,
+  .side {
+    height: auto;
+  }
+  .toolbox {
+    max-height: 18rem;
+  }
+  .workspace {
+    flex: none;
+    height: 65vh;
+  }
+  .preview {
+    flex: none;
+    height: 14rem;
+  }
+  .app-bar {
+    grid-template-columns: 1fr auto;
+    padding: 0.75rem 1rem;
+  }
+  .brand h1 {
+    font-size: 1.1rem;
+  }
+  .brand img {
+    width: 28px;
+    height: 28px;
+  }
+  .level-switch {
+    grid-column: 1 / -1;
+    order: 3;
+  }
+  .level-switch .btn {
+    flex: 1;
+  }
+}
+
+/* Buttons filled with the accent need an edge when the accent is the page color. */
+html.high-contrast .btn-run {
+  --bs-btn-border-color: var(--ink);
+  --bs-btn-hover-border-color: var(--ink);
+}

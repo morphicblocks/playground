@@ -1,0 +1,7 @@
+/* Words: blocks read like plain sentences ("repeat 3 times"). The help
+   variant also lists the explanation, which shows under the tile (the
+   framework hides every element a mode does not name). */
+
+.morphic-workspace-root.morphic-mode-in-words .blocklyText {
+  font-family: var(--block-font);
+}

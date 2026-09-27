@@ -1,0 +1,74 @@
+{
+  "blocks": {
+    "languageVersion": 0,
+    "blocks": [
+      {
+        "type": "morphic:make",
+        "x": 32,
+        "y": 32,
+        "fields": { "NAME": "score" },
+        "inputs": {
+          "VALUE": { "shadow": { "type": "morphic:number", "fields": { "NUM": 0 } } }
+        },
+        "next": {
+          "block": {
+            "type": "morphic:repeat",
+            "inputs": {
+              "TIMES": { "shadow": { "type": "morphic:number", "fields": { "NUM": 3 } } },
+              "DO": {
+                "block": {
+                  "type": "morphic:add",
+                  "fields": { "NAME": "score" },
+                  "inputs": {
+                    "VALUE": { "shadow": { "type": "morphic:number", "fields": { "NUM": 5 } } }
+                  }
+                }
+              }
+            },
+            "next": {
+              "block": {
+                "type": "morphic:if_else",
+                "inputs": {
+                  "CONDITION": {
+                    "block": {
+                      "type": "morphic:compare",
+                      "fields": { "OP": ">" },
+                      "inputs": {
+                        "A": { "block": { "type": "morphic:get", "fields": { "NAME": "score" } } },
+                        "B": { "shadow": { "type": "morphic:number", "fields": { "NUM": 10 } } }
+                      }
+                    }
+                  },
+                  "THEN": {
+                    "block": {
+                      "type": "morphic:say",
+                      "inputs": {
+                        "VALUE": { "shadow": { "type": "morphic:text", "fields": { "TEXT": "Well done!" } } }
+                      }
+                    }
+                  },
+                  "ELSE": {
+                    "block": {
+                      "type": "morphic:say",
+                      "inputs": {
+                        "VALUE": { "shadow": { "type": "morphic:text", "fields": { "TEXT": "Keep going!" } } }
+                      }
+                    }
+                  }
+                },
+                "next": {
+                  "block": {
+                    "type": "morphic:say",
+                    "inputs": {
+                      "VALUE": { "block": { "type": "morphic:get", "fields": { "NAME": "score" } } }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

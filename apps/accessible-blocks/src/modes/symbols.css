@@ -1,0 +1,8 @@
+/* Symbols: a symbol before the words on each block, for early readers. The
+   help variant also lists the explanation, which shows under the tile (the
+   framework hides every element a mode does not name). */
+
+.morphic-workspace-root.morphic-mode-with-symbols .blocklyText {
+  font-family: var(--block-font);
+  font-weight: 700;
+}

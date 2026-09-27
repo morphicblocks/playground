@@ -128,6 +128,27 @@
         "Python"
       ],
       "preview": null
+    },
+    {
+      "id": "accessible-blocks",
+      "name": "Accessible Blocks",
+      "description": "The same program as symbols, plain words or Java, with settings for text size, a dark theme, high contrast, a font for dyslexia and explanations on every block.",
+      "details": "Symbols, Words and Java are modes: they change what a block says. Each level comes as a preset, and a twin preset adds a short explanation under every block in the toolbox. Dropdowns store one value and show it per mode, so the same choice reads \"is more than\" in words and > in Java. Next to the blocks, a read only view shows the same program in Java, or in plain words when the blocks are Java.\n\nThe settings change how everything looks, not what it says: a text size slider (CSS and Blockly's zoom), a dark theme, high contrast with outlined blocks, and OpenDyslexic, served by the app itself. The block colors stay apart for colorblind people, and every block also says in words what it does. Run shows what the program prints and stops loops after 1,000 rounds.",
+      "useCase": "Accessibility",
+      "question": "Can blocks adapt to how people see and read?",
+      "framework": "preact",
+      "bundler": "esbuild",
+      "packageManager": "bun",
+      "styling": "bootstrap",
+      "views": [
+        "blocks",
+        "preview"
+      ],
+      "codeShown": [
+        "Java",
+        "Plain words"
+      ],
+      "preview": null
     }
   ]
 }
