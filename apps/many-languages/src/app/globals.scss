@@ -1,0 +1,434 @@
+// A subway map in the colors of VS Code's Dark+ theme: dark signs, light
+// text and bold rounded lines. Every
+// language is a line with its own color; the page sets --line and --line-ink
+// to the chosen one, so the accent changes with the language. Only system
+// fonts are used; each script falls back to a font the system has for it.
+
+$ground: #1e1e1e;
+$sign: #252526;
+$ink: #d4d4d4;
+$muted: #9d9d9d;
+$rule: #3c3c3c;
+$track: #505050;
+
+$sans: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "PingFang SC", "Hiragino Sans GB",
+  "Microsoft YaHei", "Geeza Pro", "Noto Sans Arabic", Tahoma, sans-serif;
+$mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+$line-width: 8px;
+$stop: 26px;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: $ground;
+  color: $ink;
+  font-family: $sans;
+}
+
+// Arabic and Chinese read better a little larger at the same size.
+html[lang="ar"] body,
+html[lang="zh"] body {
+  font-size: 17px;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  height: 100dvh;
+  min-height: 640px;
+  padding: 20px 28px 28px;
+}
+
+// Masthead: greetings, title and intro on one side, the route of languages
+// on the other.
+
+.masthead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "greet switch"
+    "title switch"
+    "intro switch";
+  column-gap: 32px;
+  align-items: center;
+}
+
+.greetings {
+  grid-area: greet;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 0;
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $muted;
+
+  span:not(:last-child)::after {
+    content: "•";
+    padding: 0 9px;
+    color: $track;
+  }
+}
+
+// The title sits on a short stretch of the chosen line, like a station sign.
+h1 {
+  grid-area: title;
+  justify-self: start;
+  margin: 6px 0 8px;
+  padding-bottom: 6px;
+  font-size: 2.3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  border-bottom: $line-width solid var(--line);
+  transition: border-color 200ms ease;
+}
+
+.intro {
+  grid-area: intro;
+  margin: 0;
+  // Two lines in every language (a break follows the colon), so switching
+  // languages never moves the layout.
+  // Fixed in px: Chinese and Arabic use a larger font, and em would grow.
+  min-height: 50px;
+  white-space: pre-line;
+  color: $muted;
+  line-height: 1.45;
+}
+
+// The language switch is a route: a gray track with one stop per language.
+// Each stop shows its line color; the chosen one is filled and ringed.
+.switch {
+  grid-area: switch;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, 84px);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: calc(#{$stop} / 2 - #{$line-width} / 2 + 6px);
+    left: 42px;
+    right: 42px;
+    height: $line-width;
+    background: $track;
+    border-radius: $line-width;
+  }
+
+  button {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 4px 8px;
+    background: none;
+    color: $ink;
+    border: 0;
+    border-radius: 12px;
+    font: inherit;
+    cursor: pointer;
+
+    // The stop itself: a ring in the language's line color.
+    &::before {
+      content: "";
+      width: $stop;
+      height: $stop;
+      background: $sign;
+      border: 6px solid var(--stop);
+      border-radius: 50%;
+      transition: transform 150ms ease;
+    }
+
+    &:hover::before {
+      transform: scale(1.12);
+    }
+
+    &:focus-visible {
+      outline: 3px solid $ink;
+      outline-offset: 2px;
+    }
+
+    &[aria-pressed="true"] {
+      &::before {
+        background: var(--stop);
+        box-shadow: 0 0 0 4px $sign, 0 0 0 7px var(--stop);
+        transform: scale(1.1);
+      }
+
+      .native {
+        font-weight: 800;
+      }
+    }
+  }
+
+  .native {
+    font-size: 0.98rem;
+    font-weight: 600;
+  }
+
+}
+
+// Each stop's color, from the language on the button (the same colors as
+// `line` in languages.ts).
+@each $code, $color in (en: #3b82d6, de: #d4b72c, es: #e07b4f, el: #3fa9e0, zh: #7fb35a, ar: #c257b8) {
+  .switch button[lang="#{$code}"] {
+    --stop: #{$color};
+  }
+}
+
+// The desk: toolbox, program, and on the far side pseudocode above output.
+
+.desk {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr) 380px;
+  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "toolbox workspace preview"
+    "toolbox workspace output";
+  gap: 18px;
+}
+
+// Panes look like VS Code editor groups: a tab strip on top with one active
+// tab, named in the chosen line's color (a lighter shade of it, so it reads
+// well on the dark tab).
+.pane {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  // The pane shows the tab strip color; its content areas are editor dark.
+  background: $sign;
+  border: 1px solid $rule;
+  border-radius: 8px;
+
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    margin: 0;
+    padding: 8px 16px 9px;
+    background: $ground;
+    color: var(--line-text);
+    border-top: 2px solid var(--line-text);
+    font-size: 0.82rem;
+    font-weight: 600;
+
+    &::before {
+      content: "";
+      flex: none;
+      width: 8px;
+      height: 8px;
+      background: var(--line-text);
+      border-radius: 50%;
+    }
+  }
+}
+
+.toolbox {
+  grid-area: toolbox;
+}
+
+.workspace {
+  grid-area: workspace;
+}
+
+.preview {
+  grid-area: preview;
+}
+
+.output {
+  grid-area: output;
+}
+
+.fill {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  background: $ground;
+}
+
+.preview .fill {
+  overflow: auto;
+  // The code view is only as tall as its lines; the space below matches it.
+  background: $ground;
+}
+
+// Toolbox tiles. The framework draws each tile's elements; the colored edge
+// sits on the start side, so it moves to the right in Arabic.
+
+.toolbox-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 12px;
+  background: $ground;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  [data-category] {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+.morphic-block {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px 10px 9px;
+  background: $sign;
+  border: 1px solid $rule;
+  border-inline-start: 6px solid var(--morphic-block-color, $muted);
+  border-radius: 10px;
+  cursor: grab;
+  overflow-x: auto;
+
+  &:hover {
+    border-color: $track;
+    border-inline-start-color: var(--morphic-block-color, $muted);
+    background: #2a2d2e;
+  }
+
+  [class*="morphic-element-title_"] {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: $muted;
+  }
+}
+
+// Output
+
+.output-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $sign;
+}
+
+.run {
+  margin: 5px 10px;
+  padding: 5px 16px;
+  background: var(--line);
+  color: var(--line-ink);
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(1.08);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--line-ink);
+    outline-offset: 2px;
+  }
+}
+
+.output pre {
+  margin: 0;
+  min-height: 130px;
+  max-height: 200px;
+  overflow: auto;
+  padding: 10px 14px;
+  background: $ground;
+  font-family: $mono;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+
+  .quiet {
+    font-family: $sans;
+    color: $muted;
+  }
+
+  .error {
+    color: #ff8a80;
+  }
+}
+
+// Medium screens: narrower side columns, and the route wraps into two rows
+// without the track.
+@media (max-width: 1180px) {
+  .desk {
+    grid-template-columns: 220px minmax(0, 1fr) 310px;
+  }
+
+  .switch {
+    grid-template-columns: repeat(3, 92px);
+    row-gap: 6px;
+
+    &::before {
+      display: none;
+    }
+  }
+}
+
+// Small screens: everything in one column, the page scrolls.
+@media (max-width: 900px) {
+  .page {
+    height: auto;
+    min-height: 0;
+    padding: 14px 16px 24px;
+  }
+
+  .masthead {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "greet" "title" "intro" "switch";
+    row-gap: 4px;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+  }
+
+  .switch {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 14px;
+  }
+
+  .desk {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    grid-template-areas: "toolbox" "workspace" "preview" "output";
+  }
+
+  .toolbox {
+    height: 280px;
+  }
+
+  .workspace {
+    height: 440px;
+  }
+
+  .preview {
+    height: 320px;
+  }
+}
+
+// Block colors are VS Code's Dark+ token colors, deeper and more saturated: functions
+// (output), strings (values), variables, numbers (math), keywords (logic) and
+// control flow. The six languages use the same colors. They are light, so
+// every block's own labels are dark (nested blocks keep
+// theirs, because only a block's direct text matches).
+[class*="morphic-category-"] > g > .blocklyText {
+  fill: #1e1e1e;
+}

@@ -1,0 +1,12 @@
+/* العربية: Arabic script, right to left. The direction comes from Blockly's
+   rtl option at mount; this file picks a font that joins the letters well
+   and sets it a little larger.
+   The "ar" mode serves the toolbox tiles, the workspace blocks and the
+   pseudocode preview (which takes its look from previewTheme instead). The framework reads this font for the blocks and
+   sizes them to it. */
+
+.morphic-workspace-root.morphic-mode-ar .blocklyText,
+.morphic-block.morphic-mode-ar .blocklyText {
+  font-family: "Geeza Pro", "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  font-size: 13pt;
+}

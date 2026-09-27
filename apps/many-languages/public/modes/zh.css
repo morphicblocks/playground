@@ -1,0 +1,9 @@
+/* 中文: Chinese characters need a CJK font; each system names its own.
+   The "zh" mode serves the toolbox tiles, the workspace blocks and the
+   pseudocode preview (which takes its look from previewTheme instead). The framework reads this font for the blocks and
+   sizes them to it. */
+
+.morphic-workspace-root.morphic-mode-zh .blocklyText,
+.morphic-block.morphic-mode-zh .blocklyText {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
+}

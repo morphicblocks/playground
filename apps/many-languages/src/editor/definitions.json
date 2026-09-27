@@ -1,0 +1,755 @@
+{
+  "elementTypes": {
+    "title_en": "text",
+    "pseudo_en": "code",
+    "title_de": "text",
+    "pseudo_de": "code",
+    "title_es": "text",
+    "pseudo_es": "code",
+    "title_el": "text",
+    "pseudo_el": "code",
+    "title_zh": "text",
+    "pseudo_zh": "code",
+    "title_ar": "text",
+    "pseudo_ar": "code"
+  },
+  "modes": [
+    {
+      "name": "en",
+      "elements": [
+        "title_en",
+        "pseudo_en"
+      ]
+    },
+    {
+      "name": "de",
+      "elements": [
+        "title_de",
+        "pseudo_de"
+      ]
+    },
+    {
+      "name": "es",
+      "elements": [
+        "title_es",
+        "pseudo_es"
+      ]
+    },
+    {
+      "name": "el",
+      "elements": [
+        "title_el",
+        "pseudo_el"
+      ]
+    },
+    {
+      "name": "zh",
+      "elements": [
+        "title_zh",
+        "pseudo_zh"
+      ]
+    },
+    {
+      "name": "ar",
+      "elements": [
+        "title_ar",
+        "pseudo_ar"
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "english",
+      "label": "English",
+      "toolbox": "en",
+      "workspace": "en",
+      "preview": "en"
+    },
+    {
+      "name": "german",
+      "label": "Deutsch",
+      "toolbox": "de",
+      "workspace": "de",
+      "preview": "de"
+    },
+    {
+      "name": "spanish",
+      "label": "Español",
+      "toolbox": "es",
+      "workspace": "es",
+      "preview": "es"
+    },
+    {
+      "name": "greek",
+      "label": "Ελληνικά",
+      "toolbox": "el",
+      "workspace": "el",
+      "preview": "el"
+    },
+    {
+      "name": "chinese",
+      "label": "中文",
+      "toolbox": "zh",
+      "workspace": "zh",
+      "preview": "zh"
+    },
+    {
+      "name": "arabic",
+      "label": "العربية",
+      "toolbox": "ar",
+      "workspace": "ar",
+      "preview": "ar"
+    }
+  ],
+  "highlighting": {
+    "pseudo_en": {
+      "keywords": [
+        "print",
+        "set",
+        "to",
+        "if",
+        "then",
+        "else",
+        "end",
+        "repeat",
+        "times",
+        "and",
+        "or",
+        "true",
+        "false"
+      ],
+      "strings": [
+        "\""
+      ],
+      "numbers": true,
+      "colors": {
+        "keyword": "#569cd6",
+        "string": "#ce9178",
+        "number": "#b5cea8",
+        "comment": "#6a9955"
+      }
+    },
+    "pseudo_de": {
+      "keywords": [
+        "zeige",
+        "setze",
+        "auf",
+        "wenn",
+        "dann",
+        "sonst",
+        "ende",
+        "wiederhole",
+        "mal",
+        "und",
+        "oder",
+        "wahr",
+        "falsch"
+      ],
+      "numbers": true,
+      "colors": {
+        "keyword": "#569cd6",
+        "string": "#ce9178",
+        "number": "#b5cea8",
+        "comment": "#6a9955"
+      }
+    },
+    "pseudo_es": {
+      "keywords": [
+        "mostrar",
+        "asignar",
+        "a",
+        "el",
+        "valor",
+        "si",
+        "entonces",
+        "no",
+        "fin",
+        "repetir",
+        "veces",
+        "y",
+        "o",
+        "verdadero",
+        "falso"
+      ],
+      "numbers": true,
+      "colors": {
+        "keyword": "#569cd6",
+        "string": "#ce9178",
+        "number": "#b5cea8",
+        "comment": "#6a9955"
+      }
+    },
+    "pseudo_el": {
+      "keywords": [
+        "εμφάνισε",
+        "όρισε",
+        "σε",
+        "αν",
+        "τότε",
+        "αλλιώς",
+        "τέλος",
+        "επανάλαβε",
+        "φορές",
+        "επανάληψης",
+        "και",
+        "ή",
+        "αληθές",
+        "ψευδές"
+      ],
+      "numbers": true,
+      "colors": {
+        "keyword": "#569cd6",
+        "string": "#ce9178",
+        "number": "#b5cea8",
+        "comment": "#6a9955"
+      }
+    },
+    "pseudo_zh": {
+      "keywords": [
+        "显示",
+        "设",
+        "为",
+        "如果",
+        "那么",
+        "否则",
+        "结束如果",
+        "重复",
+        "次",
+        "结束重复",
+        "并且",
+        "或者",
+        "真",
+        "假"
+      ],
+      "numbers": true,
+      "colors": {
+        "keyword": "#569cd6",
+        "string": "#ce9178",
+        "number": "#b5cea8",
+        "comment": "#6a9955"
+      }
+    },
+    "pseudo_ar": {
+      "keywords": [
+        "اطبع",
+        "اجعل",
+        "تساوي",
+        "إذا",
+        "عندئذ",
+        "وإلا",
+        "نهاية",
+        "كرر",
+        "مرات",
+        "التكرار",
+        "و",
+        "أو",
+        "صحيح",
+        "خطأ"
+      ],
+      "numbers": true,
+      "colors": {
+        "keyword": "#569cd6",
+        "string": "#ce9178",
+        "number": "#b5cea8",
+        "comment": "#6a9955"
+      }
+    }
+  },
+  "categories": [
+    {
+      "name": "Output",
+      "color": "#d4b72c"
+    },
+    {
+      "name": "Values",
+      "color": "#e07b4f"
+    },
+    {
+      "name": "Variables",
+      "color": "#3fa9e0"
+    },
+    {
+      "name": "Math",
+      "color": "#7fb35a"
+    },
+    {
+      "name": "Logic",
+      "color": "#3b82d6"
+    },
+    {
+      "name": "Control",
+      "color": "#c257b8"
+    }
+  ],
+  "blocks": [
+    {
+      "identifier": "print",
+      "category": "Output",
+      "elements": {
+        "title_en": "Print",
+        "pseudo_en": "print %1",
+        "title_de": "Zeigen",
+        "pseudo_de": "zeige %1",
+        "title_es": "Mostrar",
+        "pseudo_es": "mostrar %1",
+        "title_el": "Εμφάνιση",
+        "pseudo_el": "εμφάνισε %1",
+        "title_zh": "显示",
+        "pseudo_zh": "显示 %1",
+        "title_ar": "اطبع",
+        "pseudo_ar": "اطبع %1"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "VALUE",
+          "default": {
+            "shadow": "text",
+            "fieldValues": {
+              "TEXT": "🎉"
+            }
+          }
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "text",
+      "category": "Values",
+      "elements": {
+        "title_en": "Text",
+        "pseudo_en": "\"%TEXT\"",
+        "title_de": "Text",
+        "pseudo_de": "„%TEXT“",
+        "title_es": "Texto",
+        "pseudo_es": "«%TEXT»",
+        "title_el": "Κείμενο",
+        "pseudo_el": "«%TEXT»",
+        "title_zh": "文本",
+        "pseudo_zh": "“%TEXT”",
+        "title_ar": "نص",
+        "pseudo_ar": "«%TEXT»"
+      },
+      "fields": {
+        "TEXT": {
+          "type": "text",
+          "default": "🎉"
+        }
+      },
+      "output": "String"
+    },
+    {
+      "identifier": "number",
+      "category": "Values",
+      "elements": {
+        "title_en": "Number",
+        "pseudo_en": "%NUM",
+        "title_de": "Zahl",
+        "pseudo_de": "%NUM",
+        "title_es": "Número",
+        "pseudo_es": "%NUM",
+        "title_el": "Αριθμός",
+        "pseudo_el": "%NUM",
+        "title_zh": "数字",
+        "pseudo_zh": "%NUM",
+        "title_ar": "رقم",
+        "pseudo_ar": "%NUM"
+      },
+      "fields": {
+        "NUM": {
+          "type": "number",
+          "default": 0
+        }
+      },
+      "output": "Number"
+    },
+    {
+      "identifier": "bool",
+      "category": "Values",
+      "elements": {
+        "title_en": "True or false",
+        "pseudo_en": "%VALUE",
+        "title_de": "Wahr oder falsch",
+        "pseudo_de": "%VALUE",
+        "title_es": "Verdadero o falso",
+        "pseudo_es": "%VALUE",
+        "title_el": "Αληθές ή ψευδές",
+        "pseudo_el": "%VALUE",
+        "title_zh": "真/假",
+        "pseudo_zh": "%VALUE",
+        "title_ar": "صح أو خطأ",
+        "pseudo_ar": "%VALUE"
+      },
+      "fields": {
+        "VALUE": {
+          "type": "dropdown",
+          "default": "true",
+          "options": [
+            {
+              "value": "true",
+              "display": {
+                "pseudo_en": "true",
+                "pseudo_de": "wahr",
+                "pseudo_es": "verdadero",
+                "pseudo_el": "αληθές",
+                "pseudo_zh": "真",
+                "pseudo_ar": "صحيح"
+              }
+            },
+            {
+              "value": "false",
+              "display": {
+                "pseudo_en": "false",
+                "pseudo_de": "falsch",
+                "pseudo_es": "falso",
+                "pseudo_el": "ψευδές",
+                "pseudo_zh": "假",
+                "pseudo_ar": "خطأ"
+              }
+            }
+          ]
+        }
+      },
+      "output": "Boolean"
+    },
+    {
+      "identifier": "set",
+      "category": "Variables",
+      "elements": {
+        "title_en": "Set variable",
+        "pseudo_en": "set %NAME to %1",
+        "title_de": "Variable setzen",
+        "pseudo_de": "setze %NAME auf %1",
+        "title_es": "Asignar variable",
+        "pseudo_es": "asignar a %NAME el valor %1",
+        "title_el": "Ορισμός μεταβλητής",
+        "pseudo_el": "όρισε %NAME σε %1",
+        "title_zh": "设置变量",
+        "pseudo_zh": "设 %NAME 为 %1",
+        "title_ar": "تعيين متغير",
+        "pseudo_ar": "اجعل %NAME تساوي %1"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "VALUE",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "0"
+            }
+          }
+        }
+      },
+      "fields": {
+        "NAME": {
+          "type": "text",
+          "default": "n"
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "get",
+      "category": "Variables",
+      "elements": {
+        "title_en": "Variable",
+        "pseudo_en": "%NAME",
+        "title_de": "Variable",
+        "pseudo_de": "%NAME",
+        "title_es": "Variable",
+        "pseudo_es": "%NAME",
+        "title_el": "Μεταβλητή",
+        "pseudo_el": "%NAME",
+        "title_zh": "变量",
+        "pseudo_zh": "%NAME",
+        "title_ar": "متغير",
+        "pseudo_ar": "%NAME"
+      },
+      "fields": {
+        "NAME": {
+          "type": "text",
+          "default": "n"
+        }
+      },
+      "output": "Number"
+    },
+    {
+      "identifier": "math",
+      "category": "Math",
+      "elements": {
+        "title_en": "Calculate",
+        "pseudo_en": "%1 %OP %2",
+        "title_de": "Rechnen",
+        "pseudo_de": "%1 %OP %2",
+        "title_es": "Calcular",
+        "pseudo_es": "%1 %OP %2",
+        "title_el": "Υπολογισμός",
+        "pseudo_el": "%1 %OP %2",
+        "title_zh": "计算",
+        "pseudo_zh": "%1 %OP %2",
+        "title_ar": "احسب",
+        "pseudo_ar": "%1 %OP %2"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "A",
+          "check": "Number",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "1"
+            }
+          }
+        },
+        "2": {
+          "kind": "value",
+          "name": "B",
+          "check": "Number",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "2"
+            }
+          }
+        }
+      },
+      "fields": {
+        "OP": {
+          "type": "dropdown",
+          "default": "+",
+          "options": [
+            "+",
+            "−",
+            "×",
+            "÷"
+          ]
+        }
+      },
+      "output": "Number",
+      "inputsInline": true
+    },
+    {
+      "identifier": "compare",
+      "category": "Math",
+      "elements": {
+        "title_en": "Compare",
+        "pseudo_en": "%1 %OP %2",
+        "title_de": "Vergleichen",
+        "pseudo_de": "%1 %OP %2",
+        "title_es": "Comparar",
+        "pseudo_es": "%1 %OP %2",
+        "title_el": "Σύγκριση",
+        "pseudo_el": "%1 %OP %2",
+        "title_zh": "比较",
+        "pseudo_zh": "%1 %OP %2",
+        "title_ar": "قارن",
+        "pseudo_ar": "%1 %OP %2"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "A",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "5"
+            }
+          }
+        },
+        "2": {
+          "kind": "value",
+          "name": "B",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "3"
+            }
+          }
+        }
+      },
+      "fields": {
+        "OP": {
+          "type": "dropdown",
+          "default": ">",
+          "options": [
+            ">",
+            "<",
+            "=",
+            "≠"
+          ]
+        }
+      },
+      "output": "Boolean",
+      "inputsInline": true
+    },
+    {
+      "identifier": "logic",
+      "category": "Logic",
+      "elements": {
+        "title_en": "And, or",
+        "pseudo_en": "%1 %OP %2",
+        "title_de": "Und, oder",
+        "pseudo_de": "%1 %OP %2",
+        "title_es": "Y, o",
+        "pseudo_es": "%1 %OP %2",
+        "title_el": "Και, ή",
+        "pseudo_el": "%1 %OP %2",
+        "title_zh": "并且、或者",
+        "pseudo_zh": "%1 %OP %2",
+        "title_ar": "و، أو",
+        "pseudo_ar": "%1 %OP %2"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "A",
+          "check": "Boolean"
+        },
+        "2": {
+          "kind": "value",
+          "name": "B",
+          "check": "Boolean"
+        }
+      },
+      "fields": {
+        "OP": {
+          "type": "dropdown",
+          "default": "&&",
+          "options": [
+            {
+              "value": "&&",
+              "display": {
+                "pseudo_en": "and",
+                "pseudo_de": "und",
+                "pseudo_es": "y",
+                "pseudo_el": "και",
+                "pseudo_zh": "并且",
+                "pseudo_ar": "و"
+              }
+            },
+            {
+              "value": "||",
+              "display": {
+                "pseudo_en": "or",
+                "pseudo_de": "oder",
+                "pseudo_es": "o",
+                "pseudo_el": "ή",
+                "pseudo_zh": "或者",
+                "pseudo_ar": "أو"
+              }
+            }
+          ]
+        }
+      },
+      "output": "Boolean",
+      "inputsInline": true
+    },
+    {
+      "identifier": "if",
+      "category": "Control",
+      "elements": {
+        "title_en": "If",
+        "pseudo_en": "if %1 then\n  %2\nend if",
+        "title_de": "Wenn",
+        "pseudo_de": "wenn %1 dann\n  %2\nende wenn",
+        "title_es": "Si",
+        "pseudo_es": "si %1 entonces\n  %2\nfin si",
+        "title_el": "Αν",
+        "pseudo_el": "αν %1 τότε\n  %2\nτέλος αν",
+        "title_zh": "如果",
+        "pseudo_zh": "如果 %1 那么\n  %2\n结束如果",
+        "title_ar": "إذا",
+        "pseudo_ar": "إذا %1 عندئذ\n  %2\nنهاية إذا"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "CONDITION",
+          "check": "Boolean"
+        },
+        "2": {
+          "kind": "statement",
+          "name": "DO"
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "ifelse",
+      "category": "Control",
+      "elements": {
+        "title_en": "If, else",
+        "pseudo_en": "if %1 then\n  %2\nelse\n  %3\nend if",
+        "title_de": "Wenn, sonst",
+        "pseudo_de": "wenn %1 dann\n  %2\nsonst\n  %3\nende wenn",
+        "title_es": "Si, si no",
+        "pseudo_es": "si %1 entonces\n  %2\nsi no\n  %3\nfin si",
+        "title_el": "Αν, αλλιώς",
+        "pseudo_el": "αν %1 τότε\n  %2\nαλλιώς\n  %3\nτέλος αν",
+        "title_zh": "如果、否则",
+        "pseudo_zh": "如果 %1 那么\n  %2\n否则\n  %3\n结束如果",
+        "title_ar": "إذا، وإلا",
+        "pseudo_ar": "إذا %1 عندئذ\n  %2\nوإلا\n  %3\nنهاية إذا"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "CONDITION",
+          "check": "Boolean"
+        },
+        "2": {
+          "kind": "statement",
+          "name": "DO"
+        },
+        "3": {
+          "kind": "statement",
+          "name": "ELSE"
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "repeat",
+      "category": "Control",
+      "elements": {
+        "title_en": "Repeat",
+        "pseudo_en": "repeat %1 times\n  %2\nend repeat",
+        "title_de": "Wiederholen",
+        "pseudo_de": "wiederhole %1 mal\n  %2\nende wiederhole",
+        "title_es": "Repetir",
+        "pseudo_es": "repetir %1 veces\n  %2\nfin repetir",
+        "title_el": "Επανάληψη",
+        "pseudo_el": "επανάλαβε %1 φορές\n  %2\nτέλος επανάληψης",
+        "title_zh": "重复",
+        "pseudo_zh": "重复 %1 次\n  %2\n结束重复",
+        "title_ar": "كرر",
+        "pseudo_ar": "كرر %1 مرات\n  %2\nنهاية التكرار"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "TIMES",
+          "check": "Number",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "3"
+            }
+          }
+        },
+        "2": {
+          "kind": "statement",
+          "name": "DO"
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    }
+  ]
+}

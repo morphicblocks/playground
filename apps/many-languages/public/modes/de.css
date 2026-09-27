@@ -1,0 +1,9 @@
+/* Deutsch: Latin script with umlauts and „low high“ quotes.
+   The "de" mode serves the toolbox tiles, the workspace blocks and the
+   pseudocode preview (which takes its look from previewTheme instead). The framework reads this font for the blocks and
+   sizes them to it. */
+
+.morphic-workspace-root.morphic-mode-de .blocklyText,
+.morphic-block.morphic-mode-de .blocklyText {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}

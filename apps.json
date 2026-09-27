@@ -149,6 +149,27 @@
         "Plain words"
       ],
       "preview": null
+    },
+    {
+      "id": "many-languages",
+      "name": "Many Languages",
+      "description": "The same twelve blocks speak English, Deutsch, Español, Ελληνικά, 中文 and العربية: pick a language and the blocks, the toolbox and the pseudocode change while the program stays.",
+      "details": "Every block has a title and its text in six languages. Each language is one mode that a preset gives to the toolbox, the workspace and the pseudocode preview, so a switch shows Latin, Greek, Chinese and Arabic script and each language's own quote marks. Dropdown words such as wahr, αληθές, 真 or و come from the per element display map while the stored value stays the same; symbols such as × and ≠ are the stored values themselves.\n\nArabic turns the blocks, the toolbox tiles and the text right to left while the page layout stays where it is: the host decides where each view sits, the content follows the language. Blockly reads the direction only when it starts, so the app mounts the engine again and carries the program over with serializeWorkspace and loadWorkspace. The page text follows the language too, and Run shows that the program prints the same in every language.",
+      "useCase": "Localization and right to left",
+      "question": "Can the same blocks speak the learner's language?",
+      "framework": "next",
+      "bundler": "next",
+      "packageManager": "npm",
+      "styling": "sass",
+      "views": [
+        "blocks",
+        "preview"
+      ],
+      "codeShown": [
+        "Pseudocode in 6 languages"
+      ],
+      "preview": null,
+      "outDir": "out"
     }
   ]
 }
