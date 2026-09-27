@@ -15,11 +15,6 @@ const levels = [
   { topic: "Loops", category: "Loops" },
   { topic: "Functions", category: "Functions" },
 ];
-// The favicon is the logo as a data URI, so it costs no request.
-document
-  .querySelector<HTMLLinkElement>('link[rel="icon"]')
-  ?.setAttribute("href", `data:image/svg+xml,${encodeURIComponent(logoSvg(theme.ink, theme.accent))}`);
-
 const colorOf = (category: string) => definitions.categories.find((c) => c.name === category)?.color;
 const blocksUpTo = (level: number) => {
   const open = new Set(levels.slice(0, level).map((l) => l.category));

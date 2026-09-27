@@ -31,6 +31,9 @@ body {
 }
 
 .masthead-name {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
   margin: 0;
   font: 600 0.8rem/1 var(--sans);
   letter-spacing: 0.18em;

@@ -128,7 +128,7 @@ export function App() {
     <div className={styles.shell}>
       <header className={styles.bar}>
         <span className={styles.brand}>
-          <span className={styles.dot} aria-hidden="true" />
+          <img src="logo.svg" alt="" width="22" height="22" />
           block_to_text.py
         </span>
         <nav className={styles.tabs} role="tablist" aria-label="Steps">

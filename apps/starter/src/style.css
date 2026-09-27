@@ -23,6 +23,7 @@ body {
   padding: 0 1.25rem;
   display: flex;
   align-items: center;
+  gap: 0.6rem;
   font-weight: 600;
   border-bottom: 1px solid var(--line);
 }

@@ -173,7 +173,7 @@ export function App() {
       <div class="shell" inert={settingsOpen}>
         <header class="app-bar">
           <div class="brand">
-            <img src="favicon.svg" alt="" width="36" height="36" />
+            <img src="logo.svg" alt="" width="36" height="36" />
             <h1>Accessible Blocks</h1>
           </div>
           <div class="btn-group level-switch" role="radiogroup" aria-label="Show blocks as">

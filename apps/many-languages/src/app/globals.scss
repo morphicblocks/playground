@@ -78,6 +78,9 @@ html[lang="zh"] body {
 
 // The title sits on a short stretch of the chosen line, like a station sign.
 h1 {
+  display: flex;
+  align-items: center;
+  gap: 14px;
   grid-area: title;
   justify-self: start;
   margin: 6px 0 8px;

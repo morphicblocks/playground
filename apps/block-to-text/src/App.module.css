@@ -52,14 +52,6 @@
   white-space: nowrap;
 }
 
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 10px var(--accent);
-}
-
 .tabs {
   display: flex;
   align-self: stretch;

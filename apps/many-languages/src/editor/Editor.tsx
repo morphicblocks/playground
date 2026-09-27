@@ -160,6 +160,7 @@ export default function Editor() {
           ))}
         </p>
         <h1>
+          <img src={`${base}/logo.svg`} alt="" width="40" height="40" />
           <bdi lang="en">Many Languages</bdi>
         </h1>
         <p className="intro" dir={dir}>

@@ -1,11 +1,9 @@
-// Colors Blockly and the favicon need as values; page colors live in style.css.
+// Colors Blockly needs as values; page colors live in style.css. The tab icon
+// is public/logo.svg, the same logo on the page's dark color.
 export const theme = {
   workspace: "#12303d",
   grid: "#1f4758",
   scrollbar: "#2c5a6d",
-  // The favicon cannot read CSS variables, so it gets fixed colors.
-  ink: "#e3f1f6",
-  accent: "#35a8cf",
 };
 
 /** The logo: three rising steps, the last one in the accent color. */
