@@ -1,6 +1,8 @@
-/* The "blocks" mode, shown in the toolbox. Each tile lists its elements in
-   the mode's order: title, icon, the block drawn from pseudocode, hint. The
-   framework hides every element the mode does not name. */
+/* The "blocks" mode, shown in the toolbox and the workspace. Each tile lists
+   its elements in the mode's order: title, icon, the block drawn from
+   pseudocode, hint. The framework hides every element the mode does not name.
+   The workspace draws blocks from the mode's first code element, pseudocode,
+   and ignores the rest. */
 
 .morphic-block.morphic-mode-blocks {
   display: grid;
@@ -39,4 +41,10 @@
   font-size: 0.78rem;
   line-height: 1.35;
   color: #6b7580;
+}
+
+/* In the workspace, blocks read as plain words. A slightly bolder label keeps
+   those words easy to read on the colors. */
+.morphic-workspace-root.morphic-mode-blocks .blocklyText {
+  font-weight: 600;
 }

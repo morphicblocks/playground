@@ -23,7 +23,7 @@ npm run dev
 `npm run build` writes a static site to `dist/`.
 <!-- /generated:top -->
 
-Each of the five blocks (print, text, number, math, repeat) has five elements: a title, an icon, a one sentence hint, pseudocode and JavaScript. Three modes pick from them, one per view: the toolbox shows title, icon, block and hint; the workspace shows the pseudocode; the code view shows the JavaScript. The ⓘ button next to each pane names the mode it shows.
+Each of the five blocks (print, text, number, math, repeat) has five elements: a title, an icon, a one sentence hint, pseudocode and JavaScript. Two modes pick from them: the blocks mode serves the toolbox (title, icon, block and hint) and the workspace, which draws only the mode's first code element, the pseudocode; the javascript mode fills the code view. The ⓘ button next to each pane names the mode it shows.
 
 ## Where to look
 

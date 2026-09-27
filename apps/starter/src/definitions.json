@@ -1,23 +1,57 @@
 {
   "elementTypes": {
     "title": "text",
-    "icon": { "type": "image", "size": 22 },
+    "icon": {
+      "type": "image",
+      "size": 22
+    },
     "hint": "text",
     "pseudocode": "code",
     "code-js": "code"
   },
   "modes": [
-    { "name": "blocks", "elements": ["title", "icon", "pseudocode", "hint"] },
-    { "name": "pseudo", "elements": ["pseudocode"] },
-    { "name": "javascript", "elements": ["code-js"] }
+    {
+      "name": "blocks",
+      "elements": [
+        "title",
+        "icon",
+        "pseudocode",
+        "hint"
+      ]
+    },
+    {
+      "name": "javascript",
+      "elements": [
+        "code-js"
+      ]
+    }
   ],
   "presets": [
-    { "name": "main", "toolbox": "blocks", "workspace": "pseudo", "codespace": "javascript" }
+    {
+      "name": "main",
+      "toolbox": "blocks",
+      "workspace": "blocks",
+      "codespace": "javascript"
+    }
   ],
   "highlighting": {
     "code-js": {
-      "keywords": ["for", "let", "const", "if", "else", "while", "return", "function", "true", "false"],
-      "strings": ["\"", "'"],
+      "keywords": [
+        "for",
+        "let",
+        "const",
+        "if",
+        "else",
+        "while",
+        "return",
+        "function",
+        "true",
+        "false"
+      ],
+      "strings": [
+        "\"",
+        "'"
+      ],
       "numbers": true,
       "comment": "//",
       "colors": {
@@ -29,10 +63,22 @@
     }
   },
   "categories": [
-    { "name": "Output", "color": "#4A90D9" },
-    { "name": "Values", "color": "#3DAE8A" },
-    { "name": "Math", "color": "#9C6ADE" },
-    { "name": "Loops", "color": "#EE9A4D" }
+    {
+      "name": "Output",
+      "color": "#4A90D9"
+    },
+    {
+      "name": "Values",
+      "color": "#3DAE8A"
+    },
+    {
+      "name": "Math",
+      "color": "#9C6ADE"
+    },
+    {
+      "name": "Loops",
+      "color": "#EE9A4D"
+    }
   ],
   "blocks": [
     {
@@ -49,7 +95,12 @@
         "1": {
           "kind": "value",
           "name": "VALUE",
-          "default": { "shadow": "text", "fieldValues": { "TEXT": "Hello, world!" } }
+          "default": {
+            "shadow": "text",
+            "fieldValues": {
+              "TEXT": "Hello, world!"
+            }
+          }
         }
       },
       "shape": "statement",
@@ -66,7 +117,10 @@
         "code-js": "\"%TEXT\""
       },
       "fields": {
-        "TEXT": { "type": "text", "default": "hello" }
+        "TEXT": {
+          "type": "text",
+          "default": "hello"
+        }
       },
       "output": "String"
     },
@@ -81,7 +135,10 @@
         "code-js": "%NUM"
       },
       "fields": {
-        "NUM": { "type": "number", "default": 0 }
+        "NUM": {
+          "type": "number",
+          "default": 0
+        }
       },
       "output": "Number"
     },
@@ -100,19 +157,43 @@
           "kind": "value",
           "name": "A",
           "check": "Number",
-          "default": { "shadow": "number", "fieldValues": { "NUM": "1" } }
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "1"
+            }
+          }
         },
         "2": {
           "kind": "value",
           "name": "B",
           "check": "Number",
-          "default": { "shadow": "number", "fieldValues": { "NUM": "2" } }
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "2"
+            }
+          }
         }
       },
       "fields": {
         "OP": {
           "type": "dropdown",
-          "options": ["+", ["-", "−"], ["*", "×"], ["/", "÷"]],
+          "options": [
+            "+",
+            [
+              "-",
+              "−"
+            ],
+            [
+              "*",
+              "×"
+            ],
+            [
+              "/",
+              "÷"
+            ]
+          ],
           "default": "+"
         }
       },
@@ -134,9 +215,17 @@
           "kind": "value",
           "name": "TIMES",
           "check": "Number",
-          "default": { "shadow": "number", "fieldValues": { "NUM": "3" } }
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "3"
+            }
+          }
         },
-        "2": { "kind": "statement", "name": "DO" }
+        "2": {
+          "kind": "statement",
+          "name": "DO"
+        }
       },
       "shape": "statement",
       "inputsInline": true
