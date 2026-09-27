@@ -21,6 +21,17 @@ bun run dev
 ```
 
 `bun run build` writes a static site to `dist/`.
+
+## Deploy
+
+The build is plain static files, so any static host can serve `dist/`. With Docker:
+
+```sh
+bun run build
+docker run --rm -p 8080:80 -v "$PWD/dist":/usr/share/nginx/html:ro nginx:alpine
+```
+
+Then open http://localhost:8080.
 <!-- /generated:top -->
 
 One language, Python, at every level. What changes from level to level is how much of Python the toolbox offers: output first, then variables and math, decisions, loops and finally functions. Going back down a level takes away the blocks that level does not have yet, after asking once.

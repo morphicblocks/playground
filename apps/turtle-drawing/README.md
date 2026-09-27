@@ -21,6 +21,17 @@ yarn dev
 ```
 
 `yarn build` writes a static site to `dist/`.
+
+## Deploy
+
+The build is plain static files, so any static host can serve `dist/`. With Docker:
+
+```sh
+yarn build
+docker run --rm -p 8080:80 -v "$PWD/dist":/usr/share/nginx/html:ro nginx:alpine
+```
+
+Then open http://localhost:8080.
 <!-- /generated:top -->
 
 The blocks show only pictures and numbers, so children who cannot read yet can still build a program. Behind the scenes the app turns the program into JavaScript, runs it with its own turtle, and plays the turtle's moves back on the canvas. Children never see code; a small `</>` button shows parents and teachers the same program in Logo, in a read only preview view.

@@ -21,6 +21,17 @@ pnpm dev
 ```
 
 `pnpm build` writes a static site to `dist/`.
+
+## Deploy
+
+The build is plain static files, so any static host can serve `dist/`. With Docker:
+
+```sh
+pnpm build
+docker run --rm -p 8080:80 -v "$PWD/dist":/usr/share/nginx/html:ro nginx:alpine
+```
+
+Then open http://localhost:8080.
 <!-- /generated:top -->
 
 ## Where to look

@@ -21,6 +21,17 @@ npm run dev
 ```
 
 `npm run build` writes a static site to `out/`.
+
+## Deploy
+
+The build is plain static files, so any static host can serve `out/`. With Docker:
+
+```sh
+npm run build
+docker run --rm -p 8080:80 -v "$PWD/out":/usr/share/nginx/html:ro nginx:alpine
+```
+
+Then open http://localhost:8080.
 <!-- /generated:top -->
 
 The same twelve blocks speak six languages. Each language is two modes: one for the blocks and toolbox tiles, one for its pseudocode, joined by a preset. Switching between left to right languages applies a preset; switching into or out of Arabic mounts the engine again with Blockly's `rtl` option and carries the program over with `serializeWorkspace()` and `loadWorkspace()`.

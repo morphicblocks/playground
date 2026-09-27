@@ -5,7 +5,7 @@
  * fails when a README is out of date (the check script runs it).
  *
  * A README has two generated parts, each between hidden markers: the top
- * (title, description, badges, table, run commands) and the license at the
+ * (title, description, badges, table, run and deploy commands) and the license at the
  * end. Everything between them is written by hand, e.g. "Where to look".
  * A README without markers is created with a placeholder for that part.
  */
@@ -78,6 +78,7 @@ function top(app: PlaygroundApp): string {
     !!term && all.findIndex((other) => other?.label === term.label) === index,
   );
   const [install, dev, build] = COMMANDS[app.packageManager];
+  const out = app.outDir ?? 'dist';
   return [
     TOP_START,
     `# ${app.name}`,
@@ -101,7 +102,18 @@ function top(app: PlaygroundApp): string {
     dev,
     '```',
     '',
-    `\`${build}\` writes a static site to \`${app.outDir ?? 'dist'}/\`.`,
+    `\`${build}\` writes a static site to \`${out}/\`.`,
+    '',
+    '## Deploy',
+    '',
+    `The build is plain static files, so any static host can serve \`${out}/\`. With Docker:`,
+    '',
+    '```sh',
+    build,
+    `docker run --rm -p 8080:80 -v "$PWD/${out}":/usr/share/nginx/html:ro nginx:alpine`,
+    '```',
+    '',
+    'Then open http://localhost:8080.',
     TOP_END,
   ].join('\n');
 }

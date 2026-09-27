@@ -101,7 +101,8 @@ still shows its license.
 
 Every app README has the same layout. `bun run readmes` writes two parts of
 it from `apps.json`, each between hidden markers: the top (title,
-description, badges, the table and the run commands) and the license at the
+description, badges, the table, the run commands and how to deploy the
+build) and the license at the
 end. The part between them is written by hand, usually a "Where to look"
 list of the files worth opening first. `bun run check` fails when a README
 no longer matches `apps.json`.

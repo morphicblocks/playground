@@ -21,6 +21,17 @@ npm run dev
 ```
 
 `npm run build` writes a static site to `dist/`.
+
+## Deploy
+
+The build is plain static files, so any static host can serve `dist/`. With Docker:
+
+```sh
+npm run build
+docker run --rm -p 8080:80 -v "$PWD/dist":/usr/share/nginx/html:ro nginx:alpine
+```
+
+Then open http://localhost:8080.
 <!-- /generated:top -->
 
 There is no block workspace on screen: Blockly runs hidden and holds the program, while you edit it as text. Drag a snippet into the code on the left, click a value, a name or a type to change it, and read the same program in any of the five languages on the right.

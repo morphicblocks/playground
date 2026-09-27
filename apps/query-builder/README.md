@@ -21,6 +21,17 @@ deno task dev
 ```
 
 `deno task build` writes a static site to `dist/`.
+
+## Deploy
+
+The build is plain static files, so any static host can serve `dist/`. With Docker:
+
+```sh
+deno task build
+docker run --rm -p 8080:80 -v "$PWD/dist":/usr/share/nginx/html:ro nginx:alpine
+```
+
+Then open http://localhost:8080.
 <!-- /generated:top -->
 
 The blocks build a query over a small table of planets and the text view shows it as real SQL. Run does not run SQL, though: the same blocks also turn into JavaScript that filters, sorts and cuts the list with the same meaning, and the result appears as a table. The JavaScript tab shows that code. Connection checks keep the clauses in SQL's order, so WHERE, ORDER BY and LIMIT only fit in that sequence.
