@@ -1,5 +1,5 @@
 <!-- generated:top (made from apps.json by `bun run readmes`, edit apps.json instead) -->
-# Starter
+# Get Started
 
 The smallest setup that still shows what Morphic Blocks is made of: elements, modes and views, with one mount call and five short behaviors.
 
