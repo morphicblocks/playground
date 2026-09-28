@@ -9,8 +9,11 @@
 # served image: the stage below copies only the built `dist/`.
 #
 # Pinned to the bun minor line the lockfile was generated with, so
-# `--frozen-lockfile` stays valid.
-FROM oven/bun:1.3-alpine AS build
+# `--frozen-lockfile` stays valid. Debian, not Alpine: Alpine's deno is too
+# old for Vite 8, and the official deno binary needs glibc.
+FROM denoland/deno:bin-2.9.4 AS deno
+FROM node:22-slim AS node
+FROM oven/bun:1.3 AS build
 
 # For hosts that reach the internet through an outbound proxy. Empty by
 # default, so the build also works on a machine without one.
@@ -21,8 +24,13 @@ ARG NO_PROXY=""
 WORKDIR /app
 
 # Each app builds with the package manager named in apps.json. bun comes with
-# this image; npm (with Node), pnpm, yarn and deno are added here.
-RUN apk add --no-cache nodejs npm deno && npm install -g pnpm yarn
+# this image; Node (with npm), deno, pnpm and yarn are added here.
+COPY --from=node /usr/local/bin/node /usr/local/bin/node
+COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
+COPY --from=deno /deno /usr/local/bin/deno
+RUN ln -s ../lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
+ && ln -s ../lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx \
+ && npm install -g pnpm yarn
 
 # The build needs only the gallery's dependencies; the repo root's are for
 # the pre-push check (scripts/check.ts), which does not run here. Installing
