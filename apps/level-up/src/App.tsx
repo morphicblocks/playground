@@ -1,5 +1,5 @@
 import { For, Show, createSignal, onCleanup, onMount } from "solid-js";
-import { MorphicBlocks } from "morphic-blocks";
+import { MorphicBlocks, toCleanId } from "morphic-blocks";
 import definitions from "./definitions.json";
 import { logoSvg, theme } from "./theme";
 import { behaviors } from "./behaviors";
@@ -39,8 +39,6 @@ const saveSkip = () => {
   }
 };
 
-// Blockly registers morphic blocks under "morphic:<id>".
-const cleanId = (type: string) => type.replace(/^morphic:/, "");
 
 // JavaScript's wording for mistakes it finds itself, in Python's words.
 const pythonError = (error: Error) => {
@@ -55,7 +53,7 @@ const pythonError = (error: Error) => {
 type Workspace = NonNullable<ReturnType<MorphicBlocks["getWorkspace"]>>;
 type Block = ReturnType<Workspace["getAllBlocks"]>[number];
 const insideDef = (block: Block | null): boolean =>
-  !!block && (cleanId(block.type) === "def" || insideDef(block.getSurroundParent()));
+  !!block && (toCleanId(block.type) === "def" || insideDef(block.getSurroundParent()));
 
 type Removal = { level: number; count: number; apply: () => void };
 
@@ -79,7 +77,7 @@ export function App() {
     const stray = engine
       .getWorkspace()
       ?.getAllBlocks(false)
-      .some((b) => cleanId(b.type) === "return" && !insideDef(b));
+      .some((b) => toCleanId(b.type) === "return" && !insideDef(b));
     if (stray) {
       setLines([]);
       setError("SyntaxError: 'return' outside function");
@@ -110,9 +108,9 @@ export function App() {
     const workspace = engine!.getWorkspace()!;
     const allowed = new Set(blocksUpTo(n));
     const goes = (block: Block | null): boolean =>
-      !!block && (!allowed.has(cleanId(block.type)) || goes(block.getSurroundParent()));
+      !!block && (!allowed.has(toCleanId(block.type)) || goes(block.getSurroundParent()));
     const doomed = workspace.getAllBlocks(false).filter((b) => !b.isShadow() && goes(b));
-    const outermost = doomed.filter((b) => !allowed.has(cleanId(b.type)) && !goes(b.getSurroundParent()));
+    const outermost = doomed.filter((b) => !allowed.has(toCleanId(b.type)) && !goes(b.getSurroundParent()));
     return {
       level: n,
       count: doomed.length,

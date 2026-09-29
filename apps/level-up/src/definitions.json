@@ -350,6 +350,28 @@
       "inputsInline": true
     },
     {
+      "identifier": "not",
+      "category": "Decisions",
+      "elements": {
+        "python": "not %1",
+        "hint": "The opposite: True becomes False"
+      },
+      "output": true,
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "VALUE",
+          "default": {
+            "shadow": "bool",
+            "fieldValues": {
+              "VALUE": "True"
+            }
+          }
+        }
+      },
+      "inputsInline": true
+    },
+    {
       "identifier": "bool",
       "category": "Decisions",
       "elements": {
@@ -485,6 +507,34 @@
             "shadow": "text",
             "fieldValues": {
               "TEXT": "Ada"
+            }
+          }
+        }
+      },
+      "inputsInline": true
+    },
+    {
+      "identifier": "call_value",
+      "category": "Functions",
+      "elements": {
+        "python": "%NAME(%1)",
+        "hint": "Run a function and use what it returns"
+      },
+      "output": true,
+      "fields": {
+        "NAME": {
+          "type": "text",
+          "default": "double"
+        }
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "ARG",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "3"
             }
           }
         }

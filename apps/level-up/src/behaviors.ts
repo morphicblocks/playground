@@ -154,6 +154,7 @@ export const behaviors: MorphicBehaviorMap = {
   logic: (proxy) =>
     `(${pyLogic})(${JSON.stringify(proxy.fields.OP)}, ${need(proxy, "A", proxy.fields.OP)}, () => ${need(proxy, "B", proxy.fields.OP)})`,
 
+  not: (proxy) => `!(${pyTruth})(${need(proxy, "VALUE", "not")})`,
 
   bool: (proxy) => (proxy.fields.VALUE === "False" ? "false" : "true"),
 
@@ -198,6 +199,9 @@ export const behaviors: MorphicBehaviorMap = {
   call: (proxy) =>
     `(${pyCallable})(typeof ${id(proxy.fields.NAME)} === "undefined" ? undefined : ${id(proxy.fields.NAME)}, ${JSON.stringify(proxy.fields.NAME)})(${proxy.inputs.ARG || ""});\n`,
 
+  // The same call as a value, so its result can be printed or stored.
+  call_value: (proxy) =>
+    `(${pyCallable})(typeof ${id(proxy.fields.NAME)} === "undefined" ? undefined : ${id(proxy.fields.NAME)}, ${JSON.stringify(proxy.fields.NAME)})(${proxy.inputs.ARG || ""})`,
 
   return: (proxy) => `return ${proxy.inputs.VALUE || "null"};\n`,
 };
