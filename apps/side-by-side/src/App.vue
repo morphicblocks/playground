@@ -75,8 +75,6 @@ onMounted(() => {
   // The heading above the toolbox already names the language.
   engine.mountToolbox(toolboxEl.value!, { modeLabel: false });
   engine.loadWorkspace(program);
-  // Show what the starting program prints; Run refreshes it later.
-  run();
 });
 
 // The toolbox follows the language people write in. The hidden workspace

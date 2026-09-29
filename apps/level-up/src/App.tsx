@@ -173,8 +173,6 @@ export function App() {
     showToolbox(level());
     engine.loadWorkspace(program);
     engine.getWorkspace()?.scroll(0, 0);
-    // Show what the starting program prints; Run refreshes it later.
-    run();
   });
 
   onCleanup(() => engine?.dispose());

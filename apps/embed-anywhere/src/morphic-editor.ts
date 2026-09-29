@@ -119,8 +119,6 @@ export class MorphicEditor extends LitElement {
 
     const start = programs[this.program];
     if (start) engine.loadWorkspace(start);
-    // The figure opens with its output already there, like a printed example.
-    this.run();
   }
 
   // Arrow function, so Lit can pass it as the click handler as is.

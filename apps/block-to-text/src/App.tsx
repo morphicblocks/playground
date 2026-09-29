@@ -86,8 +86,6 @@ export function App() {
     // program in the top left corner instead, so it stays in view when the
     // pane narrows in step 2.
     engine.getWorkspace()?.scroll(0, 0);
-    // Show what the starting program prints; Run refreshes it later.
-    run();
     return () => {
       engine.dispose();
       engineRef.current = null;

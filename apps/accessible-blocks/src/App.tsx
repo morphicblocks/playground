@@ -78,7 +78,7 @@ export function App() {
   useEffect(() => {
     const created = new MorphicBlocks(definitions, behaviors);
     engine.current = created;
-    const mounted = created.mount({
+    void created.mount({
       workspaceContainer: workspaceEl.current!,
       toolboxContainer: toolboxEl.current!,
       previewContainer: previewEl.current!,
@@ -102,9 +102,6 @@ export function App() {
     });
     created.loadWorkspace(program);
     created.getWorkspace()?.scroll(0, 0);
-    // Show what the starting program prints once everything is set up, so
-    // the output matches the blocks on screen.
-    void mounted.then(run);
     return () => created.dispose();
   }, []);
 

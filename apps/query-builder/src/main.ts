@@ -173,11 +173,10 @@ document.addEventListener("keydown", (event) => {
 engine.getWorkspace()?.addChangeListener((event) => {
   if (event.isUiEvent) return;
   const status = byId("status");
-  if (!status.classList.contains("stale") && engine.generateJavaScript() !== lastRun) {
+  // Only once the query has run: before that, there is no table to go stale.
+  if (lastRun && !status.classList.contains("stale") && engine.generateJavaScript() !== lastRun) {
     status.textContent = "Blocks changed: run the query again";
     status.classList.add("stale");
     status.classList.remove("warn");
   }
 });
-
-run();
