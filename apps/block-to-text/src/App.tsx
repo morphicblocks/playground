@@ -77,31 +77,9 @@ export function App() {
       blockly: { ...blocklyBase, trashcan: true, zoom: { controls: true, wheel: true, startScale: 0.95 } },
     });
 
-    // One engine has one workspace, so the Python blocks of step 2 come from a
-    // second, read only engine that shows a copy of the first one's program.
-    // It never runs anything, so it needs no behaviors.
-    const mirror = new MorphicBlocks(definitions);
-    void mirror.mount({
-      workspaceContainer: mirrorRef.current!,
-      presets: [{ name: "mirror", toolbox: "py", workspace: "py" }],
-      // No toolbox at all: the mirror only shows blocks. Without this a read
-      // only workspace fails at mount (Blockly has no toolbox to update).
-      canvasToolbox: true,
-      modesFolder,
-      blockly: { ...blocklyBase, readOnly: true, zoom: { wheel: true, startScale: 0.95 } },
-    });
-
-    // Copy the program after every real change (not selection or scrolling),
-    // at most once per frame. Loading keeps the mirror's scroll position, so
-    // its view stays put.
-    let frame = 0;
-    const copy = () => {
-      frame = 0;
-      mirror.loadWorkspace(engine.serializeWorkspace());
-    };
-    engine.getWorkspace()?.addChangeListener((event) => {
-      if (!event.isUiEvent && !frame) frame = requestAnimationFrame(copy);
-    });
+    // The Python blocks of step 2: a read only workspace in the py mode that
+    // follows every change of the main one.
+    engine.addView({ kind: "workspace", name: "mirror", mode: "py", container: mirrorRef.current! });
 
     engine.loadWorkspace(program);
     // Blockly starts with its origin in the middle of the pane. Put the
@@ -111,8 +89,6 @@ export function App() {
     // Show what the starting program prints; Run refreshes it later.
     run();
     return () => {
-      cancelAnimationFrame(frame);
-      mirror.dispose();
       engine.dispose();
       engineRef.current = null;
     };

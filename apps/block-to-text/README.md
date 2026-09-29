@@ -38,7 +38,7 @@ Then open http://localhost:8080.
 
 - `src/definitions.json`: the blocks, the two modes (plain words and Python) and the three presets that make the steps
 - `src/behaviors.ts`: each block as JavaScript that does what its Python does, so Run prints what the Python would print
-- `src/App.tsx`: creates both engines in an effect, copies the program into the read only mirror after every change, runs the program and lays out the panes from `onPresetApplied`
+- `src/App.tsx`: creates the engine in an effect, adds the read only Python workspace with `addView()`, runs the program and lays out the panes from `onPresetApplied`
 - `src/program.json`: the starting program, in Blockly's own save format
 
 <!-- generated:license -->
