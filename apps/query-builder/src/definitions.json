@@ -5,6 +5,36 @@
     "words": "code",
     "sql": "code"
   },
+  "code": {
+    "sql": {
+      "highlighting": {
+        "keywords": [
+          "SELECT",
+          "FROM",
+          "WHERE",
+          "ORDER",
+          "BY",
+          "ASC",
+          "DESC",
+          "LIMIT",
+          "AND",
+          "OR",
+          "LIKE"
+        ],
+        "strings": [
+          "'"
+        ],
+        "numbers": true,
+        "comment": "--",
+        "colors": {
+          "keyword": "#c2410c",
+          "string": "#2f7d32",
+          "number": "#7048b6",
+          "comment": "#8a8f98"
+        }
+      }
+    }
+  },
   "modes": [
     {
       "name": "plain",
@@ -39,34 +69,6 @@
       "codespace": "query"
     }
   ],
-  "highlighting": {
-    "sql": {
-      "keywords": [
-        "SELECT",
-        "FROM",
-        "WHERE",
-        "ORDER",
-        "BY",
-        "ASC",
-        "DESC",
-        "LIMIT",
-        "AND",
-        "OR",
-        "LIKE"
-      ],
-      "strings": [
-        "'"
-      ],
-      "numbers": true,
-      "comment": "--",
-      "colors": {
-        "keyword": "#c2410c",
-        "string": "#2f7d32",
-        "number": "#7048b6",
-        "comment": "#8a8f98"
-      }
-    }
-  },
   "categories": [
     {
       "name": "Query",

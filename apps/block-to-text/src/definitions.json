@@ -3,6 +3,32 @@
     "words": "code",
     "python": "code"
   },
+  "code": {
+    "python": {
+      "highlighting": {
+        "keywords": [
+          "if",
+          "else",
+          "for",
+          "in",
+          "range",
+          "print",
+          "True",
+          "False"
+        ],
+        "strings": [
+          "\""
+        ],
+        "comment": "#",
+        "colors": {
+          "keyword": "#ff9e64",
+          "string": "#9ece6a",
+          "number": "#e0af68",
+          "comment": "#565f89"
+        }
+      }
+    }
+  },
   "modes": [
     {
       "name": "plain",
@@ -60,30 +86,6 @@
       "color": "#c9a227"
     }
   ],
-  "highlighting": {
-    "python": {
-      "keywords": [
-        "if",
-        "else",
-        "for",
-        "in",
-        "range",
-        "print",
-        "True",
-        "False"
-      ],
-      "strings": [
-        "\""
-      ],
-      "comment": "#",
-      "colors": {
-        "keyword": "#ff9e64",
-        "string": "#9ece6a",
-        "number": "#e0af68",
-        "comment": "#565f89"
-      }
-    }
-  },
   "blocks": [
     {
       "identifier": "print",

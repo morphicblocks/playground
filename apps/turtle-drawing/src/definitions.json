@@ -7,6 +7,24 @@
     "picture": "code",
     "turtle": "code"
   },
+  "code": {
+    "turtle": {
+      "highlighting": {
+        "keywords": [
+          "forward",
+          "left",
+          "right",
+          "pen",
+          "repeat"
+        ],
+        "numbers": true,
+        "colors": {
+          "keyword": "#16786a",
+          "number": "#c0612b"
+        }
+      }
+    }
+  },
   "modes": [
     {
       "name": "crayons",
@@ -35,22 +53,6 @@
       "preview": "logo"
     }
   ],
-  "highlighting": {
-    "turtle": {
-      "keywords": [
-        "forward",
-        "left",
-        "right",
-        "pen",
-        "repeat"
-      ],
-      "numbers": true,
-      "colors": {
-        "keyword": "#16786a",
-        "number": "#c0612b"
-      }
-    }
-  },
   "categories": [
     {
       "name": "Move",

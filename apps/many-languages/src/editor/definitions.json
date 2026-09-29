@@ -13,6 +13,172 @@
     "title_ar": "text",
     "pseudo_ar": "code"
   },
+  "code": {
+    "pseudo_en": {
+      "highlighting": {
+        "keywords": [
+          "print",
+          "set",
+          "to",
+          "if",
+          "then",
+          "else",
+          "end",
+          "repeat",
+          "times",
+          "and",
+          "or",
+          "true",
+          "false"
+        ],
+        "strings": [
+          "\""
+        ],
+        "numbers": true,
+        "colors": {
+          "keyword": "#569cd6",
+          "string": "#ce9178",
+          "number": "#b5cea8",
+          "comment": "#6a9955"
+        }
+      }
+    },
+    "pseudo_de": {
+      "highlighting": {
+        "keywords": [
+          "zeige",
+          "setze",
+          "auf",
+          "wenn",
+          "dann",
+          "sonst",
+          "ende",
+          "wiederhole",
+          "mal",
+          "und",
+          "oder",
+          "wahr",
+          "falsch"
+        ],
+        "numbers": true,
+        "colors": {
+          "keyword": "#569cd6",
+          "string": "#ce9178",
+          "number": "#b5cea8",
+          "comment": "#6a9955"
+        }
+      }
+    },
+    "pseudo_es": {
+      "highlighting": {
+        "keywords": [
+          "mostrar",
+          "asignar",
+          "a",
+          "el",
+          "valor",
+          "si",
+          "entonces",
+          "no",
+          "fin",
+          "repetir",
+          "veces",
+          "y",
+          "o",
+          "verdadero",
+          "falso"
+        ],
+        "numbers": true,
+        "colors": {
+          "keyword": "#569cd6",
+          "string": "#ce9178",
+          "number": "#b5cea8",
+          "comment": "#6a9955"
+        }
+      }
+    },
+    "pseudo_el": {
+      "highlighting": {
+        "keywords": [
+          "εμφάνισε",
+          "όρισε",
+          "σε",
+          "αν",
+          "τότε",
+          "αλλιώς",
+          "τέλος",
+          "επανάλαβε",
+          "φορές",
+          "επανάληψης",
+          "και",
+          "ή",
+          "αληθές",
+          "ψευδές"
+        ],
+        "numbers": true,
+        "colors": {
+          "keyword": "#569cd6",
+          "string": "#ce9178",
+          "number": "#b5cea8",
+          "comment": "#6a9955"
+        }
+      }
+    },
+    "pseudo_zh": {
+      "highlighting": {
+        "keywords": [
+          "显示",
+          "设",
+          "为",
+          "如果",
+          "那么",
+          "否则",
+          "结束如果",
+          "重复",
+          "次",
+          "结束重复",
+          "并且",
+          "或者",
+          "真",
+          "假"
+        ],
+        "numbers": true,
+        "colors": {
+          "keyword": "#569cd6",
+          "string": "#ce9178",
+          "number": "#b5cea8",
+          "comment": "#6a9955"
+        }
+      }
+    },
+    "pseudo_ar": {
+      "highlighting": {
+        "keywords": [
+          "اطبع",
+          "اجعل",
+          "تساوي",
+          "إذا",
+          "عندئذ",
+          "وإلا",
+          "نهاية",
+          "كرر",
+          "مرات",
+          "التكرار",
+          "و",
+          "أو",
+          "صحيح",
+          "خطأ"
+        ],
+        "numbers": true,
+        "colors": {
+          "keyword": "#569cd6",
+          "string": "#ce9178",
+          "number": "#b5cea8",
+          "comment": "#6a9955"
+        }
+      }
+    }
+  },
   "modes": [
     {
       "name": "en",
@@ -101,160 +267,6 @@
       "preview": "ar"
     }
   ],
-  "highlighting": {
-    "pseudo_en": {
-      "keywords": [
-        "print",
-        "set",
-        "to",
-        "if",
-        "then",
-        "else",
-        "end",
-        "repeat",
-        "times",
-        "and",
-        "or",
-        "true",
-        "false"
-      ],
-      "strings": [
-        "\""
-      ],
-      "numbers": true,
-      "colors": {
-        "keyword": "#569cd6",
-        "string": "#ce9178",
-        "number": "#b5cea8",
-        "comment": "#6a9955"
-      }
-    },
-    "pseudo_de": {
-      "keywords": [
-        "zeige",
-        "setze",
-        "auf",
-        "wenn",
-        "dann",
-        "sonst",
-        "ende",
-        "wiederhole",
-        "mal",
-        "und",
-        "oder",
-        "wahr",
-        "falsch"
-      ],
-      "numbers": true,
-      "colors": {
-        "keyword": "#569cd6",
-        "string": "#ce9178",
-        "number": "#b5cea8",
-        "comment": "#6a9955"
-      }
-    },
-    "pseudo_es": {
-      "keywords": [
-        "mostrar",
-        "asignar",
-        "a",
-        "el",
-        "valor",
-        "si",
-        "entonces",
-        "no",
-        "fin",
-        "repetir",
-        "veces",
-        "y",
-        "o",
-        "verdadero",
-        "falso"
-      ],
-      "numbers": true,
-      "colors": {
-        "keyword": "#569cd6",
-        "string": "#ce9178",
-        "number": "#b5cea8",
-        "comment": "#6a9955"
-      }
-    },
-    "pseudo_el": {
-      "keywords": [
-        "εμφάνισε",
-        "όρισε",
-        "σε",
-        "αν",
-        "τότε",
-        "αλλιώς",
-        "τέλος",
-        "επανάλαβε",
-        "φορές",
-        "επανάληψης",
-        "και",
-        "ή",
-        "αληθές",
-        "ψευδές"
-      ],
-      "numbers": true,
-      "colors": {
-        "keyword": "#569cd6",
-        "string": "#ce9178",
-        "number": "#b5cea8",
-        "comment": "#6a9955"
-      }
-    },
-    "pseudo_zh": {
-      "keywords": [
-        "显示",
-        "设",
-        "为",
-        "如果",
-        "那么",
-        "否则",
-        "结束如果",
-        "重复",
-        "次",
-        "结束重复",
-        "并且",
-        "或者",
-        "真",
-        "假"
-      ],
-      "numbers": true,
-      "colors": {
-        "keyword": "#569cd6",
-        "string": "#ce9178",
-        "number": "#b5cea8",
-        "comment": "#6a9955"
-      }
-    },
-    "pseudo_ar": {
-      "keywords": [
-        "اطبع",
-        "اجعل",
-        "تساوي",
-        "إذا",
-        "عندئذ",
-        "وإلا",
-        "نهاية",
-        "كرر",
-        "مرات",
-        "التكرار",
-        "و",
-        "أو",
-        "صحيح",
-        "خطأ"
-      ],
-      "numbers": true,
-      "colors": {
-        "keyword": "#569cd6",
-        "string": "#ce9178",
-        "number": "#b5cea8",
-        "comment": "#6a9955"
-      }
-    }
-  },
   "categories": [
     {
       "name": "Output",

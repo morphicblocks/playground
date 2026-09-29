@@ -1,17 +1,64 @@
 {
   "elementTypes": {
     "help": "text",
+    "symbols": "code",
+    "words": "code",
+    "java": "code"
+  },
+  "code": {
     "symbols": {
-      "type": "code",
       "stringQuote": "\""
     },
     "words": {
-      "type": "code",
-      "stringQuote": "\""
+      "stringQuote": "\"",
+      "highlighting": {
+        "keywords": [
+          "say",
+          "make",
+          "be",
+          "add",
+          "to",
+          "if",
+          "then",
+          "otherwise",
+          "repeat",
+          "times"
+        ],
+        "strings": [
+          "\""
+        ],
+        "numbers": true,
+        "colors": {
+          "keyword": "#6a1b9a",
+          "string": "#0b6b3a",
+          "number": "#0b4f9c",
+          "comment": "#555555"
+        }
+      }
     },
     "java": {
-      "type": "code",
-      "stringQuote": "\""
+      "stringQuote": "\"",
+      "highlighting": {
+        "keywords": [
+          "var",
+          "if",
+          "else",
+          "for",
+          "int",
+          "System"
+        ],
+        "strings": [
+          "\""
+        ],
+        "comment": "//",
+        "numbers": true,
+        "colors": {
+          "keyword": "#6a1b9a",
+          "string": "#0b6b3a",
+          "number": "#0b4f9c",
+          "comment": "#555555"
+        }
+      }
     }
   },
   "modes": [
@@ -117,53 +164,6 @@
       "color": "#7d5c00"
     }
   ],
-  "highlighting": {
-    "java": {
-      "keywords": [
-        "var",
-        "if",
-        "else",
-        "for",
-        "int",
-        "System"
-      ],
-      "strings": [
-        "\""
-      ],
-      "comment": "//",
-      "numbers": true,
-      "colors": {
-        "keyword": "#6a1b9a",
-        "string": "#0b6b3a",
-        "number": "#0b4f9c",
-        "comment": "#555555"
-      }
-    },
-    "words": {
-      "keywords": [
-        "say",
-        "make",
-        "be",
-        "add",
-        "to",
-        "if",
-        "then",
-        "otherwise",
-        "repeat",
-        "times"
-      ],
-      "strings": [
-        "\""
-      ],
-      "numbers": true,
-      "colors": {
-        "keyword": "#6a1b9a",
-        "string": "#0b6b3a",
-        "number": "#0b4f9c",
-        "comment": "#555555"
-      }
-    }
-  },
   "blocks": [
     {
       "identifier": "say",

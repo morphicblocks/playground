@@ -1,27 +1,165 @@
 {
   "elementTypes": {
     "title": "text",
+    "go": "code",
+    "cpp": "code",
+    "java": "code",
+    "python": "code",
+    "js": "code",
+    "outline": "code"
+  },
+  "code": {
     "go": {
-      "type": "code",
-      "stringQuote": "\""
+      "stringQuote": "\"",
+      "highlighting": {
+        "keywords": [
+          "func",
+          "var",
+          "if",
+          "else",
+          "for",
+          "return",
+          "true",
+          "false",
+          "int",
+          "string",
+          "bool",
+          "fmt"
+        ],
+        "strings": [
+          "\""
+        ],
+        "comment": "//",
+        "numbers": true,
+        "colors": {
+          "keyword": "#1d8660",
+          "string": "#c14f78",
+          "number": "#5b58c9",
+          "comment": "#8fa89f"
+        }
+      }
     },
     "cpp": {
-      "type": "code",
-      "stringQuote": "\""
+      "stringQuote": "\"",
+      "highlighting": {
+        "keywords": [
+          "if",
+          "else",
+          "for",
+          "while",
+          "return",
+          "true",
+          "false",
+          "int",
+          "bool",
+          "std",
+          "string",
+          "cout",
+          "endl"
+        ],
+        "strings": [
+          "\""
+        ],
+        "comment": "//",
+        "numbers": true,
+        "colors": {
+          "keyword": "#1d8660",
+          "string": "#c14f78",
+          "number": "#5b58c9",
+          "comment": "#8fa89f"
+        }
+      }
     },
     "java": {
-      "type": "code",
-      "stringQuote": "\""
+      "stringQuote": "\"",
+      "highlighting": {
+        "keywords": [
+          "static",
+          "if",
+          "else",
+          "for",
+          "while",
+          "return",
+          "true",
+          "false",
+          "int",
+          "boolean",
+          "String",
+          "System"
+        ],
+        "strings": [
+          "\""
+        ],
+        "comment": "//",
+        "numbers": true,
+        "colors": {
+          "keyword": "#1d8660",
+          "string": "#c14f78",
+          "number": "#5b58c9",
+          "comment": "#8fa89f"
+        }
+      }
     },
     "python": {
-      "type": "code",
-      "stringQuote": "\""
+      "stringQuote": "\"",
+      "highlighting": {
+        "keywords": [
+          "def",
+          "if",
+          "else",
+          "for",
+          "in",
+          "range",
+          "while",
+          "return",
+          "True",
+          "False",
+          "int",
+          "str",
+          "bool",
+          "print"
+        ],
+        "strings": [
+          "\""
+        ],
+        "comment": "#",
+        "numbers": true,
+        "colors": {
+          "keyword": "#1d8660",
+          "string": "#c14f78",
+          "number": "#5b58c9",
+          "comment": "#8fa89f"
+        }
+      }
     },
     "js": {
-      "type": "code",
-      "stringQuote": "\""
-    },
-    "outline": "code"
+      "stringQuote": "\"",
+      "highlighting": {
+        "keywords": [
+          "function",
+          "let",
+          "if",
+          "else",
+          "for",
+          "while",
+          "return",
+          "true",
+          "false",
+          "console"
+        ],
+        "strings": [
+          "\""
+        ],
+        "comment": "//",
+        "numbers": true,
+        "colors": {
+          "keyword": "#1d8660",
+          "string": "#c14f78",
+          "number": "#5b58c9",
+          "comment": "#8fa89f"
+        }
+      }
+    }
   },
   "modes": [
     {
@@ -86,144 +224,6 @@
       "preview": "in-java"
     }
   ],
-  "highlighting": {
-    "go": {
-      "keywords": [
-        "func",
-        "var",
-        "if",
-        "else",
-        "for",
-        "return",
-        "true",
-        "false",
-        "int",
-        "string",
-        "bool",
-        "fmt"
-      ],
-      "strings": [
-        "\""
-      ],
-      "comment": "//",
-      "numbers": true,
-      "colors": {
-        "keyword": "#1d8660",
-        "string": "#c14f78",
-        "number": "#5b58c9",
-        "comment": "#8fa89f"
-      }
-    },
-    "cpp": {
-      "keywords": [
-        "if",
-        "else",
-        "for",
-        "while",
-        "return",
-        "true",
-        "false",
-        "int",
-        "bool",
-        "std",
-        "string",
-        "cout",
-        "endl"
-      ],
-      "strings": [
-        "\""
-      ],
-      "comment": "//",
-      "numbers": true,
-      "colors": {
-        "keyword": "#1d8660",
-        "string": "#c14f78",
-        "number": "#5b58c9",
-        "comment": "#8fa89f"
-      }
-    },
-    "java": {
-      "keywords": [
-        "static",
-        "if",
-        "else",
-        "for",
-        "while",
-        "return",
-        "true",
-        "false",
-        "int",
-        "boolean",
-        "String",
-        "System"
-      ],
-      "strings": [
-        "\""
-      ],
-      "comment": "//",
-      "numbers": true,
-      "colors": {
-        "keyword": "#1d8660",
-        "string": "#c14f78",
-        "number": "#5b58c9",
-        "comment": "#8fa89f"
-      }
-    },
-    "python": {
-      "keywords": [
-        "def",
-        "if",
-        "else",
-        "for",
-        "in",
-        "range",
-        "while",
-        "return",
-        "True",
-        "False",
-        "int",
-        "str",
-        "bool",
-        "print"
-      ],
-      "strings": [
-        "\""
-      ],
-      "comment": "#",
-      "numbers": true,
-      "colors": {
-        "keyword": "#1d8660",
-        "string": "#c14f78",
-        "number": "#5b58c9",
-        "comment": "#8fa89f"
-      }
-    },
-    "js": {
-      "keywords": [
-        "function",
-        "let",
-        "if",
-        "else",
-        "for",
-        "while",
-        "return",
-        "true",
-        "false",
-        "console"
-      ],
-      "strings": [
-        "\""
-      ],
-      "comment": "//",
-      "numbers": true,
-      "colors": {
-        "keyword": "#1d8660",
-        "string": "#c14f78",
-        "number": "#5b58c9",
-        "comment": "#8fa89f"
-      }
-    }
-  },
   "categories": [
     {
       "name": "Output",

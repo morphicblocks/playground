@@ -9,6 +9,36 @@
     "pseudocode": "code",
     "code-js": "code"
   },
+  "code": {
+    "code-js": {
+      "highlighting": {
+        "keywords": [
+          "for",
+          "let",
+          "const",
+          "if",
+          "else",
+          "while",
+          "return",
+          "function",
+          "true",
+          "false"
+        ],
+        "strings": [
+          "\"",
+          "'"
+        ],
+        "numbers": true,
+        "comment": "//",
+        "colors": {
+          "keyword": "#1F7A6D",
+          "string": "#B5562B",
+          "number": "#6A4FC2",
+          "comment": "#8A949E"
+        }
+      }
+    }
+  },
   "modes": [
     {
       "name": "blocks",
@@ -34,34 +64,6 @@
       "codespace": "javascript"
     }
   ],
-  "highlighting": {
-    "code-js": {
-      "keywords": [
-        "for",
-        "let",
-        "const",
-        "if",
-        "else",
-        "while",
-        "return",
-        "function",
-        "true",
-        "false"
-      ],
-      "strings": [
-        "\"",
-        "'"
-      ],
-      "numbers": true,
-      "comment": "//",
-      "colors": {
-        "keyword": "#1F7A6D",
-        "string": "#B5562B",
-        "number": "#6A4FC2",
-        "comment": "#8A949E"
-      }
-    }
-  },
   "categories": [
     {
       "name": "Output",
