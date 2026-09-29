@@ -937,10 +937,10 @@ mime-types@^2.1.35:
   dependencies:
     mime-db "1.52.0"
 
-morphic-blocks@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/morphic-blocks/-/morphic-blocks-0.2.1.tgz#a571846a629ca9e55c200a42e99729c903fa11c4"
-  integrity sha512-kde4zgxel+CzioGp60TipwVFEjf3azX1830VT0CXyNx9g2qMIXM81URBx6N9XkMPNEyegxmDYPAwCN3FkvDFWg==
+morphic-blocks@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/morphic-blocks/-/morphic-blocks-0.3.0.tgz#3e21f9f34fdffd4dd5a4205184e7dbea7f72963d"
+  integrity sha512-ICiaPUoWIUSdPjRM3nL4OJHtcAjXkJSz9ZYI1Y+wHtoqZShlIQggn9nvs4381DzQ1wu7Y9e1iOJbpW8OgthhFA==
   dependencies:
     blockly "^11.2.2"
 

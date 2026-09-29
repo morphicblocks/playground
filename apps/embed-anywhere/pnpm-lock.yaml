@@ -21,8 +21,8 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3
       morphic-blocks:
-        specifier: ^0.2.1
-        version: 0.2.1(@codemirror/lang-javascript@6.2.5)(@codemirror/state@6.7.6)(@codemirror/view@6.43.13)
+        specifier: ^0.3.0
+        version: 0.3.0(@codemirror/lang-javascript@6.2.5)(@codemirror/state@6.7.6)(@codemirror/view@6.43.13)
     devDependencies:
       typescript:
         specifier: ^7.0.2
@@ -573,8 +573,9 @@ packages:
     resolution: {integrity: sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==}
     engines: {node: '>= 0.6'}
 
-  morphic-blocks@0.2.1:
-    resolution: {integrity: sha512-kde4zgxel+CzioGp60TipwVFEjf3azX1830VT0CXyNx9g2qMIXM81URBx6N9XkMPNEyegxmDYPAwCN3FkvDFWg==}
+  morphic-blocks@0.3.0:
+    resolution: {integrity: sha512-ICiaPUoWIUSdPjRM3nL4OJHtcAjXkJSz9ZYI1Y+wHtoqZShlIQggn9nvs4381DzQ1wu7Y9e1iOJbpW8OgthhFA==}
+    hasBin: true
     peerDependencies:
       '@codemirror/lang-javascript': ^6.0.0
       '@codemirror/state': ^6.0.0
@@ -1203,7 +1204,7 @@ snapshots:
     dependencies:
       mime-db: 1.52.0
 
-  morphic-blocks@0.2.1(@codemirror/lang-javascript@6.2.5)(@codemirror/state@6.7.6)(@codemirror/view@6.43.13):
+  morphic-blocks@0.3.0(@codemirror/lang-javascript@6.2.5)(@codemirror/state@6.7.6)(@codemirror/view@6.43.13):
     dependencies:
       blockly: 11.2.2
     optionalDependencies:

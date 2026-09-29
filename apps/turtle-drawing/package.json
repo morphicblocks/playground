@@ -12,7 +12,7 @@
     "@codemirror/state": "^6.7.6",
     "@codemirror/view": "^6.43.13",
     "blockly": "^11.2.2",
-    "morphic-blocks": "^0.2.1"
+    "morphic-blocks": "^0.3.0"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^7.3.1",
