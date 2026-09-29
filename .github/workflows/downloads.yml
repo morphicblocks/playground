@@ -1,0 +1,24 @@
+name: App downloads
+on:
+  release:
+    types: [published]
+permissions:
+  contents: write
+jobs:
+  zips:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      # One ZIP per app, holding the app folder as the release has it: the same
+      # files the gallery's `npx giget` command copies, nothing ignored or built.
+      # The gallery links to <id>.zip on the latest release.
+      - run: |
+          mkdir zips
+          for dir in apps/*/; do
+            id=$(basename "$dir")
+            git archive --format=zip --prefix="$id/" -o "zips/$id.zip" "HEAD:apps/$id"
+          done
+      - run: gh release upload "$TAG" zips/*.zip --clobber
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.release.tag_name }}
