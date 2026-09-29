@@ -1,7 +1,7 @@
 <!-- generated:top (made from apps.json by `bun run readmes`, edit apps.json instead) -->
 # Accessible Blocks
 
-The same program as symbols, plain words or Java, with settings for text size, a dark theme, high contrast, a font for dyslexia and explanations on every block.
+The same program as symbols, plain words or Java, with settings for text size, a dark theme, high contrast, a font for dyslexia and explanations on every block, all usable with the keyboard or a finger.
 
 ![Preact](https://img.shields.io/badge/Preact-673AB8?logo=preact&logoColor=white) ![esbuild](https://img.shields.io/badge/esbuild-FFCF00?logo=esbuild&logoColor=000000) ![Bun](https://img.shields.io/badge/Bun-000000?logo=bun&logoColor=white)
 
