@@ -83,6 +83,18 @@ const legalLinks = [
 		<meta name="twitter:card" content="summary_large_image" />
 	</head>
 	<body>
+		<!-- Opened on phones only (see the script below): the apps put blocks,
+		     text and output side by side. -->
+		<dialog id="screen-note" class="screen-note" aria-labelledby="screen-note-title">
+			<h2 id="screen-note-title">Best on a big screen</h2>
+			<p>
+				These apps show blocks, code and output side by side. Open them in a
+				desktop or tablet browser for the full experience.
+			</p>
+			<form method="dialog">
+				<button type="submit">Continue anyway</button>
+			</form>
+		</dialog>
 		<header class="container site-header">
 			<span class="brand">
 				<img src="/logo.svg" alt="" width="32" height="32" />
@@ -170,6 +182,26 @@ const legalLinks = [
 				}
 			});
 
+			// The screen size note opens once on phones; closing it, with the
+			// button or Escape, is remembered.
+			(() => {
+				const note = document.getElementById('screen-note');
+				if (!note || !matchMedia('(pointer: coarse) and (max-width: 700px)').matches) return;
+				try {
+					if (localStorage.getItem('mb-screen-note') === 'closed') return;
+				} catch {
+					/* private mode etc. — show it for this visit */
+				}
+				note.addEventListener('close', () => {
+					try {
+						localStorage.setItem('mb-screen-note', 'closed');
+					} catch {
+						/* private mode etc. — closed for this visit only */
+					}
+				});
+				note.showModal();
+			})();
+
 			// "Copy CLI" buttons: copy the command that downloads that app.
 			document.querySelectorAll('button[data-copy]').forEach((btn) => {
 				btn.addEventListener('click', async () => {
@@ -188,6 +220,39 @@ const legalLinks = [
 </html>
 
 <style>
+	.screen-note {
+		width: min(22rem, calc(100vw - 2.5rem));
+		padding: 1.4rem 1.3rem 1.2rem;
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		background: var(--surface);
+		color: var(--text);
+	}
+	.screen-note::backdrop {
+		background: rgb(0 0 0 / 0.35);
+		-webkit-backdrop-filter: blur(4px);
+		backdrop-filter: blur(4px);
+	}
+	.screen-note h2 {
+		margin: 0 0 0.5rem;
+		font-size: 1.2rem;
+	}
+	.screen-note p {
+		margin: 0 0 1.2rem;
+		color: var(--text-muted);
+	}
+	.screen-note button {
+		width: 100%;
+		padding: 0.7rem 1rem;
+		border: 0;
+		border-radius: var(--radius-sm);
+		background: var(--accent);
+		color: #fff;
+		font: inherit;
+		font-weight: 600;
+		cursor: pointer;
+	}
+
 	.site-header {
 		border-bottom: 1px solid var(--border);
 		margin-bottom: 0.4rem;
