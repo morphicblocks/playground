@@ -32,7 +32,7 @@
         "comment": "//",
         "numbers": true,
         "colors": {
-          "keyword": "#1d8660",
+          "keyword": "#00758d",
           "string": "#c14f78",
           "number": "#5b58c9",
           "comment": "#8fa89f"
@@ -74,7 +74,7 @@
         "comment": "//",
         "numbers": true,
         "colors": {
-          "keyword": "#1d8660",
+          "keyword": "#00599c",
           "string": "#c14f78",
           "number": "#5b58c9",
           "comment": "#8fa89f"
@@ -111,7 +111,7 @@
         "comment": "//",
         "numbers": true,
         "colors": {
-          "keyword": "#1d8660",
+          "keyword": "#b3541e",
           "string": "#c14f78",
           "number": "#5b58c9",
           "comment": "#8fa89f"
@@ -150,7 +150,7 @@
         "comment": "#",
         "numbers": true,
         "colors": {
-          "keyword": "#1d8660",
+          "keyword": "#3572a5",
           "string": "#c14f78",
           "number": "#5b58c9",
           "comment": "#8fa89f"
@@ -193,7 +193,7 @@
         "comment": "//",
         "numbers": true,
         "colors": {
-          "keyword": "#1d8660",
+          "keyword": "#8a6d00",
           "string": "#c14f78",
           "number": "#5b58c9",
           "comment": "#8fa89f"
