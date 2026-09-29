@@ -80,12 +80,13 @@ export function App() {
     engine.current = created;
     const mounted = created.mount({
       workspaceContainer: workspaceEl.current!,
+      toolboxContainer: toolboxEl.current!,
       previewContainer: previewEl.current!,
       preset: presetName(settings),
       modeStyles,
       previewTheme: codeTheme(settings),
-      // The toolbox is mounted below, so Blockly builds none itself.
-      canvasToolbox: true,
+      // The level names the language already, so the toolbox needs no label.
+      toolbox: { modeLabel: false },
       blockly: {
         // Zelos has large, rounded blocks that are easy to hit.
         renderer: "zelos",
@@ -99,9 +100,6 @@ export function App() {
         },
       },
     });
-    // The toolbox is mounted on its own because only this call can leave out
-    // the "Mode:" label; mount() always shows it.
-    created.mountToolbox(toolboxEl.current!, { modeLabel: false });
     created.loadWorkspace(program);
     created.getWorkspace()?.scroll(0, 0);
     // Show what the starting program prints once everything is set up, so
@@ -133,11 +131,11 @@ export function App() {
       // toolbox, so one call switches every view.
       const preset = presetName(settings);
       if (current.getActivePreset()?.name !== preset) current.applyPreset(preset);
-      // Setting the workspace mode again measures its blocks again, so a new
-      // block font takes effect (also on load, when the font was saved as on
-      // and arrived after the first measuring).
+      // Blocks are measured with their font, so a new block font needs
+      // measuring again (also on load, when the font was saved as on and
+      // arrived after the first measuring).
       if (before ? before.dyslexia !== settings.dyslexia : settings.dyslexia) {
-        current.setModes({ workspaceMode: levelOf(settings.level).mode });
+        current.refresh();
       }
       current.getWorkspace()?.setScale(scaleOf(settings));
       current.setPreviewTheme(codeTheme(settings));
