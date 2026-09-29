@@ -37,6 +37,17 @@
           "number": "#5b58c9",
           "comment": "#8fa89f"
         }
+      },
+      "values": {
+        "null": "<nil>",
+        "undefined": "<nil>",
+        "Infinity": "+Inf",
+        "-Infinity": "-Inf",
+        "list": {
+          "open": "[",
+          "close": "]",
+          "separator": " "
+        }
       }
     },
     "cpp": {
@@ -68,6 +79,13 @@
           "number": "#5b58c9",
           "comment": "#8fa89f"
         }
+      },
+      "values": {
+        "true": "1",
+        "false": "0",
+        "NaN": "nan",
+        "Infinity": "inf",
+        "-Infinity": "-inf"
       }
     },
     "java": {
@@ -97,6 +115,13 @@
           "string": "#c14f78",
           "number": "#5b58c9",
           "comment": "#8fa89f"
+        }
+      },
+      "values": {
+        "list": {
+          "open": "[",
+          "close": "]",
+          "separator": ", "
         }
       }
     },
@@ -129,6 +154,21 @@
           "string": "#c14f78",
           "number": "#5b58c9",
           "comment": "#8fa89f"
+        }
+      },
+      "values": {
+        "true": "True",
+        "false": "False",
+        "null": "None",
+        "undefined": "None",
+        "NaN": "nan",
+        "Infinity": "inf",
+        "-Infinity": "-inf",
+        "list": {
+          "open": "[",
+          "close": "]",
+          "separator": ", ",
+          "quote": "'"
         }
       }
     },

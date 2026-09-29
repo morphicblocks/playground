@@ -141,7 +141,6 @@ onBeforeUnmount(() => engine?.dispose());
         <header class="console-head">
           <h2>Output</h2>
           <button type="button" class="run" @click="run">Run</button>
-          <span class="aside">Output is shown as JavaScript</span>
         </header>
         <pre class="lines" aria-live="polite"><template v-if="output.length || error"><span
           v-for="(line, i) in output" :key="i" class="line">{{ line }}</span><span
@@ -444,11 +443,6 @@ select:focus-visible,
   color: var(--sheet);
   font: 700 14px var(--font-text);
   cursor: pointer;
-}
-
-.aside {
-  font-size: 12.5px;
-  color: var(--ink-soft);
 }
 
 .run::after {
