@@ -157,9 +157,6 @@ export function App() {
       canvasToolbox: true,
       modesFolder,
       blockly: {
-        // Served by the app itself (scripts/copy-blockly-media.mjs), so
-        // Blockly never loads images or sounds from Google's server.
-        media: "blockly-media/",
         renderer: "thrasos",
         trashcan: true,
         zoom: { controls: true, wheel: true, startScale: 1 },

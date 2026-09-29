@@ -52,7 +52,8 @@ function mountEngine(engine: MorphicBlocks, language: Language, views: Views) {
     blockly: {
       // Blockly reads right to left only here, when it starts.
       rtl: language.rtl,
-      // Served by the app itself (scripts/copy-blockly-media.mjs), never by Google.
+      // Copied there by `morphic-blocks copy-media`; the base path keeps it
+      // working when the app runs under a subpath.
       media: `${base}/blockly-media/`,
       trashcan: true,
       zoom: { controls: true, wheel: true, startScale: 0.9 },

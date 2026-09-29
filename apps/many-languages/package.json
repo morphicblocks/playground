@@ -3,8 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node scripts/copy-blockly-media.mjs && next dev",
-    "build": "node scripts/copy-blockly-media.mjs && next build"
+    "dev": "morphic-blocks copy-media public/blockly-media && next dev",
+    "build": "morphic-blocks copy-media public/blockly-media && next build"
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.5",

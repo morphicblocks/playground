@@ -36,8 +36,6 @@ engine.mount({
     }
   },
   blockly: {
-    // Blockly's images and sounds come from the app (scripts/copy-blockly-media.mjs).
-    media: "blockly-media/",
     trashcan: true,
     grid: { spacing: 24, length: 24, colour: "#e6e8e2", snap: true },
     zoom: { controls: true, startScale: 0.95 },

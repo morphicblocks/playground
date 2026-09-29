@@ -71,9 +71,6 @@ onMounted(() => {
       "in-js": jsCss,
       model: modelCss,
     },
-    // Served by the app itself (scripts/copy-blockly-media.mjs), so Blockly
-    // never loads images or sounds from Google's server.
-    blockly: { media: "blockly-media/" },
   });
   // The heading above the toolbox already names the language.
   engine.mountToolbox(toolboxEl.value!, { modeLabel: false });

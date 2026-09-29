@@ -3,8 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node scripts/copy-blockly-media.mjs && rsbuild dev",
-    "build": "node scripts/copy-blockly-media.mjs && vue-tsc --noEmit && rsbuild build",
+    "dev": "morphic-blocks copy-media public/blockly-media && rsbuild dev",
+    "build": "morphic-blocks copy-media public/blockly-media && vue-tsc --noEmit && rsbuild build",
     "preview": "rsbuild preview"
   },
   "dependencies": {

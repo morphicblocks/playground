@@ -24,9 +24,7 @@ engine.mount({
     fontFamily: 'ui-monospace, "SF Mono", Consolas, monospace',
     fontSize: "14px",
   },
-  // Blockly's images and sounds, the trash can icon included, are served by
-  // the app itself (scripts/copy-blockly-media.mjs), never by Google.
-  blockly: { trashcan: true, media: "blockly-media/" },
+  blockly: { trashcan: true },
 });
 
 // Each ⓘ button opens its note; a second click closes it.

@@ -189,9 +189,6 @@
       canvasToolbox: true,
       modesFolder: import.meta.glob("./modes/*.css", { eager: true, query: "?inline" }),
       blockly: {
-        // Blockly's images and sounds are served by the app itself
-        // (scripts/copy-blockly-media.mjs), never by Google.
-        media: "blockly-media/",
         renderer: "zelos",
         trashcan: true,
         zoom: { controls: true, startScale: 0.9 },

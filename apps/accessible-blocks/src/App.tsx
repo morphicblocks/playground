@@ -87,9 +87,6 @@ export function App() {
       // The toolbox is mounted below, so Blockly builds none itself.
       canvasToolbox: true,
       blockly: {
-        // Served by the app itself (scripts/copy-blockly-media.mjs), so
-        // Blockly never loads images or sounds from Google's server.
-        media: "blockly-media/",
         // Zelos has large, rounded blocks that are easy to hit.
         renderer: "zelos",
         trashcan: true,

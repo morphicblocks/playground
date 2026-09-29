@@ -3,8 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "bun scripts/copy-blockly-media.mjs && bun scripts/build.ts --serve",
-    "build": "bun scripts/copy-blockly-media.mjs && tsc && bun scripts/build.ts"
+    "dev": "morphic-blocks copy-media public/blockly-media && bun scripts/build.ts --serve",
+    "build": "morphic-blocks copy-media public/blockly-media && tsc && bun scripts/build.ts"
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.5",

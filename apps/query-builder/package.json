@@ -3,8 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "deno run --allow-read --allow-write=public scripts/copy-blockly-media.mjs && vite",
-    "build": "deno run --allow-read --allow-write=public scripts/copy-blockly-media.mjs && tsc && vite build",
+    "dev": "deno run --allow-read --allow-write=public node_modules/morphic-blocks/dist/cli.js copy-media public/blockly-media && vite",
+    "build": "deno run --allow-read --allow-write=public node_modules/morphic-blocks/dist/cli.js copy-media public/blockly-media && tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

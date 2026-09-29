@@ -3,8 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node scripts/copy-blockly-media.mjs && vite",
-    "build": "node scripts/copy-blockly-media.mjs && svelte-check && vite build",
+    "dev": "morphic-blocks copy-media public/blockly-media && vite",
+    "build": "morphic-blocks copy-media public/blockly-media && svelte-check && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

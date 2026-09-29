@@ -107,9 +107,7 @@ export class MorphicEditor extends LitElement {
       // The toolbox is mounted below, so Blockly should not build its own.
       canvasToolbox: true,
       modesFolder,
-      // Served by the app itself (scripts/copy-blockly-media.mjs), so Blockly
-      // never loads images or sounds from Google's server.
-      blockly: { media: "blockly-media/", trashcan: false },
+      blockly: { trashcan: false },
     });
 
     // mount() always shows every block; each figure needs only its own few,

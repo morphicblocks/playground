@@ -28,9 +28,6 @@ const editorTheme = {
 type Output = { lines: string[]; error: string | null };
 
 const blocklyBase = {
-  // Served by the app itself (scripts/copy-blockly-media.mjs), so Blockly
-  // never loads images or sounds from Google's server.
-  media: "blockly-media/",
   grid: { spacing: 24, length: 2, colour: "#262a3d", snap: true },
   theme: {
     name: "block-to-text",
