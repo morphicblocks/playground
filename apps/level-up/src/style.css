@@ -167,7 +167,7 @@ button {
 
 .panes {
   display: grid;
-  grid-template-columns: 250px minmax(0, 1fr) 340px;
+  grid-template-columns: minmax(250px, min-content) minmax(0, 1fr) 340px;
   gap: 14px;
   flex: 1;
   min-height: 0;
@@ -415,4 +415,10 @@ button {
   .output {
     min-height: 160px;
   }
+}
+
+/* At least as wide as the widest block (the framework measures it), so no
+   block is cut off; the layout column grows to this. */
+.toolbox-body {
+  min-width: calc(var(--morphic-toolbox-block-width, 0px) + 48px);
 }

@@ -192,7 +192,7 @@ h1 {
   flex: 1;
   min-height: 0;
   display: grid;
-  grid-template-columns: 250px minmax(0, 1fr) 380px;
+  grid-template-columns: minmax(250px, min-content) minmax(0, 1fr) 380px;
   grid-template-rows: minmax(0, 1fr) auto;
   grid-template-areas:
     "toolbox workspace preview"
@@ -372,7 +372,7 @@ h1 {
 // without the track.
 @media (max-width: 1180px) {
   .desk {
-    grid-template-columns: 220px minmax(0, 1fr) 310px;
+    grid-template-columns: minmax(220px, min-content) minmax(0, 1fr) 310px;
   }
 
   .switch {
@@ -434,4 +434,10 @@ h1 {
 // theirs, because only a block's direct text matches).
 [class*="morphic-category-"] > g > .blocklyText {
   fill: #1e1e1e;
+}
+
+/* At least as wide as the widest block (the framework measures it), so no
+   block is cut off; the layout column grows to this. */
+.toolbox-body {
+  min-width: calc(var(--morphic-toolbox-block-width, 0px) + 48px);
 }

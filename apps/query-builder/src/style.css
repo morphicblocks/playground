@@ -90,7 +90,7 @@ button {
 /* Sidebar left; builder and text above, the results grid below both. */
 .app {
   display: grid;
-  grid-template-columns: 21rem 1.15fr 1fr;
+  grid-template-columns: minmax(21rem, min-content) 1.15fr 1fr;
   grid-template-rows: minmax(0, 1fr) 30rem;
   grid-template-areas:
     "side builder text"
@@ -444,4 +444,10 @@ tbody tr:hover {
   font-size: 0.75rem;
   line-height: 1.35;
   color: #676d66;
+}
+
+/* At least as wide as the widest block (the framework measures it), so no
+   block is cut off; the layout column grows to this. */
+#toolbox {
+  min-width: calc(var(--morphic-toolbox-block-width, 0px) + 48px);
 }

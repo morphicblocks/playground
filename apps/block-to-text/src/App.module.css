@@ -116,7 +116,7 @@
   display: grid;
   gap: 1px;
   background: var(--line);
-  grid-template-columns: 240px minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(240px, min-content) minmax(0, 1fr) minmax(0, 1fr);
   grid-template-rows: minmax(0, 1fr) 220px;
 }
 
@@ -273,4 +273,10 @@
   .mirror { height: 60vh; }
   .code { height: 50vh; }
   .output { height: 30vh; }
+}
+
+/* At least as wide as the widest block (the framework measures it), so no
+   block is cut off; the layout column grows to this. */
+.toolboxBody {
+  min-width: calc(var(--morphic-toolbox-block-width, 0px) + 48px);
 }

@@ -32,7 +32,7 @@ body {
    output running under both. The 1px gaps show the grey grid as borders. */
 .app {
   display: grid;
-  grid-template-columns: 250px 1fr 1fr;
+  grid-template-columns: minmax(250px, min-content) 1fr 1fr;
   grid-template-rows: 1fr 19rem;
   grid-template-areas:
     "toolbox workspace code"
@@ -180,4 +180,10 @@ body {
   #output {
     min-height: 16rem;
   }
+}
+
+/* At least as wide as the widest block (the framework measures it), so no
+   block is cut off; the layout column grows to this. */
+#toolbox {
+  min-width: calc(var(--morphic-toolbox-block-width, 0px) + 48px);
 }

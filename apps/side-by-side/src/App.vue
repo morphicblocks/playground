@@ -267,7 +267,7 @@ h1 {
   flex: 1;
   min-height: 0;
   display: grid;
-  grid-template-columns: 250px minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(250px, min-content) minmax(0, 1fr) minmax(0, 1fr);
   grid-template-rows: minmax(0, 1fr) auto;
   grid-template-areas:
     "snippets write read"
@@ -294,7 +294,10 @@ h2 {
   color: var(--accent);
 }
 
+/* At least as wide as the widest block (the framework measures it), so no
+   block is cut off; the layout column grows to this. */
 .toolbox {
+  min-width: calc(var(--morphic-toolbox-block-width, 0px) + 48px);
   flex: 1;
   min-height: 0;
   overflow: auto;

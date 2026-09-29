@@ -158,7 +158,7 @@ html.high-contrast .app-bar {
   display: grid;
   /* Pixel widths, so larger text grows inside the panes instead of
      squeezing the workspace. */
-  grid-template-columns: minmax(240px, 300px) minmax(0, 1fr) minmax(280px, 380px);
+  grid-template-columns: minmax(240px, min-content) minmax(0, 1fr) minmax(280px, 380px);
   gap: 1rem;
   flex: 1;
   min-height: 0;
@@ -426,4 +426,10 @@ html.dark.high-contrast .setting .form-check-input:checked {
 html.high-contrast .btn-run {
   --bs-btn-border-color: var(--ink);
   --bs-btn-hover-border-color: var(--ink);
+}
+
+/* At least as wide as the widest block (the framework measures it), so no
+   block is cut off; the layout column grows to this. */
+.toolbox {
+  min-width: calc(var(--morphic-toolbox-block-width, 0px) + 48px);
 }
