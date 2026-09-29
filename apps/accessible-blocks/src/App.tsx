@@ -1,3 +1,4 @@
+import { NavigationController } from "@blockly/keyboard-navigation";
 import { MorphicBlocks, type MorphicCodeEditorTheme } from "morphic-blocks";
 import { useEffect, useRef, useState } from "preact/hooks";
 import { behaviors } from "./behaviors";
@@ -96,13 +97,40 @@ export function App() {
           name: "accessible-blocks",
           base: "classic",
           // The page's CSS paints the workspace, so each look can change it.
-          componentStyles: { workspaceBackgroundColour: "transparent", scrollbarColour: "#8a7fa3" },
+          componentStyles: {
+            workspaceBackgroundColour: "transparent",
+            scrollbarColour: "#8a7fa3",
+            // The keyboard cursor must stand out on every look.
+            cursorColour: "#e0007a",
+          },
         },
       },
     });
     created.loadWorkspace(program);
-    created.getWorkspace()?.scroll(0, 0);
-    return () => created.dispose();
+    const workspace = created.getWorkspace()!;
+    workspace.scroll(0, 0);
+    // Blockly's keyboard navigation moves through and edits the program
+    // without a mouse; the toolbox tiles take Enter on their own.
+    const navigation = new NavigationController();
+    navigation.init();
+    navigation.addWorkspace(workspace);
+    navigation.enable(workspace);
+    // Blockly hears keys only on its own canvas, so the skip link's focus
+    // moves on to it; there the keyboard cursor starts on the first block,
+    // where a click would otherwise put it.
+    const onFocus = (event: FocusEvent) => {
+      if (event.target === workspaceEl.current) {
+        (workspace.getParentSvg() as SVGSVGElement).focus();
+        return;
+      }
+      if (!workspace.getCursor()?.getCurNode()) navigation.navigation.focusWorkspace(workspace);
+    };
+    workspaceEl.current!.addEventListener("focusin", onFocus);
+    return () => {
+      workspaceEl.current?.removeEventListener("focusin", onFocus);
+      navigation.dispose();
+      created.dispose();
+    };
   }, []);
 
   // Every change of level or look goes through here, so the page, the modes
@@ -199,13 +227,16 @@ export function App() {
         <main class="app-grid">
           <section class="pane toolbox-pane" aria-labelledby="toolbox-title">
             <h2 id="toolbox-title">Blocks</h2>
-            <p class="pane-hint">Drag a block into your program.</p>
+            <p class="pane-hint">Drag a block into your program, or press Enter on it.</p>
             <div ref={toolboxEl} class="toolbox" />
           </section>
 
           <section class="pane workspace-pane" aria-labelledby="workspace-title">
             <h2 id="workspace-title">Your program</h2>
-            <div ref={workspaceEl} id="workspace" class="workspace" tabIndex={-1} />
+            <p id="workspace-keys" class="pane-hint">
+              Keys: W and S go up and down, A and D go out and in, Enter changes a value, X takes a block out.
+            </p>
+            <div ref={workspaceEl} id="workspace" class="workspace" tabIndex={-1} aria-describedby="workspace-keys" />
           </section>
 
           <aside class="side">

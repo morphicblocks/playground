@@ -7,6 +7,7 @@
     "build": "morphic-blocks copy-media public/blockly-media && tsc && bun scripts/build.ts"
   },
   "dependencies": {
+    "@blockly/keyboard-navigation": "^0.7.0",
     "@codemirror/lang-javascript": "^6.2.5",
     "@codemirror/state": "^6.7.6",
     "@codemirror/view": "^6.43.13",
