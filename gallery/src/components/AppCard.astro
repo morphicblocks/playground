@@ -297,12 +297,13 @@ const stack = [
 		cursor: pointer;
 		text-decoration: none;
 	}
+	/* The same on every card: the inverse of the outlined buttons beside it. */
 	.btn-primary {
-		background: var(--card);
-		color: #fff;
+		background: var(--text);
+		color: var(--surface);
 	}
 	.btn-primary:not(:disabled):hover {
-		background: color-mix(in srgb, var(--card) 85%, #000);
+		background: color-mix(in srgb, var(--text) 80%, var(--surface));
 	}
 	.btn:disabled {
 		background: var(--border);

@@ -46,10 +46,10 @@ export function externalAttrs(href?: string) {
 
 /**
  * Download buttons link to a ZIP of each app attached to the repository's
- * latest GitHub release. Off until those ZIPs are published; every Download
- * button then shows disabled.
+ * latest GitHub release (made by .github/workflows/downloads.yml). Set to
+ * false to show every Download button disabled.
  */
-export const downloadsAvailable = false;
+export const downloadsAvailable = true;
 
 /** Links for one app, all derived from its immutable `id`. */
 export function appLinks(id: string) {
