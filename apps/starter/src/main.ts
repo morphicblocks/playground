@@ -2,6 +2,7 @@ import { MorphicBlocks, type MorphicCodeEditorTheme } from "morphic-blocks";
 import definitions from "./definitions.json";
 import { behaviors } from "./behaviors";
 import { setUpExplorer } from "./explorer";
+import { setUpTour } from "./tour";
 import program from "./program.json";
 import "./style.css";
 
@@ -70,6 +71,9 @@ themePicker.addEventListener("change", () => {
     /* private mode: the theme applies for this visit */
   }
 });
+
+// A short guided tour through the page.
+setUpTour(byId("tour"));
 
 // Each ⓘ button opens its note; a second click closes it.
 for (const button of document.querySelectorAll<HTMLButtonElement>(".info")) {

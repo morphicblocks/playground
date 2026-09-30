@@ -40,6 +40,7 @@ Each of the eleven blocks has six elements: a title, an icon, a one sentence hin
 
 - `src/main.ts`: the whole setup: one `mount()` call, the Run button and the three themes (page colors in `src/style.css`, text view colors as editor themes).
 - `src/explorer.ts`: the tile shaped element picker, the block definition shown when hovering over a tile (only the ticked elements), and the two switchable views (`setModeElements`, `addView`, `setModes`). Leave it out in an app of your own.
+- `src/tour.ts`: the short guided tour (Driver.js), with its "Don't show again" choice. Leave it out too.
 - `src/definitions.json`: the elements of each block, the four modes, the preset and the settings for each language (highlighting, `pass` for Python, how Python prints values).
 - `src/behaviors.ts`: short functions that turn each block into runnable JavaScript.
 - `src/program.json`: the program the workspace starts with.
