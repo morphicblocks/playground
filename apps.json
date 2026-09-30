@@ -8,8 +8,8 @@
     {
       "id": "starter",
       "name": "Get Started",
-      "description": "The smallest setup that still shows what Morphic Blocks is made of: elements, modes and views, with one mount call and five short behaviors.",
-      "details": "Each of the five blocks (print, text, number, math and repeat) has five elements: a title, an icon, a one sentence hint, pseudocode and JavaScript. Two modes pick from these elements. The blocks mode serves the toolbox and the workspace: tiles show title, icon, block and hint, while the workspace draws only the mode's first code element, the plain word pseudocode. The javascript mode fills the code view, which is editable by structure.\n\nA small ⓘ button next to each pane names the mode it shows. Run executes the program and shows what it printed. Copy this app to start your own project.",
+      "description": "The place to get familiar with Morphic Blocks: choose what the toolbox tiles show, and turn each of two views into blocks, text or a preview in pseudocode, JavaScript or Python.",
+      "details": "Every block (print, values, variables, math, compare, if/else and repeat) has six elements: a title, an icon, a hint and its code in pseudocode, JavaScript and Python. A picker shaped like a tile sits above the toolbox: ticking a part shows it on every tile, as the app changes the tiles mode while it runs. Hovering over a tile shows the block's elements from definitions.json, only the ticked ones. Each of the two views picks its kind and its language: blocks (a workspace), text (a codespace, editable by structure) or a preview (read only text). Both can be text, or both blocks, the second then read only. The same program follows every switch.\n\nThree themes (Light in the blues of Leibniz University Hannover, Sunrise and Dark) show that the page, the tiles and the text views all take their colors from the app. main.ts is the whole setup with one mount call; the explorer lives in its own file. Run executes the program and shows what it printed. Copy this app to start your own project.",
       "useCase": "Starting point",
       "question": "What is Morphic Blocks made of?",
       "framework": "none",
@@ -18,12 +18,15 @@
       "packageManager": "npm",
       "styling": "css",
       "views": [
-        "blocks",
-        "text"
-      ],
+      "blocks",
+      "text",
+      "preview"
+    ],
       "codeShown": [
-        "JavaScript"
-      ],
+      "JavaScript",
+      "Python",
+      "Pseudocode"
+    ],
       "preview": null
     },
     {

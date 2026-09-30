@@ -1,0 +1,6 @@
+/* JavaScript: in a workspace, block text turns monospaced like code. Text
+   views take their look from the editor theme in main.ts. */
+
+.morphic-workspace-root.morphic-mode-in-javascript .blocklyText {
+  font-family: ui-monospace, "SF Mono", Consolas, monospace;
+}

@@ -7,7 +7,17 @@
     <title>Get Started · Morphic Blocks</title>
   </head>
   <body>
-    <header class="top"><img src="logo.svg" alt="" width="26" height="26" />Get Started with Morphic Blocks</header>
+    <header class="top">
+      <img src="logo.svg" alt="" width="26" height="26" />
+      <span>Get Started with</span>
+      <img src="morphic-blocks.svg" alt="" width="26" height="26" />
+      <span>Morphic Blocks</span>
+      <select id="theme" aria-label="Theme">
+        <option value="light">Light</option>
+        <option value="sunrise">Sunrise</option>
+        <option value="dark">Dark</option>
+      </select>
+    </header>
     <main class="app">
       <section class="pane toolbox-pane" aria-label="Toolbox">
         <div class="pane-head">
@@ -15,31 +25,57 @@
           <button class="info" type="button" aria-expanded="false" aria-controls="note-toolbox" aria-label="About the toolbox">ⓘ</button>
         </div>
         <p class="note" id="note-toolbox" hidden>
-          This view shows the blocks mode: each tile's title, icon, pseudocode block and hint.
+          Every block has six elements: a title, an icon, a hint and its code in pseudocode, JavaScript and Python. Tick the ones the tiles show; the tiles mode changes while the app runs.
         </p>
+        <!-- Shaped like a tile: each part sits where a tile shows it. -->
+        <fieldset id="elements" class="anatomy">
+          <legend>Show on the tiles</legend>
+          <label class="part part-title"><input type="checkbox" value="title" checked /> Title</label>
+          <label class="part part-icon"><input type="checkbox" value="icon" checked /> Icon</label>
+          <label class="part part-code"><input type="checkbox" value="pseudocode" checked /> Pseudocode</label>
+          <label class="part part-code"><input type="checkbox" value="javascript" /> JavaScript</label>
+          <label class="part part-code"><input type="checkbox" value="python" /> Python</label>
+          <label class="part part-hint"><input type="checkbox" value="hint" checked /> Hint</label>
+        </fieldset>
         <div id="toolbox"></div>
       </section>
 
-      <section class="pane workspace-pane" aria-label="Workspace">
+      <section class="pane view-pane" aria-label="First view">
         <div class="pane-head">
-          <h2>Workspace</h2>
-          <button class="info" type="button" aria-expanded="false" aria-controls="note-workspace" aria-label="About the workspace">ⓘ</button>
+          <select data-kind aria-label="First view: kind of view">
+              <option value="blocks" selected>Blocks</option>
+              <option value="text">Text</option>
+              <option value="preview">Preview</option>
+          </select>
+          <select data-language aria-label="First view: language">
+              <option value="pseudocode" selected>Pseudocode</option>
+              <option value="javascript">JavaScript</option>
+              <option value="python">Python</option>
+          </select>
+          <span class="badge" data-read-only hidden>read only</span>
+          <button class="info" type="button" aria-expanded="false" aria-controls="note-1" aria-label="About this view">ⓘ</button>
         </div>
-        <p class="note" id="note-workspace" hidden>
-          This view shows the blocks mode too, but a workspace draws only the mode's first code element: the pseudocode.
-        </p>
-        <div id="workspace"></div>
+        <p class="note" id="note-1" hidden></p>
+        <div class="view"><div id="workspace" class="fill"></div></div>
       </section>
 
-      <section class="pane code-pane" aria-label="Code">
+      <section class="pane view-pane" aria-label="Second view">
         <div class="pane-head">
-          <h2>Code</h2>
-          <button class="info" type="button" aria-expanded="false" aria-controls="note-code" aria-label="About the code view">ⓘ</button>
+          <select data-kind aria-label="Second view: kind of view">
+              <option value="blocks">Blocks</option>
+              <option value="text" selected>Text</option>
+              <option value="preview">Preview</option>
+          </select>
+          <select data-language aria-label="Second view: language">
+              <option value="pseudocode">Pseudocode</option>
+              <option value="javascript" selected>JavaScript</option>
+              <option value="python">Python</option>
+          </select>
+          <span class="badge" data-read-only hidden>read only</span>
+          <button class="info" type="button" aria-expanded="false" aria-controls="note-2" aria-label="About this view">ⓘ</button>
         </div>
-        <p class="note" id="note-code" hidden>
-          This view shows the javascript mode: each block's code-js element. It is editable by structure: drag blocks in or around, and click a value to change it.
-        </p>
-        <div id="code"></div>
+        <p class="note" id="note-2" hidden></p>
+        <div class="view"></div>
       </section>
 
       <section class="pane output-pane" aria-label="Output">
@@ -50,6 +86,8 @@
         <pre id="output" aria-live="polite">Press Run to see what the program prints.</pre>
       </section>
     </main>
+    <!-- Holds the workspace while no view shows blocks, so the program stays. -->
+    <div id="parking" hidden></div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

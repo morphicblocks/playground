@@ -1,0 +1,6 @@
+/* Pseudocode: plain words. In a workspace a slightly bolder label keeps them
+   easy to read on the block colors. */
+
+.morphic-workspace-root.morphic-mode-in-pseudocode .blocklyText {
+  font-weight: 600;
+}

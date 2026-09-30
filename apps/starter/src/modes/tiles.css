@@ -1,0 +1,56 @@
+/* The "tiles" mode, shown in the toolbox. Each tile lists its elements in the
+   mode's order; the checkboxes above the toolbox change which ones the mode
+   names, and the framework hides every element it leaves out. Pseudocode is
+   drawn as a block, JavaScript and Python as text (the preset decides). */
+
+.morphic-block.morphic-mode-tiles {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  padding: 0.6rem 0.7rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--morphic-block-color, #999);
+  border-radius: 8px;
+  cursor: grab;
+}
+
+.morphic-block.morphic-mode-tiles:hover {
+  border-color: var(--line-strong);
+  border-left-color: var(--morphic-block-color, #999);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.06);
+}
+
+.morphic-mode-tiles > .morphic-element-title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.morphic-mode-tiles > .morphic-element-icon img {
+  display: block;
+}
+
+.morphic-mode-tiles > .morphic-element-pseudocode,
+.morphic-mode-tiles > .morphic-element-javascript,
+.morphic-mode-tiles > .morphic-element-python,
+.morphic-mode-tiles > .morphic-element-hint {
+  grid-column: 1 / -1;
+}
+
+.morphic-mode-tiles > .morphic-element-javascript,
+.morphic-mode-tiles > .morphic-element-python {
+  padding: 0.35rem 0.5rem;
+  font-family: ui-monospace, "SF Mono", Consolas, monospace;
+  font-size: 0.85rem;
+  white-space: pre;
+  background: var(--code-bg);
+  border-radius: 5px;
+}
+
+.morphic-mode-tiles > .morphic-element-hint {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--muted);
+}

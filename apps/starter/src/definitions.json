@@ -7,20 +7,17 @@
     },
     "hint": "text",
     "pseudocode": "code",
-    "code-js": "code"
+    "javascript": "code",
+    "python": "code"
   },
   "code": {
-    "code-js": {
+    "javascript": {
       "highlighting": {
         "keywords": [
           "for",
           "let",
-          "const",
           "if",
           "else",
-          "while",
-          "return",
-          "function",
           "true",
           "false"
         ],
@@ -31,17 +28,52 @@
         "numbers": true,
         "comment": "//",
         "colors": {
-          "keyword": "#1F7A6D",
-          "string": "#B5562B",
-          "number": "#6A4FC2",
+          "keyword": "#2A9D8F",
+          "string": "#D9733F",
+          "number": "#8B6FE0",
           "comment": "#8A949E"
         }
+      }
+    },
+    "python": {
+      "emptyStatement": "pass",
+      "highlighting": {
+        "keywords": [
+          "for",
+          "in",
+          "range",
+          "if",
+          "else",
+          "pass",
+          "True",
+          "False",
+          "and",
+          "or",
+          "not"
+        ],
+        "strings": [
+          "\"",
+          "'"
+        ],
+        "numbers": true,
+        "comment": "#",
+        "colors": {
+          "keyword": "#4A86D6",
+          "string": "#D9733F",
+          "number": "#8B6FE0",
+          "comment": "#8A949E"
+        }
+      },
+      "values": {
+        "true": "True",
+        "false": "False",
+        "null": "None"
       }
     }
   },
   "modes": [
     {
-      "name": "blocks",
+      "name": "tiles",
       "elements": [
         "title",
         "icon",
@@ -50,18 +82,35 @@
       ]
     },
     {
-      "name": "javascript",
+      "name": "in-pseudocode",
       "elements": [
-        "code-js"
+        "pseudocode"
+      ]
+    },
+    {
+      "name": "in-javascript",
+      "elements": [
+        "javascript"
+      ]
+    },
+    {
+      "name": "in-python",
+      "elements": [
+        "python"
       ]
     }
   ],
   "presets": [
     {
       "name": "main",
-      "toolbox": "blocks",
-      "workspace": "blocks",
-      "codespace": "javascript"
+      "toolbox": {
+        "mode": "tiles",
+        "render": {
+          "javascript": "text",
+          "python": "text"
+        }
+      },
+      "workspace": "in-pseudocode"
     }
   ],
   "categories": [
@@ -74,8 +123,16 @@
       "color": "#3DAE8A"
     },
     {
+      "name": "Variables",
+      "color": "#D1618F"
+    },
+    {
       "name": "Math",
       "color": "#9C6ADE"
+    },
+    {
+      "name": "Logic",
+      "color": "#C9A227"
     },
     {
       "name": "Loops",
@@ -91,7 +148,8 @@
         "icon": "icons/print.svg",
         "hint": "Shows a value in the output.",
         "pseudocode": "print %1",
-        "code-js": "console.log(%1);"
+        "javascript": "console.log(%1);",
+        "python": "print(%1)"
       },
       "inputSlots": {
         "1": {
@@ -116,7 +174,8 @@
         "icon": "icons/text.svg",
         "hint": "A piece of text in quotes.",
         "pseudocode": "\"%TEXT\"",
-        "code-js": "\"%TEXT\""
+        "javascript": "\"%TEXT\"",
+        "python": "\"%TEXT\""
       },
       "fields": {
         "TEXT": {
@@ -134,7 +193,8 @@
         "icon": "icons/number.svg",
         "hint": "A number you can type.",
         "pseudocode": "%NUM",
-        "code-js": "%NUM"
+        "javascript": "%NUM",
+        "python": "%NUM"
       },
       "fields": {
         "NUM": {
@@ -145,6 +205,123 @@
       "output": "Number"
     },
     {
+      "identifier": "boolean",
+      "category": "Values",
+      "elements": {
+        "title": "Yes or no",
+        "icon": "icons/boolean.svg",
+        "hint": "True or false. Python writes them with a capital letter.",
+        "pseudocode": "%BOOL",
+        "javascript": "%BOOL",
+        "python": "%BOOL"
+      },
+      "fields": {
+        "BOOL": {
+          "type": "dropdown",
+          "options": [
+            {
+              "value": "true",
+              "display": {
+                "python": "True"
+              }
+            },
+            {
+              "value": "false",
+              "display": {
+                "python": "False"
+              }
+            }
+          ],
+          "default": "true"
+        }
+      },
+      "output": "Boolean"
+    },
+    {
+      "identifier": "set",
+      "category": "Variables",
+      "elements": {
+        "title": "Set variable",
+        "icon": "icons/set.svg",
+        "hint": "Gives a name to a value, once per name.",
+        "pseudocode": "set %NAME to %1",
+        "javascript": "let %NAME = %1;",
+        "python": "%NAME = %1"
+      },
+      "fields": {
+        "NAME": {
+          "type": "text",
+          "default": "total"
+        }
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "VALUE",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "0"
+            }
+          }
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "change",
+      "category": "Variables",
+      "elements": {
+        "title": "Change variable",
+        "icon": "icons/change.svg",
+        "hint": "Adds a number to a variable.",
+        "pseudocode": "change %NAME by %1",
+        "javascript": "%NAME += %1;",
+        "python": "%NAME += %1"
+      },
+      "fields": {
+        "NAME": {
+          "type": "text",
+          "default": "total"
+        }
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "BY",
+          "check": "Number",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "1"
+            }
+          }
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
+      "identifier": "get",
+      "category": "Variables",
+      "elements": {
+        "title": "Variable",
+        "icon": "icons/get.svg",
+        "hint": "The value a name holds right now.",
+        "pseudocode": "%NAME",
+        "javascript": "%NAME",
+        "python": "%NAME"
+      },
+      "fields": {
+        "NAME": {
+          "type": "text",
+          "default": "total"
+        }
+      },
+      "output": true
+    },
+    {
       "identifier": "math",
       "category": "Math",
       "elements": {
@@ -152,7 +329,8 @@
         "icon": "icons/math.svg",
         "hint": "Adds, subtracts, multiplies or divides two numbers.",
         "pseudocode": "%1 %OP %2",
-        "code-js": "%1 %OP %2"
+        "javascript": "%1 %OP %2",
+        "python": "%1 %OP %2"
       },
       "inputSlots": {
         "1": {
@@ -203,14 +381,113 @@
       "inputsInline": true
     },
     {
+      "identifier": "compare",
+      "category": "Logic",
+      "elements": {
+        "title": "Compare",
+        "icon": "icons/compare.svg",
+        "hint": "Checks two numbers and answers true or false.",
+        "pseudocode": "%1 %OP %2",
+        "javascript": "%1 %OP %2",
+        "python": "%1 %OP %2"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "A",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "1"
+            }
+          }
+        },
+        "2": {
+          "kind": "value",
+          "name": "B",
+          "default": {
+            "shadow": "number",
+            "fieldValues": {
+              "NUM": "2"
+            }
+          }
+        }
+      },
+      "fields": {
+        "OP": {
+          "type": "dropdown",
+          "options": [
+            {
+              "value": ">",
+              "display": {
+                "pseudocode": "is more than"
+              }
+            },
+            {
+              "value": "<",
+              "display": {
+                "pseudocode": "is less than"
+              }
+            },
+            {
+              "value": "===",
+              "display": {
+                "pseudocode": "equals",
+                "python": "=="
+              }
+            }
+          ],
+          "default": ">"
+        }
+      },
+      "output": "Boolean",
+      "inputsInline": true
+    },
+    {
+      "identifier": "if_else",
+      "category": "Logic",
+      "elements": {
+        "title": "If, else",
+        "icon": "icons/if.svg",
+        "hint": "Runs the first blocks when the answer is true, else the second ones.",
+        "pseudocode": "if %1 then\n  %2\nelse\n  %3",
+        "javascript": "if (%1) {\n  %2\n} else {\n  %3\n}",
+        "python": "if %1:\n    %2\nelse:\n    %3"
+      },
+      "inputSlots": {
+        "1": {
+          "kind": "value",
+          "name": "CONDITION",
+          "check": "Boolean",
+          "default": {
+            "shadow": "boolean",
+            "fieldValues": {
+              "BOOL": "true"
+            }
+          }
+        },
+        "2": {
+          "kind": "statement",
+          "name": "THEN"
+        },
+        "3": {
+          "kind": "statement",
+          "name": "ELSE"
+        }
+      },
+      "shape": "statement",
+      "inputsInline": true
+    },
+    {
       "identifier": "repeat",
       "category": "Loops",
       "elements": {
         "title": "Repeat",
         "icon": "icons/repeat.svg",
         "hint": "Runs the blocks inside a number of times.",
-        "pseudocode": "repeat %1 times %2",
-        "code-js": "for (let i = 0; i < %1; i++) {\n  %2\n}"
+        "pseudocode": "repeat %1 times\n  %2",
+        "javascript": "for (let i = 0; i < %1; i++) {\n  %2\n}",
+        "python": "for i in range(%1):\n    %2"
       },
       "inputSlots": {
         "1": {

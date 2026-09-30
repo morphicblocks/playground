@@ -1,0 +1,121 @@
+{
+  "blocks": {
+    "languageVersion": 0,
+    "blocks": [
+      {
+        "type": "morphic:set",
+        "x": 24,
+        "y": 24,
+        "fields": {
+          "NAME": "total"
+        },
+        "inputs": {
+          "VALUE": {
+            "shadow": {
+              "type": "morphic:number",
+              "fields": {
+                "NUM": 0
+              }
+            }
+          }
+        },
+        "next": {
+          "block": {
+            "type": "morphic:repeat",
+            "inputs": {
+              "TIMES": {
+                "shadow": {
+                  "type": "morphic:number",
+                  "fields": {
+                    "NUM": 4
+                  }
+                }
+              },
+              "DO": {
+                "block": {
+                  "type": "morphic:change",
+                  "fields": {
+                    "NAME": "total"
+                  },
+                  "inputs": {
+                    "BY": {
+                      "shadow": {
+                        "type": "morphic:number",
+                        "fields": {
+                          "NUM": 3
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "next": {
+              "block": {
+                "type": "morphic:if_else",
+                "inputs": {
+                  "CONDITION": {
+                    "block": {
+                      "type": "morphic:compare",
+                      "fields": {
+                        "OP": ">"
+                      },
+                      "inputs": {
+                        "A": {
+                          "block": {
+                            "type": "morphic:get",
+                            "fields": {
+                              "NAME": "total"
+                            }
+                          }
+                        },
+                        "B": {
+                          "shadow": {
+                            "type": "morphic:number",
+                            "fields": {
+                              "NUM": 10
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "THEN": {
+                    "block": {
+                      "type": "morphic:print",
+                      "inputs": {
+                        "VALUE": {
+                          "shadow": {
+                            "type": "morphic:text",
+                            "fields": {
+                              "TEXT": "More than ten!"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "ELSE": {
+                    "block": {
+                      "type": "morphic:print",
+                      "inputs": {
+                        "VALUE": {
+                          "block": {
+                            "type": "morphic:get",
+                            "fields": {
+                              "NAME": "total"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}
