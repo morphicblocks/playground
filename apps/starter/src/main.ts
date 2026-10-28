@@ -41,10 +41,10 @@ document.documentElement.dataset.theme = themePicker.value;
 const engine = new MorphicBlocks(definitions, behaviors);
 
 // One call sets up the toolbox and the workspace. The preset in
-// definitions.json decides which mode each of them shows.
+// definitions.json decides what each of them shows.
 engine.mount({
   toolboxContainer: byId("toolbox"),
-  workspaceContainer: byId("workspace"),
+  containers: { "editor-pane": byId("workspace") },
   modesFolder: import.meta.glob("./modes/*.css", { eager: true, query: "?inline" }),
   // The views the explorer adds follow the selection too.
   selectionSync: true,

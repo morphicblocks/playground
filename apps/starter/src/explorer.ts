@@ -39,7 +39,7 @@ export function setUpExplorer(
   let codeWidth = 0;
   const ticked = () => TILE_ELEMENTS.filter((name) => boxes.some((box) => box.value === name && box.checked));
   const showElements = () => {
-    engine.setModeElements("tiles", ticked());
+    engine.setModeElements("picked-tiles", ticked());
     // The framework publishes the widest block for the toolbox's width, but
     // not code shown as text, which does not wrap either. Measure that here.
     const lines = toolbox.querySelectorAll<HTMLElement>(".morphic-element-javascript, .morphic-element-python");
@@ -70,12 +70,12 @@ export function setUpExplorer(
       pane.handle?.dispose();
       pane.handle = undefined;
       const kind = pane.kind.value as Kind;
-      const mode = `in-${pane.language.value}`;
-      const language = LANGUAGES[pane.language.value];
+      const element = pane.language.value;
+      const language = LANGUAGES[element];
 
       if (pane === main) {
         pane.view.replaceChildren(workspace);
-        engine.setModes({ workspaceMode: mode });
+        engine.show({ views: { "editor-pane": element } });
         pane.badge.hidden = true;
         pane.note.textContent = `The workspace: blocks you can edit, each drawn from its ${language} element.`;
         continue;
@@ -85,9 +85,12 @@ export function setUpExplorer(
       container.className = "fill";
       pane.view.replaceChildren(container);
       pane.handle = engine.addView({
-        kind: kind === "blocks" ? "workspace" : kind === "text" ? "codespace" : "preview",
+        kind: kind === "text" || kind === "preview" ? "codespace" : "workspace",
+        // A preview is a codespace that cannot be edited; the second blocks
+        // view only follows the first one.
+        editable: kind === "text",
         container,
-        mode,
+        element,
         theme,
       });
       pane.badge.hidden = kind === "text";

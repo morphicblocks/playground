@@ -73,44 +73,29 @@
   },
   "modes": [
     {
-      "name": "tiles",
+      "name": "picked-tiles",
       "elements": [
         "title",
         "icon",
         "pseudocode",
         "hint"
-      ]
-    },
-    {
-      "name": "in-pseudocode",
-      "elements": [
-        "pseudocode"
-      ]
-    },
-    {
-      "name": "in-javascript",
-      "elements": [
-        "javascript"
-      ]
-    },
-    {
-      "name": "in-python",
-      "elements": [
-        "python"
-      ]
+      ],
+      "render": {
+        "javascript": "text-based",
+        "python": "text-based"
+      }
     }
   ],
+  "views": {
+    "editor-pane": "workspace"
+  },
   "presets": [
     {
-      "name": "main",
-      "toolbox": {
-        "mode": "tiles",
-        "render": {
-          "javascript": "text",
-          "python": "text"
-        }
-      },
-      "workspace": "in-pseudocode"
+      "name": "main-preset",
+      "toolbox": "picked-tiles",
+      "views": {
+        "editor-pane": "pseudocode"
+      }
     }
   ],
   "categories": [

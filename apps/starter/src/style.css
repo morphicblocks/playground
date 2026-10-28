@@ -519,3 +519,14 @@ body {
 .element-tip .tok-slot { color: var(--tok-slot); font-weight: 700; }
 .element-tip .tok-break { color: var(--tok-break); }
 .element-tip .tok-punct { color: var(--muted); }
+
+/* Block text in a workspace, by the element it shows. Text views take their
+   look from the editor theme in main.ts. */
+.morphic-workspace-root.morphic-shows-pseudocode .blocklyText {
+  font-weight: 600;
+}
+
+.morphic-workspace-root.morphic-shows-javascript .blocklyText,
+.morphic-workspace-root.morphic-shows-python .blocklyText {
+  font-family: ui-monospace, "SF Mono", Consolas, monospace;
+}

@@ -34,12 +34,12 @@ docker run --rm -p 8080:80 -v "$PWD/dist":/usr/share/nginx/html:ro nginx:alpine
 Then open http://localhost:8080.
 <!-- /generated:top -->
 
-Each of the eleven blocks has six elements: a title, an icon, a one sentence hint and its code in pseudocode, JavaScript and Python. The tiles mode decides what the toolbox shows, and the checkboxes change it while the app runs. Each of the two views picks a kind (blocks, text or preview) and a language, which is a mode of its own: `in-pseudocode`, `in-javascript` or `in-python`.
+Each of the eleven blocks has six elements: a title, an icon, a one sentence hint and its code in pseudocode, JavaScript and Python. The tiles mode decides what the toolbox shows, and the checkboxes change it while the app runs. Each of the two views picks a kind (blocks, text or preview) and a language, the code element it shows: `pseudocode`, `javascript` or `python`.
 
 ## Where to look
 
 - `src/main.ts`: the whole setup: one `mount()` call, the Run button and the three themes (page colors in `src/style.css`, text view colors as editor themes).
-- `src/explorer.ts`: the tile shaped element picker, the block definition shown when hovering over a tile (only the ticked elements), and the two switchable views (`setModeElements`, `addView`, `setModes`). Leave it out in an app of your own.
+- `src/explorer.ts`: the tile shaped element picker, the block definition shown when hovering over a tile (only the ticked elements), and the two switchable views (`setModeElements`, `addView`, `show`). Leave it out in an app of your own.
 - `src/tour.ts`: the short guided tour (Driver.js), with its "Don't show again" choice. Leave it out too.
 - `src/definitions.json`: the elements of each block, the four modes, the preset and the settings for each language (highlighting, `pass` for Python, how Python prints values).
 - `src/behaviors.ts`: short functions that turn each block into runnable JavaScript.
