@@ -11,7 +11,7 @@ const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 // One stylesheet per language mode, in public/modes/. Each mode serves the
 // toolbox, the workspace and the preview.
-const modeStyles = Object.fromEntries(languages.map(({ code }) => [code, `${base}/modes/${code}.css`]));
+const modeStyles = Object.fromEntries(languages.map(({ code, tiles }) => [tiles, `${base}/modes/${code}.css`]));
 
 // Code views get VS Code's Dark+ colors, like the page.
 const previewTheme = {
@@ -27,9 +27,7 @@ const previewTheme = {
 
 // Arabic letters join, and monospace fonts break them apart into fixed cells,
 // so Arabic pseudocode is set in a proportional Arabic font. Switching into or
-// out of Arabic mounts again, so the preview picks its font there. (Morphic
-// Blocks 0.2.1 does not apply a theme's fontFamily yet, so for now the
-// preview still shows CodeMirror's monospace font.)
+// out of Arabic mounts again, so the preview picks its font there.
 const arabicPreviewTheme = {
   ...previewTheme,
   fontFamily: '"Geeza Pro", "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif',
@@ -44,11 +42,10 @@ function mountEngine(engine: MorphicBlocks, language: Language, views: Views) {
   const mounted = engine.mount({
     // The toolbox is mounted below, so Blockly builds none itself.
     canvasToolbox: true,
-    workspaceContainer: views.workspace,
-    previewContainer: views.preview,
+    containers: { "editor-pane": views.workspace, "pseudocode-pane": views.preview },
     preset: language.preset,
     modeStyles,
-    previewTheme: language.rtl ? arabicPreviewTheme : previewTheme,
+    themes: { "pseudocode-pane": language.rtl ? arabicPreviewTheme : previewTheme },
     blockly: {
       // Blockly reads right to left only here, when it starts.
       rtl: language.rtl,

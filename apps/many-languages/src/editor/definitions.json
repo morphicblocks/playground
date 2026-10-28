@@ -181,90 +181,109 @@
   },
   "modes": [
     {
-      "name": "en",
+      "name": "english-tiles",
       "elements": [
         "title_en",
         "pseudo_en"
       ]
     },
     {
-      "name": "de",
+      "name": "german-tiles",
       "elements": [
         "title_de",
         "pseudo_de"
       ]
     },
     {
-      "name": "es",
+      "name": "spanish-tiles",
       "elements": [
         "title_es",
         "pseudo_es"
       ]
     },
     {
-      "name": "el",
+      "name": "greek-tiles",
       "elements": [
         "title_el",
         "pseudo_el"
       ]
     },
     {
-      "name": "zh",
+      "name": "chinese-tiles",
       "elements": [
         "title_zh",
         "pseudo_zh"
       ]
     },
     {
-      "name": "ar",
+      "name": "arabic-tiles",
       "elements": [
         "title_ar",
         "pseudo_ar"
       ]
     }
   ],
+  "views": {
+    "editor-pane": "workspace",
+    "pseudocode-pane": {
+      "kind": "codespace",
+      "editable": false
+    }
+  },
   "presets": [
     {
-      "name": "english",
+      "name": "english-preset",
       "label": "English",
-      "toolbox": "en",
-      "workspace": "en",
-      "preview": "en"
+      "toolbox": "english-tiles",
+      "views": {
+        "editor-pane": "pseudo_en",
+        "pseudocode-pane": "pseudo_en"
+      }
     },
     {
-      "name": "german",
+      "name": "german-preset",
       "label": "Deutsch",
-      "toolbox": "de",
-      "workspace": "de",
-      "preview": "de"
+      "toolbox": "german-tiles",
+      "views": {
+        "editor-pane": "pseudo_de",
+        "pseudocode-pane": "pseudo_de"
+      }
     },
     {
-      "name": "spanish",
+      "name": "spanish-preset",
       "label": "Español",
-      "toolbox": "es",
-      "workspace": "es",
-      "preview": "es"
+      "toolbox": "spanish-tiles",
+      "views": {
+        "editor-pane": "pseudo_es",
+        "pseudocode-pane": "pseudo_es"
+      }
     },
     {
-      "name": "greek",
+      "name": "greek-preset",
       "label": "Ελληνικά",
-      "toolbox": "el",
-      "workspace": "el",
-      "preview": "el"
+      "toolbox": "greek-tiles",
+      "views": {
+        "editor-pane": "pseudo_el",
+        "pseudocode-pane": "pseudo_el"
+      }
     },
     {
-      "name": "chinese",
+      "name": "chinese-preset",
       "label": "中文",
-      "toolbox": "zh",
-      "workspace": "zh",
-      "preview": "zh"
+      "toolbox": "chinese-tiles",
+      "views": {
+        "editor-pane": "pseudo_zh",
+        "pseudocode-pane": "pseudo_zh"
+      }
     },
     {
-      "name": "arabic",
+      "name": "arabic-preset",
       "label": "العربية",
-      "toolbox": "ar",
-      "workspace": "ar",
-      "preview": "ar"
+      "toolbox": "arabic-tiles",
+      "views": {
+        "editor-pane": "pseudo_ar",
+        "pseudocode-pane": "pseudo_ar"
+      }
     }
   ],
   "categories": [
