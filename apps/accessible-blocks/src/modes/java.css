@@ -2,6 +2,6 @@
    variant also lists the explanation, which shows under the tile (the
    framework hides every element a mode does not name). */
 
-.morphic-workspace-root.morphic-mode-in-java .blocklyText {
+.morphic-workspace-root.morphic-shows-java .blocklyText {
   font-family: var(--code-font);
 }

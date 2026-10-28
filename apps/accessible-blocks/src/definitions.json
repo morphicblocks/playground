@@ -63,87 +63,106 @@
   },
   "modes": [
     {
-      "name": "with-symbols",
+      "name": "symbol-tiles",
       "elements": [
         "symbols"
       ]
     },
     {
-      "name": "with-symbols-help",
+      "name": "symbol-help-tiles",
       "elements": [
         "symbols",
         "help"
       ]
     },
     {
-      "name": "in-words",
+      "name": "word-tiles",
       "elements": [
         "words"
       ]
     },
     {
-      "name": "in-words-help",
+      "name": "word-help-tiles",
       "elements": [
         "words",
         "help"
       ]
     },
     {
-      "name": "in-java",
+      "name": "java-tiles",
       "elements": [
         "java"
       ]
     },
     {
-      "name": "in-java-help",
+      "name": "java-help-tiles",
       "elements": [
         "java",
         "help"
       ]
     }
   ],
+  "views": {
+    "editor-pane": "workspace",
+    "reading-pane": {
+      "kind": "codespace",
+      "editable": false
+    }
+  },
   "presets": [
     {
-      "name": "symbols",
+      "name": "symbols-level",
       "label": "Symbols",
-      "toolbox": "with-symbols",
-      "workspace": "with-symbols",
-      "preview": "in-words"
+      "toolbox": "symbol-tiles",
+      "views": {
+        "editor-pane": "symbols",
+        "reading-pane": "words"
+      }
     },
     {
-      "name": "symbols-help",
+      "name": "symbols-help-level",
       "label": "Symbols with explanations",
-      "toolbox": "with-symbols-help",
-      "workspace": "with-symbols",
-      "preview": "in-words"
+      "toolbox": "symbol-help-tiles",
+      "views": {
+        "editor-pane": "symbols",
+        "reading-pane": "words"
+      }
     },
     {
-      "name": "words",
+      "name": "words-level",
       "label": "Words",
-      "toolbox": "in-words",
-      "workspace": "in-words",
-      "preview": "in-java"
+      "toolbox": "word-tiles",
+      "views": {
+        "editor-pane": "words",
+        "reading-pane": "java"
+      }
     },
     {
-      "name": "words-help",
+      "name": "words-help-level",
       "label": "Words with explanations",
-      "toolbox": "in-words-help",
-      "workspace": "in-words",
-      "preview": "in-java"
+      "toolbox": "word-help-tiles",
+      "views": {
+        "editor-pane": "words",
+        "reading-pane": "java"
+      }
     },
     {
-      "name": "java",
+      "name": "java-level",
       "label": "Java",
-      "toolbox": "in-java",
-      "workspace": "in-java",
-      "preview": "in-words"
+      "toolbox": "java-tiles",
+      "views": {
+        "editor-pane": "java",
+        "reading-pane": "words"
+      }
     },
     {
-      "name": "java-help",
+      "name": "java-help-level",
       "label": "Java with explanations",
-      "toolbox": "in-java-help",
-      "workspace": "in-java",
-      "preview": "in-words"
+      "toolbox": "java-help-tiles",
+      "views": {
+        "editor-pane": "java",
+        "reading-pane": "words"
+      }
     }
   ],
   "categories": [

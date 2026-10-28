@@ -13,20 +13,21 @@ import { SIZE_MAX, SIZE_MIN, loadSettings, saveSettings, type Level, type Settin
 // has a twin with "-help" that also shows the explanation on its tile, and
 // definitions.json has a preset for every pair.
 const levels: { id: Level; label: string; mode: string; preview: string }[] = [
-  { id: "symbols", label: "Symbols", mode: "with-symbols", preview: "plain words" },
-  { id: "words", label: "Words", mode: "in-words", preview: "Java" },
-  { id: "java", label: "Java", mode: "in-java", preview: "plain words" },
+  { id: "symbols", label: "Symbols", mode: "symbol-tiles", preview: "plain words" },
+  { id: "words", label: "Words", mode: "word-tiles", preview: "Java" },
+  { id: "java", label: "Java", mode: "java-tiles", preview: "plain words" },
 ];
 const levelOf = (id: Level) => levels.find((level) => level.id === id)!;
-const presetName = (settings: Settings) => (settings.help ? `${settings.level}-help` : settings.level);
+// Presets are named after their level (words-level, words-help-level).
+const presetName = (settings: Settings) => `${settings.level}${settings.help ? "-help" : ""}-level`;
 
 const modeStyles = {
-  "with-symbols": symbolsCss,
-  "with-symbols-help": symbolsCss,
-  "in-words": wordsCss,
-  "in-words-help": wordsCss,
-  "in-java": javaCss,
-  "in-java-help": javaCss,
+  "symbol-tiles": symbolsCss,
+  "symbol-help-tiles": symbolsCss,
+  "word-tiles": wordsCss,
+  "word-help-tiles": wordsCss,
+  "java-tiles": javaCss,
+  "java-help-tiles": javaCss,
 };
 
 // The text size changes how things look, not what they say: Blockly's zoom
@@ -80,12 +81,11 @@ export function App() {
     const created = new MorphicBlocks(definitions, behaviors);
     engine.current = created;
     void created.mount({
-      workspaceContainer: workspaceEl.current!,
+      containers: { "editor-pane": workspaceEl.current!, "reading-pane": previewEl.current! },
       toolboxContainer: toolboxEl.current!,
-      previewContainer: previewEl.current!,
       preset: presetName(settings),
       modeStyles,
-      previewTheme: codeTheme(settings),
+      themes: { "reading-pane": codeTheme(settings) },
       // The level names the language already, so the toolbox needs no label.
       toolbox: { modeLabel: false },
       blockly: {
@@ -163,7 +163,7 @@ export function App() {
         current.refresh();
       }
       current.getWorkspace()?.setScale(scaleOf(settings));
-      current.setPreviewTheme(codeTheme(settings));
+      current.setViewTheme("reading-pane", codeTheme(settings));
     })();
     return () => {
       cancelled = true;
