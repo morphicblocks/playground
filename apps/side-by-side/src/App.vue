@@ -4,22 +4,23 @@ import { MorphicBlocks, type MorphicCodeEditorTheme } from "morphic-blocks";
 import definitions from "./definitions.json";
 import { behaviors } from "./behaviors";
 import program from "./program.json";
-import goCss from "./modes/in-go.css?raw";
-import cppCss from "./modes/in-cpp.css?raw";
-import javaCss from "./modes/in-java.css?raw";
-import pythonCss from "./modes/in-python.css?raw";
-import jsCss from "./modes/in-js.css?raw";
-import modelCss from "./modes/model.css?raw";
+import goCss from "./modes/go-tiles.css?raw";
+import cppCss from "./modes/cpp-tiles.css?raw";
+import javaCss from "./modes/java-tiles.css?raw";
+import pythonCss from "./modes/python-tiles.css?raw";
+import jsCss from "./modes/js-tiles.css?raw";
 
 // One mode per language, listed by the length of the name.
+// Each mode's tiles show its language's code element as text.
 const languages = [
-  { mode: "in-go", name: "Go" },
-  { mode: "in-cpp", name: "C++" },
-  { mode: "in-java", name: "Java" },
-  { mode: "in-python", name: "Python" },
-  { mode: "in-js", name: "JavaScript" },
+  { mode: "go-tiles", element: "go", name: "Go" },
+  { mode: "cpp-tiles", element: "cpp", name: "C++" },
+  { mode: "java-tiles", element: "java", name: "Java" },
+  { mode: "python-tiles", element: "python", name: "Python" },
+  { mode: "js-tiles", element: "js", name: "JavaScript" },
 ];
 const nameOf = (mode: string) => languages.find((l) => l.mode === mode)?.name ?? mode;
+const elementOf = (mode: string) => languages.find((l) => l.mode === mode)?.element ?? mode;
 
 // Code views are dark by default; these match the mint colors of the page.
 const mono = { fontFamily: 'ui-monospace, "SF Mono", Menlo, Consolas, monospace', fontSize: "14px", lineHeight: 1.65 };
@@ -38,8 +39,8 @@ const codespaceEl = ref<HTMLElement>();
 const previewEl = ref<HTMLElement>();
 
 // The preset in definitions.json starts with Python on the left, Java on the right.
-const writeMode = ref("in-python");
-const readMode = ref("in-java");
+const writeMode = ref("python-tiles");
+const readMode = ref("java-tiles");
 const output = ref<string[]>([]);
 const error = ref<string | null>(null);
 
@@ -54,22 +55,20 @@ function run() {
 
 onMounted(() => {
   engine = new MorphicBlocks(definitions, behaviors);
-  // No workspaceContainer: Blockly runs hidden and keeps the program as
+  // No workspace container: Blockly runs hidden and keeps the program as
   // blocks, while people only ever see and edit text.
   void engine.mount({
-    codespaceContainer: codespaceEl.value!,
-    previewContainer: previewEl.value!,
+    containers: { "write-pane": codespaceEl.value!, "read-pane": previewEl.value! },
     // The toolbox is set up below, where it can drop its mode label.
     canvasToolbox: true,
     editorTheme,
-    previewTheme,
+    themes: { "read-pane": previewTheme },
     modeStyles: {
-      "in-go": goCss,
-      "in-cpp": cppCss,
-      "in-java": javaCss,
-      "in-python": pythonCss,
-      "in-js": jsCss,
-      model: modelCss,
+      "go-tiles": goCss,
+      "cpp-tiles": cppCss,
+      "java-tiles": javaCss,
+      "python-tiles": pythonCss,
+      "js-tiles": jsCss,
     },
   });
   // The heading above the toolbox already names the language.
@@ -78,10 +77,10 @@ onMounted(() => {
 });
 
 // The toolbox follows the language people write in. The hidden workspace
-// stays in the "model" mode, so no field is ever lost when a language leaves
-// one out (JavaScript has no type words).
+// keeps showing the "outline" element, so no field is ever lost when a
+// language leaves one out (JavaScript has no type words).
 watch([writeMode, readMode], ([write, read]) => {
-  engine?.setModes({ codespaceMode: write, toolboxMode: write, previewMode: read });
+  engine?.show({ toolbox: write, views: { "write-pane": elementOf(write), "read-pane": elementOf(read) } });
 });
 
 onBeforeUnmount(() => engine?.dispose());

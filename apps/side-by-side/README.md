@@ -38,8 +38,8 @@ There is no block workspace on screen: Blockly runs hidden and holds the program
 
 ## Where to look
 
-- `src/definitions.json`: one code element per language, the dropdown `display` maps that turn one type choice into `int`, `std::string`, `String` or `str`, and the hidden "model" mode that keeps every field.
-- `src/App.vue`: the `mount()` call without a workspace, the two language dropdowns wired to `setModes()`, and the Run button.
+- `src/definitions.json`: one code element per language, the dropdown `display` maps that turn one type choice into `int`, `std::string`, `String` or `str`, and the "outline" element the hidden workspace shows, which keeps every field.
+- `src/App.vue`: the `mount()` call without a workspace, the two language dropdowns wired to `show()`, and the Run button.
 - `src/behaviors.ts`: every block as JavaScript with the same meaning, types ignored, loops stopped after 1,000 rounds.
 - `src/modes/`: one small stylesheet per mode, for the snippet tiles.
 

@@ -203,65 +203,74 @@
   },
   "modes": [
     {
-      "name": "in-go",
+      "name": "go-tiles",
       "elements": [
         "title",
         "go"
-      ]
+      ],
+      "render": {
+        "go": "text-based"
+      }
     },
     {
-      "name": "in-cpp",
+      "name": "cpp-tiles",
       "elements": [
         "title",
         "cpp"
-      ]
+      ],
+      "render": {
+        "cpp": "text-based"
+      }
     },
     {
-      "name": "in-java",
+      "name": "java-tiles",
       "elements": [
         "title",
         "java"
-      ]
+      ],
+      "render": {
+        "java": "text-based"
+      }
     },
     {
-      "name": "in-python",
+      "name": "python-tiles",
       "elements": [
         "title",
         "python"
-      ]
+      ],
+      "render": {
+        "python": "text-based"
+      }
     },
     {
-      "name": "in-js",
+      "name": "js-tiles",
       "elements": [
         "title",
         "js"
-      ]
-    },
-    {
-      "name": "model",
-      "elements": [
-        "outline"
-      ]
+      ],
+      "render": {
+        "js": "text-based"
+      }
     }
   ],
+  "views": {
+    "program-pane": "workspace",
+    "write-pane": "codespace",
+    "read-pane": {
+      "kind": "codespace",
+      "editable": false
+    }
+  },
   "presets": [
     {
-      "name": "start",
+      "name": "start-preset",
       "label": "Python and Java",
-      "toolbox": {
-        "mode": "in-python",
-        "render": {
-          "go": "text",
-          "cpp": "text",
-          "java": "text",
-          "python": "text",
-          "js": "text",
-          "outline": "text"
-        }
-      },
-      "workspace": "model",
-      "codespace": "in-python",
-      "preview": "in-java"
+      "toolbox": "python-tiles",
+      "views": {
+        "program-pane": "outline",
+        "write-pane": "python",
+        "read-pane": "java"
+      }
     }
   ],
   "categories": [

@@ -1,14 +1,14 @@
-/* The "in-java" mode: Java. Toolbox tiles show a small title and the Java
+/* The "js-tiles" mode: JavaScript. Toolbox tiles show a small title and the JavaScript
    snippet as plain text; the text views use the same element as their source. */
 
-.morphic-block.morphic-mode-in-java > .morphic-element-title {
+.morphic-block.morphic-mode-js-tiles > .morphic-element-title {
   font: 600 10.5px/1.2 var(--font-label);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-soft);
 }
 
-.morphic-block.morphic-mode-in-java > .morphic-element-java {
+.morphic-block.morphic-mode-js-tiles > .morphic-element-js {
   font: 12.5px/1.45 var(--font-code);
   color: var(--ink);
   white-space: pre;
