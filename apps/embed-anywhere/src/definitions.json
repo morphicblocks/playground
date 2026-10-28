@@ -28,24 +28,27 @@
   },
   "modes": [
     {
-      "name": "blocks",
+      "name": "word-tiles",
       "elements": [
         "words"
       ]
-    },
-    {
-      "name": "py",
-      "elements": [
-        "python"
-      ]
     }
   ],
+  "views": {
+    "figure-pane": "workspace",
+    "python-pane": {
+      "kind": "codespace",
+      "editable": false
+    }
+  },
   "presets": [
     {
-      "name": "figure",
-      "toolbox": "blocks",
-      "workspace": "blocks",
-      "preview": "py"
+      "name": "figure-preset",
+      "toolbox": "word-tiles",
+      "views": {
+        "figure-pane": "words",
+        "python-pane": "python"
+      }
     }
   ],
   "categories": [

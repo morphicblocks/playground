@@ -101,9 +101,8 @@ export class MorphicEditor extends LitElement {
     this.engine = engine;
 
     engine.mount({
-      workspaceContainer: part("workspace"),
-      previewContainer: part("preview"),
-      previewTheme: paperTheme,
+      containers: { "figure-pane": part("workspace"), "python-pane": part("preview") },
+      themes: { "python-pane": paperTheme },
       // The toolbox is mounted below, so Blockly should not build its own.
       canvasToolbox: true,
       modesFolder,

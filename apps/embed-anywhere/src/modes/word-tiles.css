@@ -1,0 +1,11 @@
+/* The "word-tiles" mode: blocks in plain words on the toolbox tiles. */
+
+.morphic-block.morphic-mode-word-tiles {
+  padding: 0.3rem;
+  border-radius: 6px;
+  cursor: grab;
+}
+
+.morphic-block.morphic-mode-word-tiles:hover {
+  background: #efe3cc;
+}
