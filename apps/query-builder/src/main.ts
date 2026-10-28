@@ -14,8 +14,7 @@ const presetButtons = document.querySelectorAll<HTMLButtonElement>("[data-preset
 engine.mount({
   // The toolbox is mounted below, so Blockly builds none itself.
   canvasToolbox: true,
-  workspaceContainer: byId("workspace"),
-  codespaceContainer: byId("sql"),
+  containers: { "editor-pane": byId("workspace"), "sql-pane": byId("sql") },
   // The generated JavaScript, shown in the second tab. It starts hidden.
   codeEditorContainer: byId("js"),
   modesFolder: import.meta.glob("./modes/*.css", { eager: true, query: "?inline" }),

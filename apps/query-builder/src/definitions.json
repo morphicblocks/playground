@@ -37,7 +37,7 @@
   },
   "modes": [
     {
-      "name": "plain",
+      "name": "word-tiles",
       "elements": [
         "label",
         "words",
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "name": "query",
+      "name": "sql-tiles",
       "elements": [
         "label",
         "sql",
@@ -53,20 +53,28 @@
       ]
     }
   ],
+  "views": {
+    "editor-pane": "workspace",
+    "sql-pane": "codespace"
+  },
   "presets": [
     {
-      "name": "word-blocks",
+      "name": "words-preset",
       "label": "Word blocks",
-      "toolbox": "plain",
-      "workspace": "plain",
-      "codespace": "query"
+      "toolbox": "word-tiles",
+      "views": {
+        "editor-pane": "words",
+        "sql-pane": "sql"
+      }
     },
     {
-      "name": "sql-blocks",
+      "name": "sql-preset",
       "label": "SQL blocks",
-      "toolbox": "query",
-      "workspace": "query",
-      "codespace": "query"
+      "toolbox": "sql-tiles",
+      "views": {
+        "editor-pane": "sql",
+        "sql-pane": "sql"
+      }
     }
   ],
   "categories": [

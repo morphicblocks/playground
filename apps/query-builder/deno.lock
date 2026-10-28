@@ -4,7 +4,7 @@
     "npm:@codemirror/lang-javascript@^6.2.5": "6.2.5",
     "npm:@codemirror/state@^6.7.6": "6.7.6",
     "npm:@codemirror/view@^6.43.13": "6.43.13",
-    "npm:morphic-blocks@0.3": "0.3.0_@codemirror+lang-javascript@6.2.5_@codemirror+state@6.7.6_@codemirror+view@6.43.13",
+    "npm:morphic-blocks@0.4": "0.4.0_@codemirror+lang-javascript@6.2.5_@codemirror+state@6.7.6_@codemirror+view@6.43.13_vite@8.3.1",
     "npm:typescript@^7.0.2": "7.0.2",
     "npm:vite@^8.3.1": "8.3.1"
   },
@@ -101,6 +101,33 @@
     },
     "@csstools/css-tokenizer@3.0.4": {
       "integrity": "sha512-Vd/9EVDiu6PPJt9yAh6roZP6El1xHrdvIVGjyBsHR0RYwNHgL7FJPyIIW4fANJNG6FtyZfvlRPpFI4ZM/lubvw=="
+    },
+    "@jridgewell/gen-mapping@0.3.13": {
+      "integrity": "sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==",
+      "dependencies": [
+        "@jridgewell/sourcemap-codec",
+        "@jridgewell/trace-mapping"
+      ]
+    },
+    "@jridgewell/remapping@2.3.5": {
+      "integrity": "sha512-LI9u/+laYG4Ds1TDKSJW2YPrIlcVYOwi2fUC6xB43lueCjgxV4lffOCZCtYFiH6TNOX+tQKXx97T4IKHbhyHEQ==",
+      "dependencies": [
+        "@jridgewell/gen-mapping",
+        "@jridgewell/trace-mapping"
+      ]
+    },
+    "@jridgewell/resolve-uri@3.1.2": {
+      "integrity": "sha512-bRISgCIjP20/tbWSPWMEi54QVPRZExkuD9lJL+UIxUKtwVJA8wW1Trb1jMs1RFXo1CBTNZ/5hpC9QvmKWdopKw=="
+    },
+    "@jridgewell/sourcemap-codec@1.6.0": {
+      "integrity": "sha512-T7jf+5zgsZHwNJ4lvQ7/aezbyk0nNX+zJVWpmHA7VYsEx7a7qr5Rg5IbtJFqkgze5Y2sruq1RUY8Q837Od7iFw=="
+    },
+    "@jridgewell/trace-mapping@0.3.31": {
+      "integrity": "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==",
+      "dependencies": [
+        "@jridgewell/resolve-uri",
+        "@jridgewell/sourcemap-codec"
+      ]
     },
     "@lezer/common@1.5.3": {
       "integrity": "sha512-H0iErY4e43LpXbYDyBci5W4v/RwTgGV3YzYOlJPiGZ8RY8w51kVE+xLn1tg3Z6UmSfyETvtsUK3r7YsgDQEI7Q=="
@@ -609,13 +636,14 @@
         "mime-db"
       ]
     },
-    "morphic-blocks@0.3.0_@codemirror+lang-javascript@6.2.5_@codemirror+state@6.7.6_@codemirror+view@6.43.13": {
-      "integrity": "sha512-ICiaPUoWIUSdPjRM3nL4OJHtcAjXkJSz9ZYI1Y+wHtoqZShlIQggn9nvs4381DzQ1wu7Y9e1iOJbpW8OgthhFA==",
+    "morphic-blocks@0.4.0_@codemirror+lang-javascript@6.2.5_@codemirror+state@6.7.6_@codemirror+view@6.43.13_vite@8.3.1": {
+      "integrity": "sha512-8x+DXCSsZcUv8JNKnrNnBCVZHOW9xzL2WrbjcOKKwgBVqAIjEwzprVrmUMzDMAyyhR5etaiDPUbqcnNie9gCYw==",
       "dependencies": [
         "@codemirror/lang-javascript",
         "@codemirror/state",
         "@codemirror/view",
-        "blockly"
+        "blockly",
+        "unplugin"
       ],
       "optionalPeers": [
         "@codemirror/lang-javascript",
@@ -761,6 +789,18 @@
       ],
       "bin": true
     },
+    "unplugin@3.5.0_vite@8.3.1": {
+      "integrity": "sha512-s9qc6Y8ChhQE9RZ9Se+znEtZA0oK31LmEBO9y97ixR3ErA8UwlzA4XNybg/41od8rQ8EKScVQM857NWnI+EWkQ==",
+      "dependencies": [
+        "@jridgewell/remapping",
+        "picomatch",
+        "vite",
+        "webpack-virtual-modules"
+      ],
+      "optionalPeers": [
+        "vite"
+      ]
+    },
     "vite@8.3.1": {
       "integrity": "sha512-/bvH9E9tmCXRGp2uXY3WbOldqpTwFkbha/8ANaEQ6VkxhH60KyqLwgZq6lG2y+4uT55x9+9eUHMpQ7uGnOCKjA==",
       "dependencies": [
@@ -786,6 +826,9 @@
     },
     "webidl-conversions@7.0.0": {
       "integrity": "sha512-VwddBukDzu71offAQR975unBIGqfKZpM+8ZX6ySk8nYhVoo5CYaZyzt3YBvYtRtO+aoGlqxPg/B87NGVZ/fu6g=="
+    },
+    "webpack-virtual-modules@0.6.2": {
+      "integrity": "sha512-66/V2i5hQanC51vBQKPH4aI8NMAcBW59FVBs+rC7eGHupMyfn34q7rZIE+ETlJ+XTevqfUhVVBgSUNSW2flEUQ=="
     },
     "whatwg-encoding@3.1.1": {
       "integrity": "sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==",
@@ -820,7 +863,7 @@
         "npm:@codemirror/lang-javascript@^6.2.5",
         "npm:@codemirror/state@^6.7.6",
         "npm:@codemirror/view@^6.43.13",
-        "npm:morphic-blocks@0.3",
+        "npm:morphic-blocks@0.4",
         "npm:typescript@^7.0.2",
         "npm:vite@^8.3.1"
       ]
