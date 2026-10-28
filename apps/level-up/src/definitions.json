@@ -5,13 +5,16 @@
   },
   "modes": [
     {
-      "name": "py",
+      "name": "python-tiles",
       "elements": [
         "python",
         "hint"
       ]
     }
   ],
+  "views": {
+    "editor-pane": "workspace"
+  },
   "categories": [
     {
       "name": "Output",

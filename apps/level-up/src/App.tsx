@@ -150,7 +150,7 @@ export function App() {
   onMount(() => {
     engine = new MorphicBlocks(definitions, behaviors);
     void engine.mount({
-      workspaceContainer: workspaceEl,
+      containers: { "editor-pane": workspaceEl },
       // The toolbox is set up by showToolbox, so Blockly builds none itself.
       canvasToolbox: true,
       modesFolder,

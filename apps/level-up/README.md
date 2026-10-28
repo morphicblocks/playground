@@ -41,7 +41,7 @@ One language, Python, at every level. What changes from level to level is how mu
 - `src/App.tsx`: the level bar, the toolbox mounted again with each level's blocks, and the question before a lower level removes blocks
 - `src/definitions.json`: the eighteen blocks in Python syntax; their category decides the level that brings them
 - `src/behaviors.ts`: each block as JavaScript that does what its Python does (range, True and False, 10 / 2 printing 5.0, Python's error names) with a loop guard at 1,000 rounds
-- `src/modes/py.css`: the one mode, Python on the block with a short hint under each toolbox tile
+- `src/modes/python-tiles.css`: the one mode, Python on the block with a short hint under each toolbox tile
 
 <!-- generated:license -->
 ## License
