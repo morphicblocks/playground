@@ -31,37 +31,47 @@
   },
   "modes": [
     {
-      "name": "plain",
+      "name": "word-tiles",
       "elements": [
         "words"
       ]
     },
     {
-      "name": "py",
+      "name": "python-tiles",
       "elements": [
         "python"
       ]
     }
   ],
+  "views": {
+    "editor-pane": "workspace",
+    "main-py-pane": "codespace"
+  },
   "presets": [
     {
-      "name": "blocks",
+      "name": "blocks-step",
       "label": "Blocks",
-      "toolbox": "plain",
-      "workspace": "plain"
+      "toolbox": "word-tiles",
+      "views": {
+        "editor-pane": "words"
+      }
     },
     {
-      "name": "blocks-and-python",
+      "name": "mirror-step",
       "label": "Blocks and Python blocks",
-      "toolbox": "plain",
-      "workspace": "plain"
+      "toolbox": "word-tiles",
+      "views": {
+        "editor-pane": "words"
+      }
     },
     {
-      "name": "python-text",
+      "name": "text-step",
       "label": "Python blocks and Python text",
-      "toolbox": "py",
-      "workspace": "py",
-      "codespace": "py"
+      "toolbox": "python-tiles",
+      "views": {
+        "editor-pane": "python",
+        "main-py-pane": "python"
+      }
     }
   ],
   "categories": [

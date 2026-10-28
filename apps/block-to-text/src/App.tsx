@@ -9,9 +9,9 @@ const modesFolder = import.meta.glob("./modes/*.css", { eager: true, query: "?in
 
 // One short sentence per step, so the learner knows what changed.
 const hints: Record<string, string> = {
-  blocks: "Build with blocks in plain words, then press Run to see what the program prints.",
-  "blocks-and-python": "Keep building in plain words. Next to it, the same program as Python blocks follows along.",
-  "python-text": "Now the blocks speak Python, and the Python text beside them can be edited too.",
+  "blocks-step": "Build with blocks in plain words, then press Run to see what the program prints.",
+  "mirror-step": "Keep building in plain words. Next to it, the same program as Python blocks follows along.",
+  "text-step": "Now the blocks speak Python, and the Python text beside them can be edited too.",
 };
 
 const editorTheme = {
@@ -68,8 +68,7 @@ export function App() {
     engineRef.current = engine;
     void engine.mount({
       toolboxContainer: toolboxRef.current!,
-      workspaceContainer: workspaceRef.current!,
-      codespaceContainer: codespaceRef.current!,
+      containers: { "editor-pane": workspaceRef.current!, "main-py-pane": codespaceRef.current! },
       editorTheme,
       // The framework reports which views the preset shows; React lays them out.
       onPresetApplied: setPreset,
@@ -77,9 +76,9 @@ export function App() {
       blockly: { ...blocklyBase, trashcan: true, zoom: { controls: true, wheel: true, startScale: 0.95 } },
     });
 
-    // The Python blocks of step 2: a read only workspace in the py mode that
-    // follows every change of the main one.
-    engine.addView({ kind: "workspace", name: "mirror", mode: "py", container: mirrorRef.current! });
+    // The Python blocks of step 2: a read only workspace showing the python
+    // element that follows every change of the main one.
+    engine.addView({ kind: "workspace", name: "mirror-pane", element: "python", editable: false, container: mirrorRef.current! });
 
     engine.loadWorkspace(program);
     // Blockly starts with its origin in the middle of the pane. Put the
@@ -92,8 +91,8 @@ export function App() {
     };
   }, []);
 
-  const step = preset?.name ?? "blocks";
-  const layout = { blocks: styles.stepOne, "blocks-and-python": styles.stepTwo, "python-text": styles.stepThree }[step];
+  const step = preset?.name ?? "blocks-step";
+  const layout = { "blocks-step": styles.stepOne, "mirror-step": styles.stepTwo, "text-step": styles.stepThree }[step];
 
   return (
     <div className={styles.shell}>
@@ -127,18 +126,18 @@ export function App() {
           <div ref={toolboxRef} className={styles.toolboxBody} />
         </section>
         <section className={`${styles.pane} ${styles.workspace}`} aria-label="Blocks">
-          <h2 className={styles.paneTitle}>{step === "python-text" ? "Python blocks" : "Blocks"}</h2>
+          <h2 className={styles.paneTitle}>{step === "text-step" ? "Python blocks" : "Blocks"}</h2>
           <div ref={workspaceRef} className={styles.fill} />
         </section>
         <section
           className={`${styles.pane} ${styles.mirror}`}
           aria-label="Python blocks mirror"
-          hidden={step !== "blocks-and-python"}
+          hidden={step !== "mirror-step"}
         >
           <h2 className={styles.paneTitle}>Python blocks · follows along</h2>
           <div ref={mirrorRef} className={styles.fill} />
         </section>
-        <section className={`${styles.pane} ${styles.code}`} aria-label="Python editor" hidden={!preset?.codespace}>
+        <section className={`${styles.pane} ${styles.code}`} aria-label="Python editor" hidden={!preset || !("main-py-pane" in preset.views)}>
           <h2 className={styles.paneTitle}>main.py</h2>
           <div ref={codespaceRef} className={styles.fill} />
         </section>
