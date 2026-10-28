@@ -171,10 +171,9 @@
   onMount(() => {
     engine = new MorphicBlocks(definitions, behaviors);
     void engine.mount({
-      workspaceContainer: workspaceEl,
       // The program in Logo, shown read only in the </> popup.
-      previewContainer: previewEl,
-      previewTheme: {
+      containers: { "canvas-pane": workspaceEl, "logo-pane": previewEl },
+      themes: { "logo-pane": {
         background: "#fffdf8",
         foreground: "#3b2f2a",
         gutterBackground: "#fbf3e4",
@@ -183,7 +182,7 @@
         fontFamily: 'ui-monospace, "SF Mono", Menlo, Consolas, monospace',
         fontSize: "15px",
         lineHeight: 1.6,
-      },
+      } },
       // The toolbox is mounted below without its "Mode" label: this app
       // shows no words at all.
       canvasToolbox: true,

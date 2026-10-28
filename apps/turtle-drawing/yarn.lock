@@ -937,12 +937,13 @@ mime-types@^2.1.35:
   dependencies:
     mime-db "1.52.0"
 
-morphic-blocks@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/morphic-blocks/-/morphic-blocks-0.3.0.tgz#3e21f9f34fdffd4dd5a4205184e7dbea7f72963d"
-  integrity sha512-ICiaPUoWIUSdPjRM3nL4OJHtcAjXkJSz9ZYI1Y+wHtoqZShlIQggn9nvs4381DzQ1wu7Y9e1iOJbpW8OgthhFA==
+morphic-blocks@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/morphic-blocks/-/morphic-blocks-0.4.0.tgz#2fae4e93e742edc5709d6a8911c30c4ea83bdd29"
+  integrity sha512-8x+DXCSsZcUv8JNKnrNnBCVZHOW9xzL2WrbjcOKKwgBVqAIjEwzprVrmUMzDMAyyhR5etaiDPUbqcnNie9gCYw==
   dependencies:
     blockly "^11.2.2"
+    unplugin "^3.4.0"
 
 mri@^1.1.0:
   version "1.2.0"
@@ -1160,6 +1161,15 @@ typescript@^6.0.3:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-6.0.3.tgz#90251dc007916e972786cb94d74d15b185577d21"
   integrity sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==
 
+unplugin@^3.4.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-3.6.0.tgz#a30eab96e42cfb6c2efa07396f778e3c58b29314"
+  integrity sha512-btGFb33KNAaqsu3/jFenhevLmaP9ZjYbkiVKd7OBAtsbdqG7oSJsA8RlHa7NY5kt765PnB37mlAI8a15iQAm+w==
+  dependencies:
+    "@jridgewell/remapping" "^2.3.5"
+    picomatch "^4.0.7"
+    webpack-virtual-modules "^0.6.2"
+
 vite@^8.3.1:
   version "8.3.1"
   resolved "https://registry.yarnpkg.com/vite/-/vite-8.3.1.tgz#aa1099a4ccaf104a8c32492951497fa1781d9fce"
@@ -1194,6 +1204,11 @@ webidl-conversions@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-7.0.0.tgz#256b4e1882be7debbf01d05f0aa2039778ea080a"
   integrity sha512-VwddBukDzu71offAQR975unBIGqfKZpM+8ZX6ySk8nYhVoo5CYaZyzt3YBvYtRtO+aoGlqxPg/B87NGVZ/fu6g==
+
+webpack-virtual-modules@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/webpack-virtual-modules/-/webpack-virtual-modules-0.6.2.tgz#057faa9065c8acf48f24cb57ac0e77739ab9a7e8"
+  integrity sha512-66/V2i5hQanC51vBQKPH4aI8NMAcBW59FVBs+rC7eGHupMyfn34q7rZIE+ETlJ+XTevqfUhVVBgSUNSW2flEUQ==
 
 whatwg-encoding@^3.1.1:
   version "3.1.1"

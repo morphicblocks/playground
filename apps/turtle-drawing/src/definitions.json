@@ -27,30 +27,27 @@
   },
   "modes": [
     {
-      "name": "crayons",
+      "name": "crayon-tiles",
       "elements": [
         "icon"
       ]
-    },
-    {
-      "name": "pictures",
-      "elements": [
-        "picture"
-      ]
-    },
-    {
-      "name": "logo",
-      "elements": [
-        "turtle"
-      ]
     }
   ],
+  "views": {
+    "canvas-pane": "workspace",
+    "logo-pane": {
+      "kind": "codespace",
+      "editable": false
+    }
+  },
   "presets": [
     {
-      "name": "draw",
-      "toolbox": "crayons",
-      "workspace": "pictures",
-      "preview": "logo"
+      "name": "draw-preset",
+      "toolbox": "crayon-tiles",
+      "views": {
+        "canvas-pane": "picture",
+        "logo-pane": "turtle"
+      }
     }
   ],
   "categories": [

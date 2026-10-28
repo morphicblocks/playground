@@ -11,6 +11,14 @@
   --font-sans: ui-rounded, "SF Pro Rounded", "Nunito", system-ui, sans-serif;
 }
 
+/* The workspace shows the "picture" element: a picture and a number (or a
+   color) per block. Big, bold numbers are easy for young learners to read.
+   The framework measures this font, so the blocks grow to fit. */
+.morphic-workspace-root.morphic-shows-picture .blocklyText {
+  font-size: 22px;
+  font-weight: 800;
+}
+
 /* Warm paper with dots. */
 :root {
   --paper: #fff7ea;
